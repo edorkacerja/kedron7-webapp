@@ -1,0 +1,31 @@
+<acme-navbar></acme-navbar>
+<div class="container-fluid" >
+  <acme-sidebar></acme-sidebar>
+  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+
+    <!-- <div  ng-class="{'alert alert-danger': status.data.success == '0', 'alert alert-success': status.data.success == '1'}" role="alert" ng-show="status">{{status.data.message}}</div> -->
+
+    <div class="panel panel-default">
+      <div class="panel-heading">Buildings</div>
+      <div class="panel-body">
+      <table class="table table-hover table-bordered">
+
+        <thead><tr><th>id</th><th>Address</th><th>People</th></tr></thead>
+
+        <tbody ng-init="getBuildings()">
+
+        <tr ng-repeat="building in bd.buildings track by $index">
+
+        <td>{{building.BuildingId}}</td>
+
+        <td>{{building.Address}}</td>
+
+        <td>{{building.People}}</td>
+
+
+        </tr>
+
+        </tbody> </table>
+
+</div>
