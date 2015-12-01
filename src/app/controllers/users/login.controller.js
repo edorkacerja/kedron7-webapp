@@ -6,16 +6,16 @@
     .controller('LoginController', LoginController);
 
   /** @ngInject */
-  function LoginController( auth, $state) {
+  function LoginController( auth, $state, toastr) {
     var vm = this;
     vm.login = function(user) {
             auth.login(user).then(
                function() {
                  $state.go('home');
-
+                 toastr.success("Login successful!" );
                },
                function(error) {
-                 vm.status = error;
+                 toastr.error("Login failed" , error );
                }
             );
 

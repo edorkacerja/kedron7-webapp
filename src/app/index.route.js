@@ -19,7 +19,6 @@
         templateUrl: 'app/views/auth/login.html',
         controller: 'LoginController',
         controllerAs: 'login'
-
       })
       .state('register', {
         url: '/register',
@@ -39,6 +38,12 @@
         templateUrl: 'app/views/buildings/buildingDetails.html',
         controller: 'BuildingController',
         controllerAs: 'bdetail'
+      })
+      .state('householdDetail', {
+        url: '/households/:householdId',
+        templateUrl: 'app/views/households/householdDetails.html',
+        controller: 'HouseholdController',
+        controllerAs: 'hdetail'
       });
 
 

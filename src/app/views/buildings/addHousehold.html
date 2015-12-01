@@ -1,0 +1,31 @@
+<div class="modal-header">
+    <h3 class="modal-title">Add a household</h3>
+</div>
+<div class="modal-body">
+
+    <form  class="form-horizontal" role="form" >
+
+            <div class="form-group">
+              <label class="col-md-2 control-label">Members living in the household:</label>
+              <div class="col-md-10">
+                <input type="text" class="form-control" name="LivingPeople"	ng-model="adh.newHousehold.LivingPeople" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-2 control-label">Members using the elevator:</label>
+              <div class="col-md-10">
+                <input type="text" class="form-control" name="ElevatorPeople" ng-model="adh.newHousehold.ElevatorPeople" />
+               </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-2 control-label">Comment</label>
+              <div class="col-md-10">
+                <input type="text" class="form-control" name="Comment" ng-model="adh.newHousehold.Comment" />
+              </div>
+            </div>
+      </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="adh.add()">Add</button>
+    <button class="btn btn-warning" type="button" ng-click="adh.cancel()">Cancel</button>
+</div>
