@@ -5,27 +5,19 @@
 
 
     <!-- <div  ng-class="{'alert alert-danger': status.data.success == '0', 'alert alert-success': status.data.success == '1'}" role="alert" ng-show="status">{{status.data.message}}</div> -->
+   <div ng-init="bd.getBuildings()">
+    <div class="row " ng-repeat="rows in bd.buildings">
 
-    <div class="panel panel-default">
-      <div class="panel-heading">Buildings</div>
-      <div class="panel-body">
-      <table class="table table-hover table-bordered">
+          <div class="col-xs-2" ng-repeat="building in rows track by $index" >
 
-        <thead><tr><th>id</th><th>Address</th><th>People</th></tr></thead>
+              <a ui-sref="buildingDetail({ buildingId: {{building.BuildingId}}  })" class="grid-link">
 
-        <tbody ng-init="getBuildings()">
+                <h3>{{building.Address}}</h4>
 
-        <tr ng-repeat="building in bd.buildings track by $index">
+              </a>
+          </div>
 
-        <td>{{building.BuildingId}}</td>
-
-        <td>{{building.Address}}</td>
-
-        <td>{{building.People}}</td>
-
-
-        </tr>
-
-        </tbody> </table>
-
+    </div>
+  </div>
+ </div>
 </div>

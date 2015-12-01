@@ -1,9 +1,8 @@
 <div class="col-sm-3 col-md-2 sidebar">
 
-  <ul class="nav nav-sidebar">
-    <li><a ui-sref="buildings">Buildings</a></li>
-    <li><a ui-sref="buildings">Buildings</a></li>
-    <li><a ui-sref="buildings">Buildings</a></li>
+  <ul class="nav nav-sidebar nav-pills nav-stacked">
+    <li ng-class="{ active: sidebar.isActive('/buildings') }"><a ui-sref="buildings">Buildings</a></li>
+
 
 
   </ul>

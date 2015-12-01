@@ -1,0 +1,39 @@
+<acme-navbar></acme-navbar>
+<div class="container-fluid" >
+  <acme-sidebar></acme-sidebar>
+  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+     <button ng-click="bdetail.delete(bdetail.building[0].BuildingId)" class="btn btn-danger">Delete</button>
+     <button ng-click="bdetail.edit()"   class="btn btn-primary">Edit</button>
+     <div ng-show="bdetail.editorEnabled">
+
+
+     </div>
+     <div ng-hide="bdetail.editorEnabled">
+      <h3>{{bdetail.building[0].Address}}</h3>
+     </div>
+
+
+
+        <table class="table table-hover table-bordered">
+
+          <thead><tr><th>id</th><th>Living People </th><th>Using Elevator</th><th>Comment</th></tr></thead>
+
+          <tbody>
+
+              <tr ng-repeat="household in bdetail.building[0].Households track by $index">
+
+              <td>{{household.HouseholdId}}</td>
+
+              <td>{{household.LivingPeople}}</td>
+
+              <td>{{household.ElevatorPeople}}</td>
+
+              <td>{{household.Comment}}</td>
+
+
+              </tr>
+
+          </tbody>
+      </table>
+  </div>
+</div>

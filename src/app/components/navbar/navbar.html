@@ -10,9 +10,13 @@
       <ul class="nav navbar-nav">
         <li class="active"><a ui-sref='home'>Home</a></li>
         <li><a ui-sref='register'>Register</a></li>
-        <li><a ui-sref='login'>Login</a></li>
+        <li><a ng-hide='vm.profile' ui-sref='login'>Login</a></li>
       </ul>
+     <ul class="nav navbar-nav navbar-right">
 
+       <li><a href="#">{{vm.profile.userName}}</a></li>
+       <li ng-click="vm.logout()"><a  ng-show='vm.profile' >Log out </a></li>
+     </ul>
     </div>
   </div>
 </nav>

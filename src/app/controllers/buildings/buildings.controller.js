@@ -6,9 +6,24 @@
     .controller('BuildingsController', BuildingsController);
 
   /** @ngInject */
-  function BuildingsController( Building) {
+  function BuildingsController(Building) {
       var vm = this;
-      vm.buildings = Building.query();
+       Building.query( function(res) {
+        vm.buildings =  chunk(res , 5);
+      });
+
+
+
+
+     //Divide the data into arays of 5
+      function chunk(arr, size) {  //chunk the data into rows
+          var newArr = [];
+
+          for (var i=0; i<arr.length; i+=size) {
+            newArr.push(arr.slice(i, i+size));
+          }
+          return newArr;
+      }
 
   }
 })();

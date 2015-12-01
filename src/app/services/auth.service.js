@@ -4,7 +4,7 @@
    .module('kedron')
    .service('auth', auth);
 
-   function auth($http, $rootScope, $window ,  $q , api ) {
+   function auth( $http, $window ,  $q , api , $rootScope ) {
 
      //LOG IN
      this.login = function(user) {
@@ -21,7 +21,7 @@
            function(response) {
                 var  userInfo = {//generate an access token on the server for the user
                   accessToken: response.data.access_token,
-                  userName: response.data.username
+                  userName: response.data.userName
                 };
               $rootScope.$emit('user:loggedin', userInfo); //broadcast to all controllers that  the user has logged in
               $window.sessionStorage["userInfo"] = JSON.stringify(userInfo);//store the data on the client
@@ -33,11 +33,27 @@
 
            return deferred.promise;
      }
+
+     //LOG OUT
+     this.logout = function() {
+       var deferred = $q.defer();
+       $http({
+               url: api + '/account/logout' ,
+               method: 'POST',
+               headers:  {'Authorization': 'Bearer '+  JSON.parse($window.sessionStorage["userInfo"]).accessToken }
+
+           }).then( function(){
+           $window.sessionStorage["userInfo"]  = null;
+           $rootScope.$emit('user:loggedout'); //broadcast to all controllers that  the user has logged out
+         deferred.resolve();
+       }, function(error) {
+         deferred.reject();
+       })
+       return deferred.promise;
+     }
      //REGISTER
      this.register = function(user) {
        var deferred = $q.defer();
-       $http.defaults.useXDomain = true;
-       delete $http.defaults.headers.common['X-Requested-With'];
        $http.post( api +"/account/register", {"Email": user.email , "Password": user.password , "ConfirmPassword": user.confirmPassword })
        .then(
          function() {
@@ -62,12 +78,12 @@
 
 
       //run on page reload to reinitialize the user info
-      function initf() {
-          if ($window.sessionStorage["userInfo"]) {
-              $rootScope.userInfo = JSON.parse($window.sessionStorage["userInfo"]);
-          }
-      }
-      initf();
+      // function initf() {
+      //     if ($window.sessionStorage["userInfo"]) {
+      //         $rootScope.userInfo = JSON.parse($window.sessionStorage["userInfo"]);
+      //     }
+      // }
+      // initf();
    }
 
 

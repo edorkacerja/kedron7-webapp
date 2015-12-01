@@ -18,8 +18,13 @@
     return directive;
 
     /** @ngInject */
-    function SidebarController() {
-      var vm = this;
+    function SidebarController($location) {
+      var sm = this;
+      sm.isActive = function (viewLocation) {
+          var active = (viewLocation === $location.path());
+          return active;
+
+        };
 
     }
   }

@@ -34,6 +34,12 @@
         controller: 'BuildingsController',
         controllerAs: 'bd'
       })
+      .state('buildingDetail', {
+        url: '/buildings/:buildingId',
+        templateUrl: 'app/views/buildings/buildingDetails.html',
+        controller: 'BuildingController',
+        controllerAs: 'bdetail'
+      });
 
 
 
