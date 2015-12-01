@@ -34,6 +34,11 @@
 
        vm.addHousehold = function() {
 
+         vm.newHousehold.BuildingId = vm.building.BuildingId;
+         vm.newHousehold.$save(function(res){
+              console.log(res);
+         });
+
 
        }
   }
