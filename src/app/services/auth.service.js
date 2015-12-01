@@ -60,7 +60,7 @@
             deferred.resolve();
          },
          function(error){
-            deferred.reject(error.data.ModelState[''][0]);
+            deferred.reject(error.data.ModelState[0]);
          });
 
         return deferred.promise;

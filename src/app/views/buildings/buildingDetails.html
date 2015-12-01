@@ -2,14 +2,16 @@
 <div class="container-fluid" >
   <acme-sidebar></acme-sidebar>
   <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-     <button ng-click="bdetail.delete(bdetail.building[0].BuildingId)" class="btn btn-danger">Delete</button>
+     <button ng-click="bdetail.delete()" class="btn btn-danger">Delete</button>
      <button ng-click="bdetail.edit()"   class="btn btn-primary">Edit</button>
-     <div ng-show="bdetail.editorEnabled">
-
-
+     <button ng-click="bdetail.update()" ng-show="bdetail.editMode" class="btn btn-success"> Save changes </button>
+     <div ng-show="bdetail.editMode">
+        <div class="form-group">
+          <input type="text"  ng-model="bdetail.building.Address" class="form-control" id="" placeholder="Address">
+        </div>
      </div>
-     <div ng-hide="bdetail.editorEnabled">
-      <h3>{{bdetail.building[0].Address}}</h3>
+     <div ng-hide="bdetail.editMode">
+      <h3>{{bdetail.building.Address}}</h3>
      </div>
 
 
@@ -35,5 +37,31 @@
 
           </tbody>
       </table>
+
+      <form ng-show="bdetail.editMode" class="form-horizontal" role="form" ng-submit="addHousehold()">
+            	<div class="form-group">
+            		<label class="col-md-2 control-label">Members living in the household:</label>
+            		<div class="col-md-4">
+            			<input type="text" class="form-control" name="LivingPeople"	ng-model="bdetail.newHousehold.LivingPeople" />
+            		</div>
+            	</div>
+            	<div class="form-group">
+            		<label class="col-md-2 control-label">Members using the elevator:</label>
+            		<div class="col-md-4">
+            			<input type="text" class="form-control" name="ElevatorPeople" ng-model="bdetail.newHousehold.ElevatorPeople" />
+            		 </div>
+            	</div>
+            	<div class="form-group">
+            		<label class="col-md-2 control-label">Comment</label>
+            		<div class="col-md-4">
+            			<input type="text" class="form-control" name="Comment" ng-model="bdetail.newHousehold.Commment" />
+            		</div>
+            	</div>
+            	<div class="form-group">
+            		<div style="padding-left:110px">
+            			<input type="submit" value="Add household" class="btn btn-primary"/>
+            		</div>
+            	</div>
+        </form>
   </div>
 </div>

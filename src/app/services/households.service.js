@@ -3,11 +3,11 @@
 
   angular
     .module('kedron')
-    .factory('Building', building);
+    .factory('Household', household);
 
 
-   function building($resource , auth, api ) {
-     return $resource(api +"/buildings/:id", { id: '@id'}, {
+   function household($resource , auth, api ) {
+     return $resource(api +"/household/:id", { id: '@_id'}, {
         get: {
           method: 'GET',
           headers: { 'Authorization': 'Bearer '+  auth.currentUser().accessToken }
@@ -26,8 +26,7 @@
          headers: { 'Authorization': "Bearer " + auth.currentUser().accessToken }
        },
         update: {
-          method: 'PUT',
-          headers: { 'Authorization': "Bearer " + auth.currentUser().accessToken }
+          method: 'PUT'
         }
      });
    }

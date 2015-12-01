@@ -6,18 +6,35 @@
     .controller('BuildingController', BuildingController );
 
   /** @ngInject */
-  function BuildingController(Building, $state, $stateParams) {
+  function BuildingController(Building, Household,  $state, $stateParams) {
        var vm = this;
-       vm.building = Building.get($stateParams.buildingId);
+       vm.editMode = false;
+       vm.building = Building.get({ id: $stateParams.buildingId});
 
 
-       vm.delete = function(id){
-         Building.delete({id: id},function() {
+       vm.edit = function() {
+         vm.editMode = true;
+         vm.newHousehold =  new Household();
+       }
+
+       vm.update = function() {
+         Building.update({id: vm.building.BuildingId}, vm.building , function() {
+           vm.editMode = false;
+         })
+
+       }
+
+       vm.delete = function(){
+         Building.delete({id: vm.building.BuildingId},function() {
            $state.go('buildings');
          }, function(error){
-           console.log(error);
+           alert(error);
          });
-
        };
+
+       vm.addHousehold = function() {
+
+
+       }
   }
 })();

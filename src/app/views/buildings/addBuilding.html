@@ -1,0 +1,19 @@
+
+<div class="modal-header">
+    <h3 class="modal-title">Add a building on: {{ building.address}}</h3>
+</div>
+<div class="modal-body">
+  <form>
+    <div class="form-group">
+      <label for="address">Adress</label>
+      <input type="text" ng-model="adb.building.Address" class="form-control" id="address" placeholder="The address of the building">
+      <p class="help-block">The address of the building.</p>
+    </div>
+
+
+  </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="adb.add()">Add</button>
+    <button class="btn btn-warning" type="button" ng-click="adb.cancel()">Cancel</button>
+</div>
