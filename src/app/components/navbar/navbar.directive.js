@@ -29,7 +29,7 @@
         auth.logout().then(
            function() {
              vm.profile = null;
-             $state.go('home');
+             $state.go('login');
            }
         )
       }

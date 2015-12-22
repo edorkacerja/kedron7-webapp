@@ -29,10 +29,10 @@
            },
            function(error) {
               deferred.reject(error);
-           })
+           });
 
            return deferred.promise;
-     }
+     };
 
      //LOG OUT
      this.logout = function() {
@@ -48,9 +48,9 @@
          deferred.resolve();
        }, function(error) {
          deferred.reject();
-       })
+       });
        return deferred.promise;
-     }
+     };
      //REGISTER
      this.register = function(user) {
        var deferred = $q.defer();
@@ -64,7 +64,7 @@
          });
 
         return deferred.promise;
-     }
+     };
 
 
      //currentUser
@@ -74,7 +74,7 @@
        } else {
           return null;
        }
-     }
+     };
 
 
       //run on page reload to reinitialize the user info
