@@ -6,23 +6,23 @@
         <div class="col-md-6 col-md-offset-3">
         <div class="panel panel-default">
           <div class="panel-heading">
-             Log in as {{user.email}}
+              Влез като {{user.email}}
            </div>
 
            <div class="panel-body">
               <div  class="alert alert-danger" role="alert" ng-show="login.status">{{login.status}}</div>
               <form role="form" name="loginform">
                   <div class="form-group">
-                    <label fpr="email"> E-mail </label>
-                    <input type="text" ng-model="user.email" class="form-control" placeholder="Your e-mail" required/>
+                    <label fpr="email"> Електронна поща </label>
+                    <input type="text" ng-model="user.email" class="form-control" placeholder="Вашата електронна поща" required/>
                   </div>
 
                   <div class="form-group">
-                    <label> Password </label>
-                    <input type="password" ng-model="user.password" class="form-control" placeholder="Your password" required/>
+                    <label> Парола</label>
+                    <input type="password" ng-model="user.password" class="form-control" placeholder="Вашата парола" required/>
                   </div>
 
-                  <button type="submit" class="btn btn-default" ng-disabled="form1.$invalid" ng-click="login.login(user)">Submit</button>
+                  <button type="submit" class="btn btn-default" ng-disabled="form1.$invalid" ng-click="login.login(user)">Вход</button>
 
               </form>
             </div>
