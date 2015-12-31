@@ -15,10 +15,10 @@
        vm.add = function() {
            vm.building.$save(function(data) {
               $rootScope.$broadcast('building:added' , data);
-              toastr.success('Building created', "Building at " + data.Address + " added");
+              toastr.success('Сградата бе добавена', "Адрес: " + data.Address );
               $modalInstance.dismiss()
            })
-       }
+       };
 
 
 

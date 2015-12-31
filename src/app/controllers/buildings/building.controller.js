@@ -15,7 +15,7 @@
        vm.edit = function() {
          vm.editMode = true;
          vm.newHousehold =  new Household();
-       }
+       };
 
        vm.update = function() {
          Building.update({id: vm.building.BuildingId}, vm.building , function() {
@@ -23,7 +23,7 @@
            toastr.success('Building updated.');
          })
 
-       }
+       };
 
        vm.delete = function(){
          Building.delete({id: vm.building.BuildingId},function() {

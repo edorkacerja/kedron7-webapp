@@ -11,7 +11,7 @@
     vm.login = function(user) {
             auth.login(user).then(
                function() {
-                 $state.go('home');
+                 $state.go('buildings');
                  toastr.success("Login successful!" );
                },
                function(error) {

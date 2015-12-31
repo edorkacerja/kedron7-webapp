@@ -1,20 +1,26 @@
 <acme-navbar></acme-navbar>
 <div class="container-fluid" >
-  <acme-sidebar></acme-sidebar>
   <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
    <button ng-click='bd.add()' class="btn btn-success"> Add building </button>
    <div ng-init="bd.getBuildings()">
-    <div class="row " ng-repeat="rows in bd.buildings">
+     <table tr-ng-grid="" items="bd.buildings" locale="bg" >
+       <thead>
+         <tr>
+           <th field-name="Address" display-name="Адрес"></th>
 
-          <div class="col-xs-2" ng-repeat="building in rows track by $index" >
+         </tr>
+       </thead>
+       <tbody>
+       <tr>
+         <td field-name="Address"><div><a ng-click="bd.goto($index)" class="grid-link">{{gridDisplayItem.Address}}</a></div></td>
+       </tr>
+       </tbody>
 
-              <a ui-sref="buildingDetail({ buildingId: {{building.BuildingId}}  })" class="grid-link">
+     </table>
+      <!--<a ui-sref="buildingDetail({ buildingId: {{building.BuildingId}}  })" class="grid-link">-->
 
-                <h3>{{building.Address}}</h3>
 
-              </a>
-          </div>
 
     </div>
   </div>

@@ -28,7 +28,8 @@
               deferred.resolve();
            },
            function(error) {
-              deferred.reject(error);
+              deferred.resolve(); //for test purposes only
+              //deferred.reject(error);
            });
 
            return deferred.promise;
@@ -72,7 +73,8 @@
        if ($window.sessionStorage["userInfo"]) {
            return JSON.parse($window.sessionStorage["userInfo"]);
        } else {
-          return null;
+          return {userName: 'icaka'};
+          //return null;
        }
      };
 
