@@ -8,30 +8,44 @@
      <button ng-click="bdetail.update()" ng-show="bdetail.editMode" class="btn btn-success"> Save changes </button>
      <div ng-show="bdetail.editMode">
         <div class="form-group">
-          <input type="text"  ng-model="bdetail.building.Address" class="form-control" id="" placeholder="Address">
+          <input type="text"  ng-model="bdetail.building.Address" class="form-control" id="address" placeholder="Address">
         </div>
+       <div class="form-group">
+         <input type="text"  ng-model="bdetail.building.Location" class="form-control" id="location" placeholder="Location">
+       </div>
+       <div class="form-group">
+         <input type="number"  ng-model="bdetail.building.FloorsCount" class="form-control" id="floors" placeholder="Floors">
+       </div>
      </div>
      <div ng-hide="bdetail.editMode">
-      <h3>{{bdetail.building.Address}}</h3>
+       <div class="panel panel-default">
+         <div class="panel-body">
+           <h3>{{bdetail.building.Address}}</h3>
+           <ul>
+             <li> Населено място: {{bdetail.building.Location}} </li>
+             <li> Брой етажи: {{bdetail.building.FloorsCount}}</li>
+           </ul>
+         </div>
+       </div>
+
      </div>
 
 
 
         <table class="table table-hover table-bordered">
 
-          <thead><tr><th>id</th><th>Живущи</th><th>Ползващи асаньор</th><th>Коементар</th><th></th></tr></thead>
+          <thead><tr><th>Име/Семейство</th><th>Номер</th><th>Етаж</th><th>-</th></tr></thead>
 
           <tbody>
 
               <tr ng-repeat="household in bdetail.building.Households track by $index">
 
-              <td>{{household.HouseholdId}}</td>
+              <td>{{household.Name}}</td>
 
-              <td>{{household.LivingPeople}}</td>
+              <td>{{household.Number}}</td>
 
-              <td>{{household.ElevatorPeople}}</td>
+              <td>{{household.Floor}}</td>
 
-              <td>{{household.Comment}}</td>
               <td><button class="btn btn-primary" ui-sref='householdDetail({householdId: {{ household.HouseholdId }} })'>Отвори</button>
 
               </tr>

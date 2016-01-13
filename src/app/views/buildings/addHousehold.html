@@ -4,24 +4,23 @@
 <div class="modal-body">
 
     <form  class="form-horizontal" role="form" >
-
             <div class="form-group">
-              <label class="col-md-2 control-label">Брой живущи:</label>
-              <div class="col-md-10">
-                <input type="text" class="form-control" name="LivingPeople"	ng-model="adh.newHousehold.LivingPeople" />
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-md-2 control-label">Живущи, използващи асансьор:</label>
-              <div class="col-md-10">
-                <input type="text" class="form-control" name="ElevatorPeople" ng-model="adh.newHousehold.ElevatorPeople" />
-               </div>
-            </div>
-            <div class="form-group">
-              <label class="col-md-2 control-label">Коментар</label>
+              <label class="col-md-2 control-label">Име</label>
               <div class="col-md-10">
                 <input type="text" class="form-control" name="Comment" ng-model="adh.newHousehold.Comment" />
               </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-2 control-label">Номер на жилишето</label>
+              <div class="col-md-10">
+                <input type="number" class="form-control" name="LivingPeople"	ng-model="adh.newHousehold.Number" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-2 control-label">Етаж:</label>
+              <div class="col-md-10">
+                <select ng-model="adh.newHousehold.Floor" ng-options="n for n in [] | range:1:{{adh.floorsCount}}"></select>
+               </div>
             </div>
       </form>
 </div>

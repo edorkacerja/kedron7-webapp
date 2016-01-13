@@ -6,10 +6,11 @@
     .module('kedron')
     .controller('AddHouseholdController', AddHouseholdController );
   /** @ngInject */
-  function AddHouseholdController(Household , buildingId , $modalInstance, $rootScope, toastr) {
+  function AddHouseholdController(Household , buildingId , floorsCount, $modalInstance, $rootScope, toastr) {
     var vm = this;
     vm.newHousehold = new Household();
-
+    vm.newHousehold.Floor = floorsCount;
+    vm.floorsCount = floorsCount;
     vm.add = function() {
 
       vm.newHousehold.BuildingId = buildingId;
@@ -18,7 +19,7 @@
            toastr.success('Household created', "Household with id " + data.HouseholdId + " added");
            $modalInstance.dismiss();
          });
-   }
+   };
 
    vm.cancel = function() {
      $modalInstance.dismiss();

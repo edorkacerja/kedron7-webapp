@@ -42,11 +42,14 @@
              resolve: {
                  buildingId: function() {
                  return  vm.building.BuildingId
+               },
+               floorsCount:function() {
+                return vm.building.FloorsCount
                }
              }
            });
 
-       }
+       };
 
        $scope.$on('household:added', function(event,data) {
           vm.building.Households.push(data)

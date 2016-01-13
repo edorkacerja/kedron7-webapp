@@ -2,11 +2,21 @@
   "buildings": [
     {
       "Address": "dsagg",
-      "id": 1
+      "id": 1,
+      "Location": "Blagoevgrad",
+      "FloorsCount": 5
     },
     {
       "Address": "eqggqg",
-      "id": 3
+      "id": 3,
+      "Location": "Blagoevgrad",
+      "FloorsCount": 5
+    },
+    {
+      "Address": "adgaag",
+      "id": 3,
+      "Location": "Blagoevgrad",
+      "FloorsCount": 4
     }
   ],
   "households": []

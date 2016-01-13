@@ -2,18 +2,19 @@
 <div class="container-fluid" >
   <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-   <button ng-click='bd.add()' class="btn btn-success"> Add building </button>
+   <button ng-click='bd.add()' class="btn btn-success"> Добави сграда </button>
    <div ng-init="bd.getBuildings()">
      <table tr-ng-grid="" items="bd.buildings" locale="bg" >
        <thead>
          <tr>
            <th field-name="Address" display-name="Адрес"></th>
-
+           <th field-name="Location" display-name="Град"></th>
          </tr>
        </thead>
        <tbody>
        <tr>
          <td field-name="Address"><div><a ng-click="bd.goto($index)" class="grid-link">{{gridDisplayItem.Address}}</a></div></td>
+         <td field-name="Location">{{gridDisplayItem.Location}}</td>
        </tr>
        </tbody>
 
