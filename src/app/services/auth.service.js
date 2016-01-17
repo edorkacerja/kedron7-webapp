@@ -9,7 +9,7 @@
      //LOG IN
      this.login = function(user) {
         var deferred = $q.defer();
-        $http.post(api +"/token", "grant_type=password&username=" + user.email +
+        $http.post("http://kedron7.azurewebsites.net/token", "grant_type=password&email=" + user.email +
                              "&password=" + user.password,
 
                              {
@@ -28,8 +28,8 @@
               deferred.resolve();
            },
            function(error) {
-              deferred.resolve(); //for test purposes only
-              //deferred.reject(error);
+              //deferred.resolve(); //for test purposes only
+              deferred.reject(error);
            });
 
            return deferred.promise;
@@ -73,20 +73,24 @@
        if ($window.sessionStorage["userInfo"]) {
            return JSON.parse($window.sessionStorage["userInfo"]);
        } else {
-          return {userName: 'icaka'};
-          //return null;
+          //return {userName: 'icaka'};
+          return null;
        }
      };
 
 
       //run on page reload to reinitialize the user info
-      // function initf() {
-      //     if ($window.sessionStorage["userInfo"]) {
-      //         $rootScope.userInfo = JSON.parse($window.sessionStorage["userInfo"]);
-      //     }
-      // }
+       function initf() {
+           if ($window.sessionStorage["userInfo"]) {
+               $rootScope.userInfo = JSON.parse($window.sessionStorage["userInfo"]);
+           }
+       }
       // initf();
    }
 
 
 })();
+
+
+//"senart@ymail.com"
+// "123456g"

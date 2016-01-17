@@ -1,57 +1,70 @@
 <acme-navbar></acme-navbar>
 <div class="container-fluid" >
   <acme-sidebar></acme-sidebar>
-  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-     <button ng-click="bdetail.delete()" class="btn btn-danger">Delete</button>
-     <button ng-click="bdetail.addHousehold()" class="btn btn-success">Add a household</button>
-     <button ng-click="bdetail.edit()"   class="btn btn-primary">Edit</button>
-     <button ng-click="bdetail.update()" ng-show="bdetail.editMode" class="btn btn-success"> Save changes </button>
-     <div ng-show="bdetail.editMode">
-        <div class="form-group">
-          <input type="text"  ng-model="bdetail.building.Address" class="form-control" id="address" placeholder="Address">
-        </div>
-       <div class="form-group">
-         <input type="text"  ng-model="bdetail.building.Location" class="form-control" id="location" placeholder="Location">
+  <div class="col-sm-12 main">
+
+
+     <div class="row">
+       <div class="col-sm-6 col-md-4">
+         <button ng-click="bdetail.edit()"   class="btn btn-primary">Промени</button>
+         <button ng-click="bdetail.update()" ng-show="bdetail.editMode" class="btn btn-success"> Запази промените </button>
+         <button ng-click="bdetail.delete()" class="btn btn-danger">Изтрий</button>
+
+        <div ng-show="bdetail.editMode">
+                <div class="form-group">
+                  <input type="text"  ng-model="bdetail.building.Address" class="form-control" id="address" placeholder="Address">
+                </div>
+               <div class="form-group">
+                 <input type="text"  ng-model="bdetail.building.Location" class="form-control" id="location" placeholder="Location">
+               </div>
+               <div class="form-group">
+                 <input type="number"  ng-model="bdetail.building.FloorsCount" class="form-control" id="floors" placeholder="Floors">
+               </div>
+             </div>
+            <!-- EDITING MODE -->
+         <div ng-hide="bdetail.editMode">
+               <div class="panel panel-default">
+                 <div class="panel-body">
+                   <h3>{{bdetail.building.Address}}</h3>
+                   <ul>
+                     <li> Населено място: {{bdetail.building.Location}} </li>
+                     <li> Брой етажи: {{bdetail.building.FloorsCount}}</li>
+                   </ul>
+                 </div>
+               </div>
+             </div>
+             <!-- EIDTING MODE -->
+       </div><!-- buidling info end --><!-- /row -->
+       <div class="col-md-4 col-sm-6">
+              <button class="btn btn-lg btn-primary">Касова книга</button>
        </div>
-       <div class="form-group">
-         <input type="number"  ng-model="bdetail.building.FloorsCount" class="form-control" id="floors" placeholder="Floors">
-       </div>
+
      </div>
-     <div ng-hide="bdetail.editMode">
-       <div class="panel panel-default">
-         <div class="panel-body">
-           <h3>{{bdetail.building.Address}}</h3>
-           <ul>
-             <li> Населено място: {{bdetail.building.Location}} </li>
-             <li> Брой етажи: {{bdetail.building.FloorsCount}}</li>
-           </ul>
-         </div>
-       </div>
 
-     </div>
+    <button ng-click="bdetail.addHousehold()" class="btn btn-success">Добави жилище</button>
+    <!--<div ng-init="bd.getBuildings()">-->
+      <table tr-ng-grid="" items="bdetail.building.Households" locale="bg" page-items="myPageItemsCount" total-items="myItemsTotalCount" on-data-required="onServerSideItemsRequested(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
+        <thead>
+        <tr>
+          <th field-name="Name" display-name="Име"></th>
+          <th field-name="Number" display-name="Номер"></th>
+          <th field-name="Floor" display-name="Етаж"></th>
+          <th field-name="Id"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td field-name="Name">{{gridDisplayItem.Name}}</td>
+          <td field-name="Number">{{gridDisplayItem.Number}}</td>
+          <td field-name="Floor">{{gridDisplayItem.Floor}}</td>
+          <td field-name="Id"><button class="btn btn-primary" ui-sref="householdDetail({ householdId: {{gridDisplayItem.Id}} })">Отвори </button></td>
+        </tr>
+        </tbody>
 
-
-
-        <table class="table table-hover table-bordered">
-
-          <thead><tr><th>Име/Семейство</th><th>Номер</th><th>Етаж</th><th>-</th></tr></thead>
-
-          <tbody>
-
-              <tr ng-repeat="household in bdetail.building.Households track by $index">
-
-              <td>{{household.Name}}</td>
-
-              <td>{{household.Number}}</td>
-
-              <td>{{household.Floor}}</td>
-
-              <td><button class="btn btn-primary" ui-sref='householdDetail({householdId: {{ household.HouseholdId }} })'>Отвори</button>
-
-              </tr>
-
-          </tbody>
       </table>
+   <!--</div>-->
+
+
 
 
   </div>

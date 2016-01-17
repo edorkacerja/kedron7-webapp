@@ -7,6 +7,7 @@
 
 
    function building($resource , auth, api ) {
+     console.log('tkn' + auth.currentUser())
      return $resource(api +"/buildings/:id", { id: '@id'}, {
         get: {
           method: 'GET',

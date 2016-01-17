@@ -9,6 +9,9 @@
   function acmeSidebar() {
     var directive = {
       restrict: 'E',
+      scope: {
+        objid: '@'
+      },
       templateUrl: 'app/components/sidebar/sidebar.html',
       controller: SidebarController,
       controllerAs: 'sidebar',

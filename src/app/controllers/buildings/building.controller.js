@@ -18,7 +18,7 @@
        };
 
        vm.update = function() {
-         Building.update({id: vm.building.BuildingId}, vm.building , function() {
+         Building.update({id: vm.building.Id}, vm.building , function() {
            vm.editMode = false;
            toastr.success('Building updated.');
          })

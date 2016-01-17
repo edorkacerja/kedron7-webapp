@@ -12,10 +12,35 @@
         vm.buildings = response;
       });
 
-      vm.goto = function(index) {
+      //Called from on-data-required directive.
+          vm.onServerSideItemsRequested = function (currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse) {
+            Building.query({currentPage: currentPage, pageItems: pageItems, filterBy: filterBy, filterByFields: filterByFields, orderBy: orderBy, orderByReverse: orderByReverse},
+             function(response) {
 
-        $state.go('buildingDetail', {'buildingId': vm.buildings[index].id});
-      };
+             },
+            function(response) {
+
+            })
+          };
+      //Ajax call for list data.
+      //    var loadProductList = function (currentPage, pageItems, orderBy, orderByReverse) {
+      //      //Get JSON string for parameters.
+      //      var filterJson = getFilterJson();
+      //      //Call data service.
+      //      ProductList.post(filterJson.json,
+      //        function (data) {
+      //          $scope.model.productList = data.Products;
+      //          $scope.model.totalProductCount = data.TotalCount;
+      //        },
+      //        function (error) {
+      //          alert("Error getting product list data.");
+      //        }
+      //      );
+      //      $scope.showProductList = true;
+      //    }
+
+
+
 
       vm.add= function() {
         $modal.open({
