@@ -1,0 +1,28 @@
+<acme-navbar></acme-navbar>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6">
+      <table tr-ng-grid="" items="cb.building.Expenses" locale="bg" page-items="myPageItemsCount" total-items="myItemsTotalCount" on-data-required="onServerSideItemsRequested(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
+        <thead>
+        <tr>
+          <th field-name="Value" display-name="Стойност"></th>
+          <th field-name="ExpenseTypeName" display-name="Тип"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td field-name="Value">{{gridDisplayItem.Value}}</td>
+          <td field-name="ExpenseTypeName">{{gridDisplayItem.ExpenseTypeName}}</td>
+        </tr>
+        </tbody>
+
+      </table>
+
+    </div><!-- col-md-6 -->
+
+
+  </div><!-- row -->
+
+</div><!-- container-fluid -->
+
+

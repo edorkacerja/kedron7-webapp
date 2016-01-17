@@ -6,22 +6,24 @@
     .controller('BuildingsController', BuildingsController);
 
   /** @ngInject */
-  function BuildingsController(Building, $modal , $scope, $state) {
+  function BuildingsController(Building, $modal , $scope, toastr) {
       var vm = this;
        Building.query( function(response) {
         vm.buildings = response;
-      });
+      }, function(response) {
+         toastr.error("Не успя да се установи връзка с базата данни:" , response );
+       });
 
       //Called from on-data-required directive.
-          vm.onServerSideItemsRequested = function (currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse) {
-            Building.query({currentPage: currentPage, pageItems: pageItems, filterBy: filterBy, filterByFields: filterByFields, orderBy: orderBy, orderByReverse: orderByReverse},
-             function(response) {
-
-             },
-            function(response) {
-
-            })
-          };
+      //    vm.onServerSideItemsRequested = function (currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse) {
+      //      Building.query({currentPage: currentPage, pageItems: pageItems, filterBy: filterBy, filterByFields: filterByFields, orderBy: orderBy, orderByReverse: orderByReverse},
+      //       function(response) {
+      //
+      //       },
+      //      function(response) {
+      //
+      //      })
+      //    };
       //Ajax call for list data.
       //    var loadProductList = function (currentPage, pageItems, orderBy, orderByReverse) {
       //      //Get JSON string for parameters.

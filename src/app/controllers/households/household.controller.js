@@ -5,9 +5,12 @@
     .module('kedron')
     .controller('HouseholdController', HouseholdController );
 
-    function HouseholdController(Household , toastr, $stateParams) {
+    function HouseholdController(Household , $stateParams) {
        var vm = this;
-       vm.household = Household.get({id: $stateParams.householdId});
+       Household.get({id: $stateParams.householdId} ,
+         function(response) {
+           vm.household = response;
+         });
     }
 
 })();

@@ -26,12 +26,15 @@
        };
 
        vm.delete = function(){
-         Building.delete({id: vm.building.BuildingId},function() {
-           $state.go('buildings');
-           toastr.warning('Building deleted');
-         }, function(error){
-           alert(error);
-         });
+         if($window.confirm('Сигурни ли сте, че искате да изтриете тази сграда?')) {
+           Building.delete({id: vm.building.BuildingId},function() {
+             $state.go('buildings');
+             toastr.warning('Сградата бе изтрита успешно.');
+           }, function(error){
+             toastr.warning(error);
+           });
+
+         }
        };
 
        vm.addHousehold = function() {
@@ -41,7 +44,7 @@
              controllerAs: 'adh',
              resolve: {
                  buildingId: function() {
-                 return  vm.building.BuildingId
+                 return  vm.building.Id
                },
                floorsCount:function() {
                 return vm.building.FloorsCount
@@ -51,6 +54,9 @@
 
        };
 
+       vm.gotoCashbook = function() {
+         $state.go('cashbook' , {buildingId: vm.building.Id})
+       };
        $scope.$on('household:added', function(event,data) {
           vm.building.Households.push(data)
        })

@@ -8,6 +8,7 @@
   /** @ngInject */
   function routerConfig($stateProvider, $urlRouterProvider) {
     $stateProvider
+      //auth
       .state('login', {
         url: '/',
         templateUrl: 'app/views/auth/login.html',
@@ -21,6 +22,7 @@
         controllerAs: 'reg'
 
       })
+      //buildings
       .state('buildings', {
         url: '/buildings',
         templateUrl: 'app/views/buildings/buildings.html',
@@ -33,12 +35,22 @@
         controller: 'BuildingController',
         controllerAs: 'bdetail'
       })
+      //households
       .state('householdDetail', {
         url: '/households/:householdId',
         templateUrl: 'app/views/households/householdDetails.html',
         controller: 'HouseholdController',
         controllerAs: 'hdetail'
-      });
+      })
+     //cashbook
+     .state('cashbook', {
+      url: '/buildings/:buildingId/cashbook',
+      templateUrl: 'app/views/cashbooks/cashbook.html',
+      controller: 'CashbookController',
+      controllerAs: 'cb'
+    })
+
+    ;
 
 
 

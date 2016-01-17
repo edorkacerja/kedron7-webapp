@@ -12,10 +12,10 @@
             auth.login(user).then(
                function() {
                  $state.go('buildings');
-                 toastr.success("Login successful!" );
+                 toastr.success("Влязохте успешно!" );
                },
                function(error) {
-                 toastr.error("Login failed" , error );
+                 toastr.error("Неуспешно влизане в системата" , error );
                }
             );
 
