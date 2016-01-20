@@ -10,7 +10,7 @@
        var vm = this;
        vm.editMode = false;
        vm.building = Building.get({ id: $stateParams.buildingId});
-
+       vm.households = Household.query({building_id: $stateParams.buildingId});
 
        vm.edit = function() {
          vm.editMode = true;
@@ -57,6 +57,10 @@
        vm.gotoCashbook = function() {
          $state.go('cashbook' , {buildingId: vm.building.Id})
        };
+       vm.gotoHousehold = function(id) {
+         $state.go('householdDetail',{ householdId: id , buildingId: vm.building.Id})
+       };
+
        $scope.$on('household:added', function(event,data) {
           vm.building.Households.push(data)
        })

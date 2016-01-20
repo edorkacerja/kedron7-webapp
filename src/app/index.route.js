@@ -15,13 +15,7 @@
         controller: 'LoginController',
         controllerAs: 'login'
       })
-      .state('register', {
-        url: '/register',
-        templateUrl: 'app/views/auth/register.html',
-        controller: 'RegistrationController',
-        controllerAs: 'reg'
 
-      })
       //buildings
       .state('buildings', {
         url: '/buildings',
@@ -37,7 +31,7 @@
       })
       //households
       .state('householdDetail', {
-        url: '/households/:householdId',
+        url: '/:buildingId/households/:householdId',
         templateUrl: 'app/views/households/householdDetails.html',
         controller: 'HouseholdController',
         controllerAs: 'hdetail'

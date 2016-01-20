@@ -9,8 +9,9 @@
     var vm = this;
    Expense.query({id: $stateParams.buildingId} ,
      function(response) {
-       console.log(response);
      vm.expenses= response;
+   }, function(error){
+      //todo add error logging
    });
   }
 

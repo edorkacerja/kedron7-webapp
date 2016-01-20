@@ -7,7 +7,7 @@
 
 
    function household($resource , auth, api ) {
-     return $resource(api +"/households/:id", { id: '@_id'}, {
+     return $resource(api +"/buildings/:building_id/households/:id", { bulding_id: '@buildingid' , id: '@id'}, {
         get: {
           method: 'GET',
           headers: { 'Authorization': 'Bearer '+  auth.currentUser().accessToken }
@@ -15,7 +15,7 @@
         query: {
           method: 'GET',
           headers: { 'Authorization': "Bearer " + auth.currentUser().accessToken },
-          isArray:true
+          //isArray:true
         },
         delete: {
           method: 'DELETE',
