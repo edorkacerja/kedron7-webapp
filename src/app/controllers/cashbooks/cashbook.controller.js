@@ -5,11 +5,12 @@
     .module('kedron')
     .controller('CashbookController', CashbookController );
 
-  function CashbookController(Building,toastr, $stateParams) {
+  function CashbookController(Expense,toastr, $stateParams) {
     var vm = this;
-   Building.get({id: $stateParams.buildingId} ,
+   Expense.query({id: $stateParams.buildingId} ,
      function(response) {
-     vm.building = response;
+       console.log(response);
+     vm.expenses= response;
    });
   }
 

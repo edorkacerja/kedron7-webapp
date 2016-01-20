@@ -9,7 +9,7 @@
      //LOG IN
      this.login = function(user) {
         var deferred = $q.defer();
-        $http.post("http://kedron7.azurewebsites.net/token", "grant_type=password&email=" + user.email +
+        $http.post("http://kedron7.azurewebsites.net/token", "grant_type=password&username=" + user.email +
                              "&password=" + user.password,
 
                              {
@@ -28,7 +28,6 @@
               deferred.resolve();
            },
            function(error) {
-              //deferred.resolve(); //for test purposes only
               deferred.reject(error);
            });
 
