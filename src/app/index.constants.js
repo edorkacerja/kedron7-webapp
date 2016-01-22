@@ -6,7 +6,7 @@
     .module('kedron')
     .constant('malarkey', malarkey)
     .constant('moment', moment)
-    .constant('api', "http://kedron7.azurewebsites.net/api");
+    .constant('api', "http://kedronka.azurewebsites.net/api");
 
 
 })();

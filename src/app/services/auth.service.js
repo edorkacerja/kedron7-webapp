@@ -9,7 +9,7 @@
      //LOG IN
      this.login = function(user) {
         var deferred = $q.defer();
-        $http.post("http://kedron7.azurewebsites.net/token", "grant_type=password&username=" + user.email +
+        $http.post("http://kedronka.azurewebsites.net/token", "grant_type=password&username=" + user.email +
                              "&password=" + user.password,
 
                              {

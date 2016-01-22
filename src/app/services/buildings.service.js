@@ -15,7 +15,6 @@
         query: {
           method: 'GET',
           headers: { 'Authorization': "Bearer " + auth.currentUser().accessToken },
-          isArray:true
         },
         delete: {
           method: 'DELETE',

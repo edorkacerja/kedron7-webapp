@@ -8,22 +8,31 @@
   /** @ngInject */
   function BuildingsController(Building, $modal , $scope, toastr) {
       var vm = this;
+        vm.top = 10 ; //number of items per page -> 10;
        Building.query( function(response) {
         vm.buildings = response;
+        vm.totalBuildings = response.Count;
       }, function(response) {
          toastr.error("Не успя да се установи връзка с базата данни:" , response );
        });
 
       //Called from on-data-required directive.
-      //    vm.onServerSideItemsRequested = function (currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse) {
-      //      Building.query({currentPage: currentPage, pageItems: pageItems, filterBy: filterBy, filterByFields: filterByFields, orderBy: orderBy, orderByReverse: orderByReverse},
-      //       function(response) {
-      //
-      //       },
-      //      function(response) {
-      //
-      //      })
-      //    };
+          vm.onServerSideItemsRequested = function (currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse) {
+            if(currentPage == 0 ){
+              vm.skip = 0;
+            } else {
+              vm.skip = currentPage*vm.top;
+            }
+
+            Building.query({top: vm.top, skip: vm.skip, filterBy: filterBy, filterByFields: filterByFields, orderBy: orderBy, orderByReverse: orderByReverse},
+             function(response) {
+               vm.buildings = response;
+               vm.totalBuildings = response.Count;
+             },
+            function(response) {
+
+            })
+          };
       //Ajax call for list data.
       //    var loadProductList = function (currentPage, pageItems, orderBy, orderByReverse) {
       //      //Get JSON string for parameters.
@@ -57,7 +66,12 @@
 
      $scope.$on('building:added' , function(event, data) {
 
-       vm.buildings.push(data);
+       Building.query( function(response) {
+         vm.buildings = response;
+         vm.totalBuildings = response.Count;
+       }, function(response) {
+         toastr.error("Не успя да се установи връзка с базата данни:" , response );
+       });
 
      });
 

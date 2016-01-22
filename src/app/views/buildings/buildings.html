@@ -4,7 +4,7 @@
 
    <button ng-click='bd.add()' class="btn btn-success"> Добави сграда </button>
    <div ng-init="bd.getBuildings()">
-     <table tr-ng-grid="" items="bd.buildings" locale="bg" page-items="bd.pageBuildings" total-items="bd.totalBuildings" on-data-required="bd.onServerSideItemsRequested(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
+     <table tr-ng-grid="" items="bd.buildings.Buildings" locale="bg" page-items="bd.top" total-items="bd.totalBuildings" on-data-required="bd.onServerSideItemsRequested(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
        <thead>
          <tr>
            <th field-name="Address" display-name="Адрес"></th>
