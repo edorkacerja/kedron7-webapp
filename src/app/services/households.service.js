@@ -23,6 +23,7 @@
         },
         save: {
          method: 'POST',
+         url:api +"/buildings/:building_id/addhousehold",
          headers: { 'Authorization': "Bearer " + auth.currentUser().accessToken }
        },
         update: {

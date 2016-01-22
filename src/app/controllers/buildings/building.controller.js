@@ -8,9 +8,34 @@
   /** @ngInject */
   function BuildingController(Building, Household,  $state, $stateParams, $modal, $scope, toastr) {
        var vm = this;
+       vm.top = 10 ; //number of items per page -> 10;
+       initHouseholds();
+
+       vm.onServerSideItemsRequested = function(currentPage, filterBy, filterByFields, orderBy, orderByReverse) {
+         if(currentPage == 0 ){
+           vm.skip = 0;
+         } else {
+           vm.skip = currentPage*vm.top;
+         }
+         Household.query({top: vm.top, skip: vm.skip, filterBy: filterBy, filterByFields: filterByFields, orderBy: orderBy, orderByReverse: orderByReverse},
+           function(response) {
+             vm.households = response.Households;
+             vm.totalHouseholds = response.Count;
+           },
+           function(response) {
+             toastr.error("Не успя да се установи връзка с базата данни:" , response );
+           })
+
+      };
+
+
+
        vm.editMode = false;
-       vm.building = Building.get({ id: $stateParams.buildingId});
-       vm.households = Household.query({building_id: $stateParams.buildingId});
+        Building.get({ id: $stateParams.buildingId} , function(response) {
+         vm.building = response;
+       });
+
+
 
        vm.edit = function() {
          vm.editMode = true;
@@ -62,7 +87,16 @@
        };
 
        $scope.$on('household:added', function(event,data) {
-          vm.building.Households.push(data)
-       })
+          initHouseholds();
+       });
+
+    function initHouseholds() {
+      Household.query({building_id: $stateParams.buildingId} , function(response) {
+        vm.households = response.Households;
+        vm.totalHouseholds = response.Count;
+      }, function(response) {
+        toastr.error("Не успя да се установи връзка с базата данни:" , response );
+      });
+    }
   }
 })();

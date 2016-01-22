@@ -14,7 +14,7 @@
     vm.add = function() {
 
       vm.newHousehold.BuildingId = buildingId;
-      vm.newHousehold.$save(function(data){
+      vm.newHousehold.$save({building_id: buildingId} ,function(data){
            $rootScope.$broadcast('household:added' , data);
            toastr.success('Household created', "Household with id " + data.HouseholdId + " added");
            $modalInstance.dismiss();

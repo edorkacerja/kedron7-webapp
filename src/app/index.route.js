@@ -6,7 +6,8 @@
     .config(routerConfig);
 
   /** @ngInject */
-  function routerConfig($stateProvider, $urlRouterProvider) {
+  function routerConfig($stateProvider, $urlRouterProvider ) {
+
     $stateProvider
       //auth
       .state('login', {

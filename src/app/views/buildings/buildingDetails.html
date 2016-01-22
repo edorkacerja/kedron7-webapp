@@ -42,7 +42,7 @@
      </div>
 
     <button ng-click="bdetail.addHousehold()" class="btn btn-success">Добави жилище</button>
-      <table tr-ng-grid="" items="bdetail.households.Households" locale="bg" page-items="myPageItemsCount" total-items="myItemsTotalCount" on-data-required="onServerSideItemsRequested(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
+      <table tr-ng-grid="" items="bdetail.households" locale="bg" page-items="bdetail.top" total-items="bdetail.totalHouseholds" on-data-required="bdetail.onServerSideItemsRequested(currentPage, filterBy, filterByFields, orderBy, orderByReverse)">
         <thead>
         <tr>
           <th field-name="Name" display-name="Име"></th>

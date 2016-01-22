@@ -8,6 +8,9 @@
   /** @ngInject */
   function LoginController( auth, $state, toastr) {
     var vm = this;
+    if (auth.currentUser().accessToken) {
+      $state.go('buildings');
+    }
     vm.login = function(user) {
             auth.login(user).then(
                function() {
