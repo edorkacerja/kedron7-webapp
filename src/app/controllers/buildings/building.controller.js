@@ -9,8 +9,7 @@
   function BuildingController(Building, Household,  $state, $stateParams, $modal, $scope, toastr) {
        var vm = this;
        vm.top = 10 ; //number of items per page -> 10;
-       initHouseholds();
-
+        //trNgGrid
        vm.onServerSideItemsRequested = function(currentPage, filterBy, filterByFields, orderBy, orderByReverse) {
          if(currentPage == 0 ){
            vm.skip = 0;
@@ -58,10 +57,9 @@
            }, function(error){
              toastr.warning(error);
            });
-
          }
        };
-
+       //add a household
        vm.addHousehold = function() {
              $modal.open({
              templateUrl: 'app/views/buildings/addHousehold.html',
@@ -87,16 +85,16 @@
        };
 
        $scope.$on('household:added', function(event,data) {
-          initHouseholds();
+         Household.query({building_id: $stateParams.buildingId} , function(response) {
+           vm.households = response.Households;
+           vm.totalHouseholds = response.Count;
+         }, function(response) {
+           toastr.error("Не успя да се установи връзка с базата данни:" , response );
+         });
        });
 
-    function initHouseholds() {
-      Household.query({building_id: $stateParams.buildingId} , function(response) {
-        vm.households = response.Households;
-        vm.totalHouseholds = response.Count;
-      }, function(response) {
-        toastr.error("Не успя да се установи връзка с базата данни:" , response );
-      });
-    }
+
+
+
   }
 })();

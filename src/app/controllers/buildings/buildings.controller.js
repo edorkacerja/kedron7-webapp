@@ -9,18 +9,21 @@
   function BuildingsController(Building, $modal , $scope, toastr) {
       var vm = this;
         vm.top = 10 ; //number of items per page -> 10;
-       initBuildings();
-
 
       //Called from on-data-required directive.
-          vm.onServerSideItemsRequested = function (currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse) {
+          vm.onServerSideItemsRequested = function(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse) {
             if(currentPage == 0 ){
               vm.skip = 0;
             } else {
               vm.skip = currentPage*vm.top;
             }
 
-            Building.query({top: vm.top, skip: vm.skip, filterBy: filterBy, filterByFields: filterByFields, orderBy: orderBy, orderByReverse: orderByReverse},
+            if(orderByReverse ||typeof orderBy !== 'undefined') {
+              orderBy = orderBy + ' ' + 'desc';
+            } else if(typeof orderBy !== 'undefined') {
+              orderBy = orderBy + ' ' + 'asc';
+            }
+            Building.query({top: vm.top, skip: vm.skip, filter: filterByFields, orderBy: orderBy},
              function(response) {
                vm.buildings = response.Buildings;
                vm.totalBuildings = response.Count;
@@ -45,18 +48,14 @@
 
 
      $scope.$on('building:added' , function(event, data) {
-         initBuildings();
+       Building.query( function(response) {
+         vm.buildings = response;
+         vm.totalBuildings = response.Count;
+       }, function(response) {
+         toastr.error("Не успя да се установи връзка с базата данни:" , response );
+       });
      });
 
-
-    function  initBuildings() {
-      Building.query( function(response) {
-        vm.buildings = response;
-        vm.totalBuildings = response.Count;
-      }, function(response) {
-        toastr.error("Не успя да се установи връзка с базата данни:" , response );
-      });
-    }
 
   }
 })();
