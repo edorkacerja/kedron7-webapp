@@ -11,7 +11,7 @@
 
     $log.debug('runBlock end');
     $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams) {
-      if (!auth.currentUser().accessToken) {
+      if (!auth.currentUser()) {
         event.preventDefault();
         $state.go('login');
       }

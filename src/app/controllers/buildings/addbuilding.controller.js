@@ -13,7 +13,9 @@
 
 
        vm.add = function() {
+
            vm.building.$save(function(data) {
+              vm.buildingForm.$setPristine();
               $rootScope.$broadcast('building:added' , data);
               toastr.success('Сградата бе добавена', "Адрес: " + data.Address );
               $modalInstance.dismiss()
@@ -23,7 +25,6 @@
 
 
        vm.cancel = function() {
-
          $modalInstance.dismiss();
        }
 

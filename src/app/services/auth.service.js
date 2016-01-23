@@ -84,7 +84,7 @@
                $rootScope.userInfo = JSON.parse($window.sessionStorage["userInfo"]);
            }
        }
-      // initf();
+       initf();
    }
 
 

@@ -6,46 +6,32 @@
     .controller('BuildingsController', BuildingsController);
 
   /** @ngInject */
-  function BuildingsController(Building, $modal , $scope, toastr) {
+  function BuildingsController( QueryConstructor,Building, $modal , $scope, toastr ) {
       var vm = this;
         vm.top = 10 ; //number of items per page -> 10;
 
       //Called from on-data-required directive.
-          vm.onServerSideItemsRequested = function(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse) {
-            if(currentPage == 0 ){
-              vm.skip = 0;
-            } else {
-              vm.skip = currentPage*vm.top;
-            }
-
-            if(orderByReverse ||typeof orderBy !== 'undefined') {
-              orderBy = orderBy + ' ' + 'desc';
-            } else if(typeof orderBy !== 'undefined') {
-              orderBy = orderBy + ' ' + 'asc';
-            }
-            Building.query({top: vm.top, skip: vm.skip, filter: filterByFields, orderBy: orderBy},
-             function(response) {
-               vm.buildings = response.Buildings;
-               vm.totalBuildings = response.Count;
-             },
-            function(response) {
-              toastr.error("Не успя да се установи връзка с базата данни:" , response );
-            })
-          };
+        vm.onServerSideItemsRequested = function(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse) {
+          Building.query({top: vm.top, skip: QueryConstructor.skip(currentPage, vm.top), filter:QueryConstructor.filter(filterByFields), orderBy: QueryConstructor.order(orderBy, orderByReverse)},
+           function(response) {
+             vm.buildings = response.Buildings;
+             vm.totalBuildings = response.Count;
+           },
+          function(response) {
+            toastr.error("Не успя да се установи връзка с базата данни:" , response );
+          })
+        };
 
 
 
-
+      //add a new building
       vm.add= function() {
-        $modal.open({
-        templateUrl: 'app/views/buildings/addBuilding.html',
-        controller: 'AddBuildingController',
-        controllerAs: 'adb'
-      });
-
-
+          $modal.open({
+          templateUrl: 'app/views/buildings/addBuilding.html',
+          controller: 'AddBuildingController',
+          controllerAs: 'adb'
+        });
       };
-
 
      $scope.$on('building:added' , function(event, data) {
        Building.query( function(response) {

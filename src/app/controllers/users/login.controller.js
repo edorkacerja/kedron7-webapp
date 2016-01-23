@@ -8,7 +8,7 @@
   /** @ngInject */
   function LoginController( auth, $state, toastr) {
     var vm = this;
-    if (auth.currentUser().accessToken) {
+    if (auth.currentUser()) {
       $state.go('buildings');
     }
     vm.login = function(user) {
@@ -26,5 +26,4 @@
 
 
   }
-// grant_type=password&username=senart@ymail.co&password=123456Senart#
 })();
