@@ -2,24 +2,30 @@
 <div class="modal-header">
     <h3 class="modal-title">Добави сграда на адрес: {{ building.address}}</h3>
 </div>
-<form name="adb.buildingForm" ng-submit="adb.add()" novalidate>
+<form name="adb.buildingForm" role="form" ng-submit="adb.add()" novalidate>
   <div class="modal-body">
-      <div class="form-group" ng-class="{ 'has-error' : adb.buildingForm.address.$error.required && adb.buildingForm.address.$dirty }">
-        <label for="address">Адрес</label>
-        <input type="text" ng-model="adb.building.Address" class="form-control" name="address" id="address" placeholder="Адрес" required>
-        <span ng-show="adb.buildingForm.address.$error.required  && !adb.buildingForm.address.$pristine" class="help-block">Моля, въведете адрес!</span>
+      <div class="form-group row" ng-class="{ 'has-error' : adb.buildingForm.address.$error.required && adb.buildingForm.address.$dirty }">
+        <label class="col-md-2 control-label" for="address">Адрес</label>
+        <div class="col-md-10">
+          <input type="text" ng-model="adb.building.Address" class="form-control" name="address" id="address" placeholder="Адрес" required>
+          <span ng-show="adb.buildingForm.address.$error.required  && !adb.buildingForm.address.$pristine" class="help-block">Моля, въведете адрес!</span>
+        </div>
       </div>
 
-      <div class="form-group"  ng-class="{ 'has-error' : adb.buildingForm.location.$error.required && adb.buildingForm.location.$dirty }">
-        <label for="location">Населено място</label>
-        <input type="text" ng-model="adb.building.Location" class="form-control" id="location" name="location" placeholder="Град/Населено място" required>
-        <span ng-show="adb.buildingForm.location.$error.required  && !adb.buildingForm.location.$pristine" class="help-block">Моля, въведете град или населено място!</span>
+      <div class="form-group row"  ng-class="{ 'has-error' : adb.buildingForm.location.$error.required && adb.buildingForm.location.$dirty }">
+        <label class="col-md-2 control-label" for="location">Населено място</label>
+        <div class="col-md-10">
+          <input type="text" ng-model="adb.building.Location" class="form-control" id="location" name="location" placeholder="Град/Населено място" required>
+          <span ng-show="adb.buildingForm.location.$error.required  && !adb.buildingForm.location.$pristine" class="help-block">Моля, въведете град или населено място!</span>
+        </div>
       </div>
 
-      <div class="form-group" ng-class="{ 'has-error' : adb.buildingForm.floors.$error.required && adb.buildingForm.floors.$dirty }">
-        <label for="floors">Брой етажи</label>
-        <input type="number" ng-model="adb.building.FloorsCount" class="form-control" id="floors" name="floors" min="1" max="80" placeholder="Брой етажи" required>
-        <span ng-show="adb.buildingForm.floors.$error.required  && !adb.buildingForm.floors.$pristine" class="help-block">Моля, въведете число от 1 до 80!</span>
+      <div class="form-group row" ng-class="{ 'has-error' : adb.buildingForm.floors.$error.required && adb.buildingForm.floors.$dirty }">
+        <label class="col-md-2 control-label" for="floors">Брой етажи</label>
+        <div class="col-md-10">
+          <input type="number" ng-model="adb.building.FloorsCount" class="form-control" id="floors" name="floors" min="1" max="80" placeholder="Брой етажи" required>
+          <span ng-show="adb.buildingForm.floors.$error.required  && !adb.buildingForm.floors.$pristine" class="help-block">Моля, въведете число от 1 до 80!</span>
+        </div>
       </div>
   </div>
   <div class="modal-footer">

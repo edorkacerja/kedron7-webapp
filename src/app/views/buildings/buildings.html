@@ -3,6 +3,7 @@
   <div class="col-sm-12  main">
 
    <button ng-click='bd.add()' class="btn btn-success"> Добави сграда </button>
+    <!-- trNgGrid -->
    <div ng-init="bd.getBuildings()">
      <table tr-ng-grid="" items="bd.buildings" enable-filtering="false" locale="bg" page-items="bd.top" total-items="bd.totalBuildings" on-data-required="bd.onServerSideItemsRequested(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
        <thead>
@@ -16,7 +17,6 @@
          <td field-name="Address">{{gridDisplayItem.Address}}</td>
          <td field-name="Location">{{gridDisplayItem.Location}}</td>
          <td field-name="Id"><button class="btn btn-primary" ui-sref="buildingDetail({ buildingId: {{gridDisplayItem.Id}} })">Отвори </button></td>
-         <!--<td field-name=""><div><button class="btn btn-primary" ui-sref="buildingDetail({ buildingId: gridDisplayItem.Id})">{{gridDisplayItem.Id}}Отвори</button></div></td>-->
        </tr>
        </tbody>
 

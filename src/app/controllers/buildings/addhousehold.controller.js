@@ -15,6 +15,7 @@
 
       vm.newHousehold.BuildingId = buildingId;
       vm.newHousehold.$save({building_id: buildingId} ,function(data){
+           vm.householdForm.$setPristine();
            $rootScope.$broadcast('household:added' , data);
            toastr.success('Household created', "Household with id " + data.HouseholdId + " added");
            $modalInstance.dismiss();
