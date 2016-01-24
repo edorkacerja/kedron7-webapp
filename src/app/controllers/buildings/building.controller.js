@@ -77,6 +77,7 @@
          $state.go('cashbook' , {buildingId: vm.building.Id})
        };
        vm.gotoHousehold = function(id) {
+         console.log(id);
          $state.go('householdDetail',{ householdId: id , buildingId: vm.building.Id})
        };
 
