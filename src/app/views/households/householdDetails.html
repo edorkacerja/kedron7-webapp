@@ -1,14 +1,15 @@
 <acme-navbar></acme-navbar>
 <div class="container-fluid" >
-  <div class="col-sm-12">
+  <div class="row">
+
+  <div class="col-sm-6 col-md-4">
     <button class="btn btn-primary" ui-sref="buildingDetail({ buildingId: hdetail.buildingId})">Назад</button>
 
-    <div ng-hide="bdetail.editMode">
+    <div ng-hide="hdetail.editMode">
       <div class="panel panel-default">
         <div class="panel-body">
-          <h3>{{bdetail.building.Address}}</h3>
+          <h3>{{hdetail.household.Name}}</h3>
           <ul>
-            <li> Име: {{hdetail.household.Name}} </li>
             <li> Етаж: {{hdetail.household.Floor}}</li>
             <li> Номер: {{hdetail.household.Number}}</li>
             <li> Брой деца: {{hdetail.household.ChildrenCount}}</li>
@@ -18,9 +19,18 @@
       </div>
     </div>
     <!-- Editing MODE -->
+    <div ng-show="hdetail.editMode">
+
+
+    </div>
+  </div><!-- col-md-6 -->
+
+
+
+  </div>
   </div>
 
   </div>
 
 
-</div>
+
