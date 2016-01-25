@@ -17,7 +17,7 @@
       vm.newHousehold.$save({building_id: buildingId} ,function(data){
            vm.householdForm.$setPristine();
            $rootScope.$broadcast('household:added' , data);
-           toastr.success('Household created', "Household with id " + data.HouseholdId + " added");
+           toastr.success('Създадено жилище:', "Жилище с име " + data.Name + " бе добавено!");
            $modalInstance.dismiss();
          });
    };

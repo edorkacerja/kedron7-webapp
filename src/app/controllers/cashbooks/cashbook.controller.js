@@ -7,6 +7,7 @@
 
   function CashbookController(Expense,toastr, $stateParams) {
     var vm = this;
+    vm.buildingId = $stateParams.buildingId;
    Expense.query({id: $stateParams.buildingId} ,
      function(response) {
      vm.expenses= response.Expenses;

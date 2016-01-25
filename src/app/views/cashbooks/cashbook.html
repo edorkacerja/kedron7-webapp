@@ -1,7 +1,10 @@
 <acme-navbar></acme-navbar>
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-6">
+    <a ui-sref="expenseTypes(cb.buildingId)" class="btn btn-primary">Типове разходи </a>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
       <table tr-ng-grid="" items="cb.expenses" locale="bg" page-items="myPageItemsCount" total-items="myItemsTotalCount" on-data-required="onServerSideItemsRequested(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
         <thead>
         <tr>

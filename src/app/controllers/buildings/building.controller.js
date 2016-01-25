@@ -6,7 +6,7 @@
     .controller('BuildingController', BuildingController );
 
   /** @ngInject */
-  function BuildingController(QueryConstructor,Building, Household,  $state, $stateParams, $modal, $scope, toastr) {
+  function BuildingController(QueryConstructor,Building, Household,  $state, $stateParams, $modal, $scope, toastr , $window) {
        var vm = this;
        vm.top = 10 ; //number of items per page -> 10;
         //trNgGrid
@@ -34,7 +34,6 @@
 
        vm.edit = function() {
          vm.editMode = true;
-         vm.newHousehold =  new Household();
        };
 
        vm.update = function() {
@@ -48,7 +47,7 @@
 
        vm.delete = function(){
          if($window.confirm('Сигурни ли сте, че искате да изтриете тази сграда?')) {
-           Building.delete({id: vm.building.BuildingId},function() {
+           Building.delete({id: vm.building.Id},function() {
              $state.go('buildings');
              toastr.warning('Сградата бе изтрита успешно.');
            }, function(error){

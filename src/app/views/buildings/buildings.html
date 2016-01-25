@@ -1,29 +1,29 @@
 <acme-navbar></acme-navbar>
 <div class="container-fluid" >
-  <div class="col-sm-12  main">
+  <div class="row">
+    <div class="col-sm-12  main">
 
-   <button ng-click='bd.add()' class="btn btn-success"> Добави сграда </button>
-    <!-- trNgGrid -->
-   <div ng-init="bd.getBuildings()">
-     <table tr-ng-grid="" items="bd.buildings" enable-filtering="false" locale="bg" page-items="bd.top" total-items="bd.totalBuildings" on-data-required="bd.onServerSideItemsRequested(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
-       <thead>
+     <button ng-click='bd.add()' class="btn btn-success"> Добави сграда </button>
+      <!-- trNgGrid -->
+
+       <table tr-ng-grid="" items="bd.buildings" enable-filtering="false" locale="bg" page-items="bd.top" total-items="bd.totalBuildings" on-data-required="bd.onServerSideItemsRequested(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
+         <thead>
+           <tr>
+             <th field-name="Address" display-name="Адрес" enable-filtering="true" ></th>
+             <th field-name="Location" display-name="Град"  enable-filtering="true"></th>
+           </tr>
+         </thead>
+         <tbody>
          <tr>
-           <th field-name="Address" display-name="Адрес" enable-filtering="true" ></th>
-           <th field-name="Location" display-name="Град"  enable-filtering="true"></th>
+           <td field-name="Address">{{gridDisplayItem.Address}}</td>
+           <td field-name="Location">{{gridDisplayItem.Location}}</td>
+           <td field-name="Id"><button class="btn btn-primary" ui-sref="buildingDetail({ buildingId: {{gridDisplayItem.Id}} })">Отвори </button></td>
          </tr>
-       </thead>
-       <tbody>
-       <tr>
-         <td field-name="Address">{{gridDisplayItem.Address}}</td>
-         <td field-name="Location">{{gridDisplayItem.Location}}</td>
-         <td field-name="Id"><button class="btn btn-primary" ui-sref="buildingDetail({ buildingId: {{gridDisplayItem.Id}} })">Отвори </button></td>
-       </tr>
-       </tbody>
+         </tbody>
 
-     </table>
+       </table>
 
-
-    </div>
-  </div>
+  </div><!-- col-sm-12 -->
+  </div><!-- row -->
  </div>
 </div>

@@ -32,7 +32,7 @@
       })
       //households
       .state('householdDetail', {
-        url: '/:buildingId/households/:householdId',
+        url: '/households/:householdId',
         templateUrl: 'app/views/households/householdDetails.html',
         controller: 'HouseholdController',
         controllerAs: 'hdetail'
@@ -44,6 +44,13 @@
       controller: 'CashbookController',
       controllerAs: 'cb'
     })
+      //Expense Types
+      .state('expenseTypes' , {
+        url:'/buildings/:buildingId/expenseTypes',
+        templateUrl:'app/views/cashbooks/expenseTypes/expenseType.html',
+        controller: 'ExpenseTypeController',
+        controllerAs: 'exp'
+      })
 
     ;
 
