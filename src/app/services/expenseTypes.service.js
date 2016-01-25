@@ -9,10 +9,28 @@
     .factory('ExpenseType',expenseType);
 
   function expenseType($resource , auth, api ) {
-
-  //todo make api hook for expense types
-
-
+      return $resource( api+"/expenseTypes/:id", { bulding_id: '@buildingid' , id: '@id'}, {
+        get: {
+          method: 'GET',
+          headers: { 'Authorization': 'Bearer '+  auth.currentUser().accessToken }
+        },
+        query: {
+          url:api +"/buildings/:building_id/households/:id",
+          method: 'GET',
+          headers: { 'Authorization': "Bearer " + auth.currentUser().accessToken }
+        },
+        delete: {
+          method: 'DELETE',
+          headers: { 'Authorization': "Bearer " + auth.currentUser().accessToken }
+        },
+        save: {
+          method: 'POST',
+          headers: { 'Authorization': "Bearer " + auth.currentUser().accessToken }
+        },
+        update: {
+          method: 'PUT'
+        }
+      });
   }
 
 })();

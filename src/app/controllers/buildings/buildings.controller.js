@@ -14,7 +14,7 @@
         vm.onServerSideItemsRequested = function(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse) {
           Building.query({top: vm.top, skip: QueryConstructor.skip(currentPage, vm.top), filter:QueryConstructor.filter(filterByFields), orderBy: QueryConstructor.order(orderBy, orderByReverse)},
            function(response) {
-             vm.buildings = response.Buildings;
+             vm.buildings = response.Items;
              vm.totalBuildings = response.Count;
            },
           function(response) {
@@ -35,7 +35,7 @@
 
      $scope.$on('building:added' , function(event, data) {
        Building.query( function(response) {
-         vm.buildings = response;
+         vm.buildings = response.Items
          vm.totalBuildings = response.Count;
        }, function(response) {
          toastr.error("Не успя да се установи връзка с базата данни:" , response );

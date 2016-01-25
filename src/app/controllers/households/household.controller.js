@@ -5,17 +5,29 @@
     .module('kedron')
     .controller('HouseholdController', HouseholdController );
 
-    function HouseholdController(Household , $stateParams , toastr, $state, $window) {
+    function HouseholdController(Household , Building, $stateParams , toastr, $state, $window) {
       var vm = this;
       vm.editMode = false;
-      vm.buildingId = $stateParams.buildingId;
-      Household.get({id: $stateParams.householdId, building_id: $stateParams.buildingId},
+
+      Household.get({id: $stateParams.householdId},
         function (response) {
           vm.household = response;
+          Building.get({ id: vm.household.BuildingId} , function(response) {
+            vm.floorsCount = response.FloorsCount;
+          }, function() {
+            //todo add error
+          });
+        }, function() {
+          //todo add error
         });
+
 
       vm.edit = function () {
         vm.editMode = true;
+        if(!vm.floorsCount) {
+          vm.editMode = false;
+        }
+
       };
 
       vm.update = function () {
@@ -29,7 +41,7 @@
       vm.delete = function() {
         if($window.confirm('Сигурни ли сте, че искате да изтриете това жилище?')) {
           Household.delete({id: vm.household.Id},function() {
-            $state.go('buildings');//todo go to building detail with ID
+            $state.go('buildingDetail', {buildingId: vm.household.BuildingId});//todo go to building detail with ID
             toastr.warning('Жилището бе изтрито успешно.');
           }, function(error){
             toastr.warning(error);

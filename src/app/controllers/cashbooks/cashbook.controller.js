@@ -10,10 +10,10 @@
     vm.buildingId = $stateParams.buildingId;
    Expense.query({id: $stateParams.buildingId} ,
      function(response) {
-     vm.expenses= response.Expenses;
+     vm.expenses= response.Items;
      vm.totalExpenses = response.Count;
-   }, function(error){
-      //todo add error logging
+   }, function(response){
+       toastr.error("Не успя да се установи връзка с базата данни:" , response );
    });
   }
 

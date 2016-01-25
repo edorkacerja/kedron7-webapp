@@ -14,7 +14,7 @@
     vm.onServerSideItemsRequested = function(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse) {
       Household.query({building_id: $stateParams.buildingId ,top: vm.top, skip: QueryConstructor.skip(currentPage, vm.top), filter:QueryConstructor.filter(filterByFields), orderBy: QueryConstructor.order(orderBy, orderByReverse)},
         function(response) {
-          vm.households = response.Households;
+          vm.households = response.Items;
           vm.totalHouseholds = response.Count;
         },
         function(response) {
@@ -81,7 +81,7 @@
 
        $scope.$on('household:added', function(event,data) {
          Household.query({building_id: $stateParams.buildingId} , function(response) {
-           vm.households = response.Households;
+           vm.households = response.Items;
            vm.totalHouseholds = response.Count;
          }, function(response) {
            toastr.error("Не успя да се установи връзка с базата данни:" , response );

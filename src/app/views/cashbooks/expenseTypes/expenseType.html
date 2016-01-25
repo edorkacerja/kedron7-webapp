@@ -1,8 +1,41 @@
 <acme-navbar></acme-navbar>
-<div class="container-fluid">
+<div class="container" >
   <div class="row">
-    <div class="col-sm-12">
-      asd
+    <div class="col-sm-12  main">
+      <div ng-if="exp.noExpenseTypes">
+        <div class="row">
+          <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
+            <div class="form-inline">
+              <label for="name">Име на типа разход</label>
+              <input type="text" class="form-control" id="name" ng-model="exp.newExpenseType.Name" />
+            </div>
+          </div>
+        </div>
+        <!-- building households table -->
+        <h4>Начисления по жилища</h4>
+        <table class="table table-condensed">
+            <th>Имe</th>
+            <th>Номер</th>
+            <th>Етаж</th>
+            <th>Брой деца</th>
+            <th>Брой възрастни</th>
+            <th>Дължима сума</th>
+          <tr ng-repeat="household in exp.households">
+            <td>{{household.Name}}</td>
+            <td>{{household.Number}}</td>
+            <td>{{household.Floor}}</td>
+            <td>{{household.ChildrenCount}}</td>
+            <td>{{household.AdultsCount}}</td>
+            <td>
+              <div class="form-inline">
+                <span>Стойност:</span>
+                <input type="number" min="0" step="any" class="form-control" ng-init="newPayer.Value = 0" ng-model="newPayer.Value" ng-change="exp.addPayer(newPayer, $index)"/>
+
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
 </div>
