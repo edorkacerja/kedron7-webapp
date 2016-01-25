@@ -11,24 +11,26 @@
 
         <div ng-show="bdetail.editMode">
           <div class="panel panel-default">
-            <!--TODO add validation to the form -->
             <form name="bdetail.editForm" ng-submit="bdetail.update()" novalidate>
               <div class="panel-body">
-                      <div class="form-group">
+                      <div class="form-group" ng-class="{ 'has-error' : bdetail.editForm.address.$error.required && bdetail.editForm.address.$dirty }">
                         <label for="address">Адрес</label>
-                        <input type="text"  ng-model="bdetail.building.Address" class="form-control" id="address" placeholder="Address">
+                        <input type="text"  ng-model="bdetail.building.Address" class="form-control" id="address" placeholder="Address" required>
+                        <span ng-show="bdetail.editForm.address.$error.required  && !adb.editForm.address.$pristine" class="help-block">Моля, въведете адрес!</span>
                       </div>
-                     <div class="form-group">
+                     <div class="form-group" ng-class="{ 'has-error' : bdetail.editForm.location.$error.required && bdetail.editForm.location.$dirty }">
                        <label for="address">Град/Населено място</label>
-                       <input type="text"  ng-model="bdetail.building.Location" class="form-control" id="location" placeholder="Location">
+                       <input type="text"  ng-model="bdetail.building.Location" class="form-control" id="location" placeholder="Location" required>
+                       <span ng-show="bdetail.editForm.location.$error.required  && !bdetail.editForm.location.$pristine" class="help-block">Моля, въведете град или населено място!</span>
                      </div>
-                     <div class="form-group">
+                     <div class="form-group" ng-class="{ 'has-error' : bdetail.editForm.floors.$error.required && bdetail.editForm.floors.$dirty }">
                        <label for="floors">Брой етажи</label>
-                       <input type="number"  ng-model="bdetail.building.FloorsCount" class="form-control" id="floors" placeholder="Floors">
+                       <input type="number"  ng-model="bdetail.building.FloorsCount" class="form-control" id="floors" placeholder="Floors" required>
+                       <span ng-show="bdetail.editForm.floors.$error.required  && !bdetail.editForm.floors.$pristine" class="help-block">Моля, въведете число от 1 до 80!</span>
                      </div>
               </div>
               <div class="panel-footer">
-                <button type="submit" class="btn btn-success"> Запази промените </button>
+                <button type="submit" ng-disabled="bdetail.editForm.$invalid" class="btn btn-success"> Запази промените </button>
                 <button type="button" class="btn btn-warning" ng-click="bdetail.editMode = false;">Отказ</button>
               </div>
             </form>

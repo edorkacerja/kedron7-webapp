@@ -40,7 +40,8 @@
        vm.update = function() {
          Building.update({id: vm.building.Id}, vm.building , function() {
            vm.editMode = false;
-           toastr.success('Building updated.');
+           vm.editForm.$setPristine();
+           toastr.success('Сградата бе актуализирана успешно.');
          })
 
        };
