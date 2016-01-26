@@ -4,9 +4,11 @@
     .module('kedron')
     .controller('ExpenseTypeController', ExpenseTypeController );
 
-  function ExpenseTypeController($stateParams, Household , toastr) {
+  function ExpenseTypeController($stateParams,$state, Household , Expense, toastr) {
     var vm = this;
     vm.payers = [];
+
+    vm.newExpense = new Expense();
     //assuming there are no expense types(for now)
     //todo make a request to actually see if they are no expense types added
 
@@ -21,14 +23,13 @@
       });
 
     vm.addPayer = function(newPayer, index) {
-      newPayer.payerId = vm.households[index].Id;
+      newPayer.HouseholdId = vm.households[index].Id;
        var isExisting = false;
-       newPayer.Value === 0 ? newPayer.DoesPay = false : newPayer.DoesPay = true;
       if(vm.payers.length === 0) {
         vm.payers.push(newPayer);
       }
       for(var i = 0 ; i < vm.payers.length ; i++ ) {
-        if(vm.payers[i].Id == newPayer.Id) {
+        if(vm.payers[i].HouseholdId == newPayer.HouseholdId) {
           vm.payers[i].Value = newPayer.Value;
           isExisting = true;
         }
@@ -37,8 +38,21 @@
       if(!isExisting) {
         vm.payers.push(newPayer);
       }
+
+    };
+
+
+    //add expense
+    vm.addExpense = function() {
+      vm.newExpense.ExpensePayersInformation = vm.payers;
+      vm.newExpense.$save({id: $stateParams.buildingId},function(data) {
+        toastr.success('Разходът бе добавен', "Име: " + data.Name );
+        $state.go('cashbook', {buildingId: $stateParams.buildingId});
+      })
     }
 
 
-  }
+
+
+    }
 })();

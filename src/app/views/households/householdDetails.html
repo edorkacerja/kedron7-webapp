@@ -74,13 +74,55 @@
 
       </div>
 
-    </div>
-  </div><!-- col-md-6 -->
+    </div><!-- col-md-6 -->
+  </div><!-- row -->
+  <div class="row">
+    <!-- todo ng-view??? -->
+    <div class="col-md-6 col-sm-12">
+      <h4>Задължения</h4>
+      <!-- trNgGrid -->
+      <table tr-ng-grid="" items="hdetail.debts" enable-filtering="false" locale="bg" page-items="hdetail.debtsTop" total-items="hdetail.totalDebts" on-data-required="hdetail.onServerSideDebtsReq(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
+        <thead>
+        <tr>
+          <th field-name="Value" display-name="Стойност" enable-filtering="false" ></th>
+          <th field-name="DateMade" display-name="Дата на създаване"  enable-filtering="false"></th>
+          <th field-name="ExpenseTypeName" display-name="Тип разход"  enable-filtering="false"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td field-name="Value">{{gridDisplayItem.Value}}</td>
+          <td field-name="DateMade">{{gridDisplayItem.DateMade}}</td>
+          <td field-name="ExpenseTypeName">{{gridDisplayItem.ExpenseTypeName}}</td>
+          <td field-name="Id"><button class="btn btn-primary" ng-click="payDebt(gridDisplayItem.id)">Плати </button></td>
+        </tr>
+        </tbody>
+      </table>
+    </div><!-- debts col -->
+    <div class="col-md-6 col-sm-12">
+      <h4>Плащания</h4>
+      <!-- trNgGrid -->
+
+      <table tr-ng-grid="" items="hdetail.payments" enable-filtering="false" locale="bg" page-items="hdetail.paymentsTop" total-items="hdetail.totalPayments" on-data-required="hdetail.onServerSidePaymentsReq(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
+        <thead>
+        <tr>
+          <th field-name="Value" display-name="Стойност" enable-filtering="false" ></th>
+          <th field-name="DatePaid" display-name="Дата на плащане"  enable-filtering="false"></th>
+          <th field-name="ExpenseTypeName" display-name="Тип разход"  enable-filtering="false"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td field-name="Value">{{gridDisplayItem.Value}}</td>
+          <td field-name="DatePaid">{{gridDisplayItem.DatePaid}}</td>
+          <td field-name="ExpenseTypeName">{{gridDisplayItem.ExpenseTypeName}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div><!-- payments col -->
 
 
-
-  </div>
-  </div>
+   </div>
 
   </div>
 

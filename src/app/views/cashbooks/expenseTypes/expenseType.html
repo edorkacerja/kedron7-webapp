@@ -4,10 +4,11 @@
     <div class="col-sm-12  main">
       <div ng-if="exp.noExpenseTypes">
         <div class="row">
+          <h4>Нов разход</h4>
           <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
             <div class="form-inline">
               <label for="name">Име на типа разход</label>
-              <input type="text" class="form-control" id="name" ng-model="exp.newExpenseType.Name" />
+              <input type="text" class="form-control" id="name" ng-model="exp.newExpense.Name" />
             </div>
           </div>
         </div>
@@ -35,6 +36,7 @@
             </td>
           </tr>
         </table>
+        <button class="btn btn-success" ng-click="exp.addExpense()">Добави разход</button>
       </div>
     </div>
   </div>

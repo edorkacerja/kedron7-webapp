@@ -1,21 +1,23 @@
 <acme-navbar></acme-navbar>
 <div class="container-fluid">
   <div class="row">
-    <a ui-sref="expenseTypes({buildingId: cb.buildingId})" class="btn btn-primary">Типове разходи </a>
+    <button class="btn btn-info" ui-sref="buildingDetail({ buildingId: cb.buildingId})">Обратно към сградата</button>
+    |
+    <a ui-sref="expenseTypes({buildingId: cb.buildingId})" class="btn btn-primary">Нов разход </a>
   </div>
   <div class="row">
     <div class="col-sm-12">
       <table tr-ng-grid="" items="cb.expenses" locale="bg" page-items="myPageItemsCount" total-items="myItemsTotalCount" on-data-required="onServerSideItemsRequested(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
         <thead>
         <tr>
+          <th field-name="Name" display-name="Име"></th>
           <th field-name="Value" display-name="Стойност"></th>
-          <th field-name="ExpenseTypeName" display-name="Тип"></th>
         </tr>
         </thead>
         <tbody>
         <tr>
+          <td field-name="Name">{{gridDisplayItem.Name}}</td>
           <td field-name="Value">{{gridDisplayItem.Value}}</td>
-          <td field-name="ExpenseTypeName">{{gridDisplayItem.ExpenseTypeName}}</td>
         </tr>
         </tbody>
 

@@ -6,28 +6,28 @@
     .controller('AddBuildingController', AddBuildingController );
 
   /** @ngInject */
-  function AddBuildingController(Building, $modalInstance, $rootScope , toastr) {
-       var vm = this;
+function AddBuildingController(Building, $modalInstance, $rootScope , toastr) {
+  var vm = this;
 
-       vm.building= new Building();
-
-
-       vm.add = function() {
-
-           vm.building.$save(function(data) {
-              vm.buildingForm.$setPristine();
-              $rootScope.$broadcast('building:added' , data);
-              toastr.success('Сградата бе добавена', "Адрес: " + data.Address );
-              $modalInstance.dismiss()
-           })
-       };
+  vm.building= new Building();
 
 
+  vm.add = function() {
 
-       vm.cancel = function() {
-         $modalInstance.dismiss();
-       }
+    vm.building.$save(function(data) {
+      vm.buildingForm.$setPristine();
+      $rootScope.$broadcast('building:added' , data);
+      toastr.success('Сградата бе добавена', "Адрес: " + data.Address );
+      $modalInstance.dismiss()
+    })
+  };
 
 
+
+  vm.cancel = function() {
+    $modalInstance.dismiss();
   }
+
+
+}
 })();

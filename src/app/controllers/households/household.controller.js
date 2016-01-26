@@ -5,28 +5,47 @@
     .module('kedron')
     .controller('HouseholdController', HouseholdController );
 
-    function HouseholdController(Household , Building, $stateParams , toastr, $state, $window) {
+    function HouseholdController(Household , Debt, Payment, QueryConstructor, $stateParams , toastr, $state, $window) {
       var vm = this;
+      vm.top = 10;
       vm.editMode = false;
 
+      //household
       Household.get({id: $stateParams.householdId},
         function (response) {
           vm.household = response;
-          Building.get({ id: vm.household.BuildingId} , function(response) {
-            vm.floorsCount = response.FloorsCount;
-          }, function() {
-            //todo add error
-          });
         }, function() {
           //todo add error
         });
+       //household debts
+        vm.onServerSideDebtsReq = function(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse) {
+          Debt.query({id: $stateParams.householdId ,top: vm.top, skip: QueryConstructor.skip(currentPage, vm.top), filter:QueryConstructor.filter(filterByFields), orderBy: QueryConstructor.order(orderBy, orderByReverse)},
+            function(response) {
+              vm.debts = response.Items;
+              vm.totalHouseholds = response.Count;
+            },
+            function(response) {
+              toastr.error("Не успя да се установи връзка с базата данни:" , response );
+            })
+        };
+       //household payments
+        vm.onServerSidePaymentsReq = function(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse) {
+          Payment.query({id: $stateParams.householdId ,top: vm.top, skip: QueryConstructor.skip(currentPage, vm.top), filter:QueryConstructor.filter(filterByFields), orderBy: QueryConstructor.order(orderBy, orderByReverse)},
+            function(response) {
+              vm.payments = response.Items;
+              vm.totalPayments = response.Count;
+            },
+            function(response) {
+              toastr.error("Не успя да се установи връзка с базата данни:" , response );
+            })
+        };
 
 
       vm.edit = function () {
         vm.editMode = true;
-        if(!vm.floorsCount) {
-          vm.editMode = false;
-        }
+        //if(!vm.floorsCount) {
+        //  vm.editMode = false;
+        //}
 
       };
 

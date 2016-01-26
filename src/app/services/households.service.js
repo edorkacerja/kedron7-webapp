@@ -7,7 +7,7 @@
 
 
    function household($resource , auth, api ) {
-     return $resource( api+"/households/:id", { bulding_id: '@buildingid' , id: '@id'}, {
+     return $resource( api+"/households/:id", { building_id: '@buildingid' , id: '@id'}, {
         get: {
           method: 'GET',
           headers: { 'Authorization': 'Bearer '+  auth.currentUser().accessToken }
