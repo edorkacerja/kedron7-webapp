@@ -66,7 +66,24 @@
             toastr.warning(error);
           });
         }
-      }
+      };
+
+    //pay debt
+      vm.payDebt = function(id) {
+        Debt.update({debtId: id}, {id: id} ,function() {
+          //reinitialize the tables
+          Payment.query({id: $stateParams.householdId} , function(response){
+            vm.payments = response.Items;
+            vm.totalPayments = response.Count;
+          });
+          Debt.query({id: $stateParams.householdId} , function(response) {
+            vm.debts = response.Items;
+            vm.totalDebts = response.Count;
+          });
+          toastr.success('Заплащането протече успешно.');
+
+        })
+      };
 
 
   }
