@@ -11,6 +11,9 @@
               <input type="text" class="form-control" id="name" ng-model="exp.newExpense.Name" />
             </div>
           </div>
+          <div class="col-lg-2 col-lg-offset-3 col-md-3 col-md-offset-3 col-sm-6 col-xs-12">
+             <h2>Общo: <input type="text" ng-model="exp.total" ng-change="vm.isFiltering = true" /></h2>
+          </div>
         </div>
         <!-- building households table -->
         <h4>Начисления по жилища</h4>
@@ -22,6 +25,7 @@
             <th>Брой възрастни</th>
             <th>Дължима сума</th>
           <tr ng-repeat="household in exp.households">
+            <td><input id="isPaying" type="checkbox" ng-model="household.isPaying"  ng-change="exp.isPayingChecked($index)" aria-label="is paying"></td>
             <td>{{household.Name}}</td>
             <td>{{household.Number}}</td>
             <td>{{household.Floor}}</td>
@@ -30,7 +34,7 @@
             <td>
               <div class="form-inline">
                 <span>Стойност:</span>
-                <input type="number" min="0" step="any" class="form-control" ng-init="newPayer.Value = 0" ng-model="newPayer.Value" ng-change="exp.addPayer(newPayer, $index)"/>
+                <input type="number" min="0" step="any" class="form-control" ng-init="household.Value = 0" ng-model="household.Value" ng-change="exp.changePaymentStatus($index)"/>
 
               </div>
             </td>

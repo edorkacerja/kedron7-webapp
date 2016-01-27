@@ -10,12 +10,12 @@
 
 
     $log.debug('runBlock end');
-    $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
-      if (!auth.currentUser()) {
-        event.preventDefault();
-        $state.go('login');
-      }
-    });
+    //$rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
+    //  if (!auth.currentUser()) {
+    //    event.preventDefault();
+    //    $state.go('login');
+    //  }
+    //});
 
     var bgTranslation = angular.extend({},
       {
