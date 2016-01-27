@@ -28,6 +28,12 @@
       update: {
         method: 'PUT',
         headers: { 'Authorization': "Bearer " + auth.currentUser().accessToken }
+      },
+      payers: {
+        url: api + "/buildings/:id/expensePayers",
+        method: 'GET',
+        headers: { 'Authorization': "Bearer " + auth.currentUser().accessToken },
+        isArray: true
       }
     });
   }

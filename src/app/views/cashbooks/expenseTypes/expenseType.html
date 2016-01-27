@@ -2,7 +2,7 @@
 <div class="container" >
   <div class="row">
     <div class="col-sm-12  main">
-      <div ng-if="exp.noExpenseTypes">
+
         <div class="row">
           <h4>Нов разход</h4>
           <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
@@ -10,14 +10,29 @@
               <label for="name">Име на типа разход</label>
               <input type="text" class="form-control" id="name" ng-model="exp.newExpense.Name" />
             </div>
+          </div><!-- col-lg-2 -->
+          <div class="col-lg-7 col-lg-offset-3 col-md-3 col-md-offset-3 col-sm-6 col-xs-12">
+             <h2><span>Общo:</span> <input  type="number"  min="0" step="any" class="form-control inline" ng-model="exp.total" ng-change="exp.isFiltering = true" /></h2>
+            <div class="row" ng-if="exp.isFiltering">
+              <div class="col-md-4 col-lg-3 ">
+                <div class="radio">
+                  <label><input type="radio" name="optradio" value="byHousehold" ng-change="exp.sendReq()" ng-model="exp.filters.householdPerson">Жилище</label>
+                </div>
+                <div class="radio">
+                  <label><input type="radio" name="optradio" value="byPerson" ng-change="exp.sendReq()" ng-model="exp.filters.householdPerson">Живущи</label>
+                </div>
+              </div>
+            </div>
+          </div><!-- col-lg-2 col-lg-offset-3 -->
+
           </div>
-          <div class="col-lg-2 col-lg-offset-3 col-md-3 col-md-offset-3 col-sm-6 col-xs-12">
-             <h2>Общo: <input type="text" ng-model="exp.total" ng-change="vm.isFiltering = true" /></h2>
-          </div>
-        </div>
+        </div><!-- row-->
+
+
         <!-- building households table -->
         <h4>Начисления по жилища</h4>
         <table class="table table-condensed">
+            <th>Плаща</th>
             <th>Имe</th>
             <th>Номер</th>
             <th>Етаж</th>
@@ -34,7 +49,7 @@
             <td>
               <div class="form-inline">
                 <span>Стойност:</span>
-                <input type="number" min="0" step="any" class="form-control" ng-init="household.Value = 0" ng-model="household.Value" ng-change="exp.changePaymentStatus($index)"/>
+                <input type="number" min="0" step="any" class="form-control"  ng-model="household.Value" ng-change="exp.changePaymentStatus($index)"/>
 
               </div>
             </td>
