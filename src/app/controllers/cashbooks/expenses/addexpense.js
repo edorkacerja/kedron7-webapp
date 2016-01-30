@@ -2,9 +2,9 @@
  'use strict';
   angular
     .module('kedron')
-    .controller('ExpenseTypeController', ExpenseTypeController );
+    .controller('addExpenseController', addExpenseController );
 
-  function ExpenseTypeController($stateParams,$state,  Expense, toastr) {
+  function addExpenseController($stateParams,$state,  Expense, toastr) {
     var vm = this;
 
     vm.newExpense = new Expense();
@@ -46,6 +46,19 @@
     }
 
     //custom mode
+    //todo move to another controller using views
+    vm.filters.fromToFilters = [];
+    vm.addFromToFilter = function() {
+      var newItemNo = vm.filters.fromToFilters.length + 1;
+      vm.filters.fromToFilters.push({'id':'choice'+newItemNo});
+    };
+    vm.removeFromToFilter = function() {
+        var lastItem = vm.filters.fromToFilters.length -1;
+        vm.filters.fromToFilters.splice(lastItem);
+
+    };
+
+
     vm.sendReq = function() {
       Expense.payers({id: $stateParams.buildingId , value: vm.total, method: vm.filters.householdPerson} ,
         function(response) {

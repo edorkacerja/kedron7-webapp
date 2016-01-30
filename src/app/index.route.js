@@ -45,10 +45,10 @@
       controllerAs: 'cb'
     })
       //Expense Types
-      .state('expenseTypes' , {
-        url:'/buildings/:buildingId/expenseTypes',
-        templateUrl:'app/views/cashbooks/expenseTypes/expenseType.html',
-        controller: 'ExpenseTypeController',
+      .state('addExpense' , {
+        url:'/buildings/:buildingId/expenses/new',
+        templateUrl:'app/views/cashbooks/expenses/addexpense.html',
+        controller: 'addExpenseController',
         controllerAs: 'exp'
       })
     ;
