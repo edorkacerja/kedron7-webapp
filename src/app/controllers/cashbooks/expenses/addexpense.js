@@ -6,7 +6,7 @@
 
   function addExpenseController($stateParams,$state,  Expense, toastr) {
     var vm = this;
-
+    vm.filters = {};
     vm.newExpense = new Expense();
 
     vm.noExpenseTypes = true;
@@ -40,27 +40,38 @@
 
     function updateTotal() {
       vm.total = 0;
+      vm.isFiltering = false;
+      vm.householdPerson = null;
       for(var i = 0; i < vm.households.length ; i++ ){
         vm.total += vm.households[i].Value;
       }
     }
 
     //custom mode
-    //todo move to another controller using views
     vm.filters.fromToFilters = [];
-    vm.addFromToFilter = function() {
+    vm.addFromToFilter = function(filter) {
       var newItemNo = vm.filters.fromToFilters.length + 1;
-      vm.filters.fromToFilters.push({'id':'choice'+newItemNo});
+      filter['id'] = 'choice'+ newItemNo;
+      vm.filters.fromToFilters.push(filter);
+      vm.updateFilters();
     };
-    vm.removeFromToFilter = function() {
-        var lastItem = vm.filters.fromToFilters.length -1;
-        vm.filters.fromToFilters.splice(lastItem);
+    vm.removeFromToFilter = function(index) {
+        vm.filters.fromToFilters.splice(index, 1);
+        vm.updateFilters();
+    };
 
+    var filterString = '';
+    vm.updateFilters = function() {
+      var filterString = '';
+      for (var j = 0; j < vm.filters.fromToFilters.length; j++){
+        filterString += vm.filters.fromToFilters[j].attribute + vm.filters.fromToFilters[j].condition + vm.filters.fromToFilters[j].value + ' , '
+      }
+      vm.sendReq(filterString);
     };
 
 
-    vm.sendReq = function() {
-      Expense.payers({id: $stateParams.buildingId , value: vm.total, method: vm.filters.householdPerson} ,
+    vm.sendReq = function(filterString) {
+      Expense.payers({id: $stateParams.buildingId , value: vm.total, method: vm.filters.householdPerson , filter: filterString } ,
         function(response) {
           console.log(response);
           vm.households = response;

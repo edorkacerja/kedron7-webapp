@@ -14,14 +14,41 @@
           <div class="col-lg-7 col-lg-offset-3 col-md-3 col-md-offset-3 col-sm-6 col-xs-12">
              <h2><span>Общo:</span> <input  type="number"  min="0" step="any" class="form-control inline" ng-model="exp.total" ng-change="exp.isFiltering = true" /></h2>
             <div class="row" ng-if="exp.isFiltering">
-              <div class="col-md-4 col-lg-3 ">
+              <div class="col-md-2 col-lg-2 ">
                 <div class="radio">
                   <label><input type="radio" name="optradio" value="byHousehold" ng-change="exp.sendReq()" ng-model="exp.filters.householdPerson">Жилище</label>
                 </div>
                 <div class="radio">
                   <label><input type="radio" name="optradio" value="byPerson" ng-change="exp.sendReq()" ng-model="exp.filters.householdPerson">Живущи</label>
                 </div>
+              </div><!-- col-md-4 -->
+              <div class="col-md-10 col-lg-10" ng-show="exp.filters.householdPerson">
+                <fieldset>
+                  <div class="row">
+                    <div class="form-group col-md-6">
+                      <select class="form-control" ng-model="newFilter.attribute" ng-init="newFilter.attribute = 'Floor'" >
+                        <option value="Number">Номер на апартамент</option>
+                        <option value="Floor">Етаж</option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                      <select class="form-control" ng-model="newFilter.condition" ng-init="newFilter.condition = '>'" >
+                        <option value=">"> > </option>
+                        <option value="<"> < </option>
+                        <option value="="> = </option>
+                      </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                      <input type="number" min="0"  ng-model="newFilter.value" class="form-control" ng-init="newFilter.value = 0 "/>
+                    </div>
               </div>
+                  <button class="btn btn-info" ng-click="exp.addFromToFilter(newFilter)">Добави филтър</button>
+                </fieldset>
+                <ul  class='list-group'  >
+                  <li ng-repeat="filter in exp.filters.fromToFilters track by $index" class="list-group-item">{{filter.attribute}} {{filter.condition}} {{filter.value}} <button class="btn btn-warning"  ng-click="exp.removeFromToFilter($index)">Премахни</button></li>
+
+                </ul>
+              </div><!-- col-md-4 -->
             </div>
           </div><!-- col-lg-2 col-lg-offset-3 -->
 

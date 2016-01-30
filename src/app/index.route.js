@@ -51,6 +51,7 @@
         controller: 'addExpenseController',
         controllerAs: 'exp'
       })
+
     ;
 
     $urlRouterProvider.otherwise('/');
