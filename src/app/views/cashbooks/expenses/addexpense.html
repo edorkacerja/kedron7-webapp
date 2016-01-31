@@ -51,7 +51,7 @@
                     </div>
                   </fieldset><!-- ADD NEW FILTER END -->
                   <ul  class='list-group'  >
-                    <li ng-repeat="filter in exp.filters.fromToFilters track by $index" class="list-group-item clearfix">{{filter.attribute}} {{filter.condition}} {{filter.value}} <button class="btn btn-error btn-sm pull-right"  ng-click="exp.removeFromToFilter($index)">Премахни</button></li>
+                    <li ng-repeat="filter in exp.filters.fromToFilters track by $index" class="list-group-item clearfix">{{filter.attribute | attribute}} {{filter.condition}} {{filter.value}} <button class="btn btn-error btn-sm pull-right"  ng-click="exp.removeFromToFilter($index)">Премахни</button></li>
                   </ul>
                 </div><!-- filters panel body end -->
               </div><!-- filters panel end -->
