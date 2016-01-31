@@ -32,7 +32,8 @@
       payers: {
         url: api + "/buildings/:id/expensePayers",
         method: 'GET',
-        headers: { 'Authorization': "Bearer " + auth.currentUser().accessToken , 'Content-Type' : 'application/json; charset=UTF-8'},
+        transformRequest: [],
+        headers: { 'Authorization': "Bearer " + auth.currentUser().accessToken },
         isArray: true
       }
     });

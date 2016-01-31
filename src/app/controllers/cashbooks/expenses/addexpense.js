@@ -6,6 +6,7 @@
 
   function addExpenseController($stateParams,$state,  Expense, toastr) {
     var vm = this;
+    vm.buildingId = $stateParams.buildingId;
     vm.filters = {};
     vm.newExpense = new Expense();
 
@@ -39,8 +40,10 @@
     };
 
     function updateTotal() {
+      //nullify filters and reinitialize the total
       vm.total = 0;
       vm.isFiltering = false;
+      vm.filters = {};
       vm.householdPerson = null;
       for(var i = 0; i < vm.households.length ; i++ ){
         vm.total += vm.households[i].Value;
@@ -52,7 +55,7 @@
     vm.addFromToFilter = function(filter) {
       var newItemNo = vm.filters.fromToFilters.length + 1;
       filter['id'] = 'choice'+ newItemNo;
-      vm.filters.fromToFilters.push(filter);
+      vm.filters.fromToFilters.push( angular.copy(filter));//prevent model binding
       vm.updateFilters();
     };
     vm.removeFromToFilter = function(index) {
@@ -60,20 +63,24 @@
         vm.updateFilters();
     };
 
-    var filterString = '';
+    //construct a query string
     vm.updateFilters = function() {
       var filterString = '';
       for (var j = 0; j < vm.filters.fromToFilters.length; j++){
-        filterString += vm.filters.fromToFilters[j].attribute + vm.filters.fromToFilters[j].condition + vm.filters.fromToFilters[j].value + ' , '
+        if(j == (vm.filters.fromToFilters.length - 1)) {
+          filterString += vm.filters.fromToFilters[j].attribute + vm.filters.fromToFilters[j].condition + vm.filters.fromToFilters[j].value;
+        } else {
+          filterString += vm.filters.fromToFilters[j].attribute + vm.filters.fromToFilters[j].condition + vm.filters.fromToFilters[j].value + ','
+        }
       }
+
       vm.sendReq(filterString);
     };
 
-
+    //send request to teh server to get the values that have to be paid
     vm.sendReq = function(filterString) {
       Expense.payers({id: $stateParams.buildingId , value: vm.total, method: vm.filters.householdPerson , filter: filterString } ,
         function(response) {
-          console.log(response);
           vm.households = response;
         },
         function(response) {

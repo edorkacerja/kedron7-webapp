@@ -2,58 +2,65 @@
 <div class="container" >
   <div class="row">
     <div class="col-sm-12  main">
-
+        <a ui-sref="cashbook({buildingId: exp.buildingId})" class="btn btn-info"> Към касова книга</a>  <h4>Нов разход</h4>
         <div class="row">
-          <h4>Нов разход</h4>
           <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12">
+            <!-- expense name -->
             <div class="form-inline">
               <label for="name">Име на типа разход</label>
               <input type="text" class="form-control" id="name" ng-model="exp.newExpense.Name" />
             </div>
           </div><!-- col-lg-2 -->
+          <!-- total -->
           <div class="col-lg-7 col-lg-offset-3 col-md-3 col-md-offset-3 col-sm-6 col-xs-12">
              <h2><span>Общo:</span> <input  type="number"  min="0" step="any" class="form-control inline" ng-model="exp.total" ng-change="exp.isFiltering = true" /></h2>
-            <div class="row" ng-if="exp.isFiltering">
-              <div class="col-md-2 col-lg-2 ">
+            <div class="row" ng-if="exp.isFiltering"><!-- INNER FILTER ROW START  -->
+              <div class="col-md-2 col-lg-2 "><!-- BY-COLUMN START -->
                 <div class="radio">
                   <label><input type="radio" name="optradio" value="byHousehold" ng-change="exp.sendReq()" ng-model="exp.filters.householdPerson">Жилище</label>
                 </div>
                 <div class="radio">
                   <label><input type="radio" name="optradio" value="byPerson" ng-change="exp.sendReq()" ng-model="exp.filters.householdPerson">Живущи</label>
                 </div>
-              </div><!-- col-md-4 -->
-              <div class="col-md-10 col-lg-10" ng-show="exp.filters.householdPerson">
-                <fieldset>
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <select class="form-control" ng-model="newFilter.attribute" ng-init="newFilter.attribute = 'Floor'" >
-                        <option value="Number">Номер на апартамент</option>
-                        <option value="Floor">Етаж</option>
-                      </select>
+              </div><!-- BY-COLUMN END -->
+              <div class="col-md-10 col-lg-10" ng-show="exp.filters.householdPerson"><!-- INNER FILTER COLUMN START -->
+                <div class="panel panel-default">
+                  <div class="panel-heading">Филтри</div>
+                  <div class="panel-body">
+                  <fieldset><!-- ADD NEW FILTER  START -->
+                    <div class="row">
+                      <div class="form-group col-md-3">
+                        <select class="form-control" ng-model="newFilter.attribute" ng-init="newFilter.attribute = 'Floor'" >
+                          <option value="Number">Номер на апартамент</option>
+                          <option value="Floor">Етаж</option>
+                        </select>
+                      </div>
+                      <div class="form-group col-md-2">
+                        <select class="form-control" ng-model="newFilter.condition" ng-init="newFilter.condition = '>'" >
+                          <option value=">"> > </option>
+                          <option value="<"> < </option>
+                          <option value="="> = </option>
+                        </select>
+                      </div>
+                      <div class="form-group col-md-3">
+                        <input type="number" min="0"  ng-model="newFilter.value" class="form-control" ng-init="newFilter.value = 0 "/>
+                      </div>
+                      <div class="form-group col-md-4">
+                        <button class="btn btn-info" ng-click="exp.addFromToFilter(newFilter)">Добави</button>
+                      </div>
                     </div>
-                    <div class="form-group col-md-3">
-                      <select class="form-control" ng-model="newFilter.condition" ng-init="newFilter.condition = '>'" >
-                        <option value=">"> > </option>
-                        <option value="<"> < </option>
-                        <option value="="> = </option>
-                      </select>
-                    </div>
-                    <div class="form-group col-md-3">
-                      <input type="number" min="0"  ng-model="newFilter.value" class="form-control" ng-init="newFilter.value = 0 "/>
-                    </div>
-              </div>
-                  <button class="btn btn-info" ng-click="exp.addFromToFilter(newFilter)">Добави филтър</button>
-                </fieldset>
-                <ul  class='list-group'  >
-                  <li ng-repeat="filter in exp.filters.fromToFilters track by $index" class="list-group-item">{{filter.attribute}} {{filter.condition}} {{filter.value}} <button class="btn btn-warning"  ng-click="exp.removeFromToFilter($index)">Премахни</button></li>
-
-                </ul>
-              </div><!-- col-md-4 -->
-            </div>
-          </div><!-- col-lg-2 col-lg-offset-3 -->
+                  </fieldset><!-- ADD NEW FILTER END -->
+                  <ul  class='list-group'  >
+                    <li ng-repeat="filter in exp.filters.fromToFilters track by $index" class="list-group-item clearfix">{{filter.attribute}} {{filter.condition}} {{filter.value}} <button class="btn btn-error btn-sm pull-right"  ng-click="exp.removeFromToFilter($index)">Премахни</button></li>
+                  </ul>
+                </div><!-- filters panel body end -->
+              </div><!-- filters panel end -->
+            </div><!-- INNER FILTER COLUMN END -->
+          </div><!-- INNER FILTER ROW END  -->
 
           </div>
         </div><!-- row-->
+        <!-- FILTERS END -->
 
 
         <!-- building households table -->
@@ -67,7 +74,7 @@
             <th>Брой възрастни</th>
             <th>Дължима сума</th>
           <tr ng-repeat="household in exp.households">
-            <td><input id="isPaying" type="checkbox" ng-model="household.isPaying"  ng-change="exp.isPayingChecked($index)" aria-label="is paying"></td>
+            <td><input id="isPaying" type="checkbox" ng-model="household.IsPaying"  ng-change="exp.isPayingChecked($index)" aria-label="is paying"></td>
             <td>{{household.Name}}</td>
             <td>{{household.Number}}</td>
             <td>{{household.Floor}}</td>
