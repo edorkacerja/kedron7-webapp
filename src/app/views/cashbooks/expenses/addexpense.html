@@ -13,7 +13,12 @@
           </div><!-- col-lg-2 -->
           <!-- total -->
           <div class="col-lg-7 col-lg-offset-3 col-md-3 col-md-offset-3 col-sm-6 col-xs-12">
-             <h2><span>Общo:</span> <input  type="number"  min="0" step="any" class="form-control inline" ng-model="exp.total" ng-change="exp.isFiltering = true" /></h2>
+             <h2><span>Общo:</span></h2>
+             <div class="input-group">
+               <input  type="number"  min="0" step="any" class="form-control inline" ng-model="exp.total" ng-change="exp.isFiltering = true" />
+               <span class="input-group-addon">лв.</span>
+             </div>
+
             <div class="row" ng-if="exp.isFiltering"><!-- INNER FILTER ROW START  -->
               <div class="col-md-2 col-lg-2 "><!-- BY-COLUMN START -->
                 <div class="radio">
@@ -83,13 +88,16 @@
             <td>
               <div class="form-inline">
                 <span>Стойност:</span>
-                <input type="number" min="0" step="any" class="form-control"  ng-model="household.Value" ng-change="exp.changePaymentStatus($index)"/>
+                <div class="input-group">
+                  <input type="number" min="0" step="any" class="form-control"  ng-model="household.Value" ng-change="exp.changePaymentStatus($index)"/>
+                  <span class="input-group-addon">лв</span>
+                </div>
 
               </div>
             </td>
           </tr>
         </table>
-        <button class="btn btn-success" ng-click="exp.addExpense()">Добави разход</button>
+        <button class="btn btn-success" ng-disabled="!exp.newExpense.Name" ng-click="exp.addExpense()">Добави разход</button>
       </div>
     </div>
   </div>

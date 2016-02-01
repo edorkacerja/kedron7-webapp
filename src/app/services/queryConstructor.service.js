@@ -11,7 +11,7 @@
 
   function queryConstructor() {
       this.order = function(orderBy, orderByReverse) {
-        if(orderByReverse ||typeof orderBy !== 'undefined') {
+        if(orderByReverse && typeof orderBy !== 'undefined') {
           return orderBy + ' ' + 'desc';
         } else if(typeof orderBy !== 'undefined') {
           return orderBy + ' ' + 'asc';

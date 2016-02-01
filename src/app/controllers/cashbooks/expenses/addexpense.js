@@ -31,11 +31,7 @@
     };
 
     vm.changePaymentStatus = function(index){
-      if(vm.households[index].Value > 0) {
-        vm.households[index].isPaying = true;
-      } else {
-        vm.households[index].isPaying = false;
-      }
+       vm.households[index].Value > 0 ? vm.households[index].IsPaying = true : vm.households[index].IsPaying = false;
       updateTotal();
     };
 
@@ -91,8 +87,14 @@
 
     //add expense
     vm.addExpense = function() {
-      vm.newExpense.ExpensePayersInformation = vm.households;
-      vm.newExpense.$save({id: $stateParams.buildingId},function(data) {
+         var result = [];
+         for(var i = 0; i < vm.households.length ; i++) {
+            result.push({HouseholdId: vm.households[i].Id , Value: vm.households[i].Value});
+         }
+      vm.newExpense.ExpensePayersInformation = result;
+
+
+        vm.newExpense.$save({id: $stateParams.buildingId},function(data) {
         toastr.success('Разходът бе добавен', "Име: " + data.Name );
         $state.go('cashbook', {buildingId: $stateParams.buildingId});
       })
