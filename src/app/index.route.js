@@ -30,6 +30,13 @@
         controller: 'BuildingController',
         controllerAs: 'bdetail'
       })
+      .state('buildingDetail.households' ,{
+        url:'/buildings/:buildingId/households',
+        templateUrl: 'app/views/buildings/buildingDetails.households.html',
+        controller: 'BuildingHouseholdsController',
+        controllerAs: 'bhdetail'
+
+       })
       //households
       .state('householdDetail', {
         url: '/households/:householdId',

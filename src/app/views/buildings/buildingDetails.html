@@ -56,35 +56,6 @@
        </div>
 
      </div>
-    <!-- TODO put in a subview -->
-    <!-- add a household -->
-    <div class="row">
-      <div class="col-sm-12">
-      <h4>Жилища</h4>
-      <button ng-click="bdetail.addHousehold()" class="btn btn-success">Добави жилище</button>
-      <!-- trNgGrid -->
-        <table tr-ng-grid="" items="bdetail.households" enable-filtering="false"  locale="bg" page-items="bdetail.top" total-items="bdetail.totalHouseholds" on-data-required="bdetail.onServerSideItemsRequested(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
-          <thead>
-          <tr>
-            <th field-name="Name" display-name="Име"  enable-filtering="true"></th>
-            <th field-name="Number" display-name="Номер" enable-filtering="true"></th>
-            <th field-name="Floor" display-name="Етаж" enable-filtering="true"></th>
-            <th field-name="ChildrenCount" display-name="Брой деца" enable-filtering="true"></th>
-            <th field-name="AdultsCount" display-name="Брой възрастни" enable-filtering="true"></th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td field-name="Name">{{gridDisplayItem.Name}}</td>
-            <td field-name="Number">{{gridDisplayItem.Number}}</td>
-            <td field-name="Floor">{{gridDisplayItem.Floor}}</td>
-            <td field-name="ChildrenCount">{{gridDisplayItem.ChildrenCount}}</td>
-            <td field-name="AdultsCount">{{gridDisplayItem.AdultsCount}}</td>
-            <td field-name="Id"><button class="btn btn-primary" ng-click="bdetail.gotoHousehold(gridDisplayItem.Id )">Отвори</button></td>
-          </tr>
-          </tbody>
+     <div ui-view=></div>
 
-        </table>
-      </div><!-- column -->
-    </div> <!-- row -->
 </div><!-- container -->

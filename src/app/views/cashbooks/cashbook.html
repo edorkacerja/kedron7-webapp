@@ -9,17 +9,17 @@
     <div class="col-sm-12">
       <h4>Разходи</h4>
       <div range-slider min="cb.minLowerBoundaryPrice" max="cb.maxUpperBoundaryPrice" model-min="cb.lowerBoundaryPrice" model-max="cb.upperBoundaryPrice" show-values="true" filter="currency:'лв.'"></div>
-      <table tr-ng-grid="" items="cb.expenses" locale="bg" page-items="cb.top" total-items="cb.totalExpenses" on-data-required="cb.onServerSideItemsRequested(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
+      <table tr-ng-grid="" items="cb.expenses" locale="bg" page-items="cb.top" total-items="cb.totalExpenses" enable-filtering='false'on-data-required="cb.onServerSideItemsRequested(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
         <thead>
         <tr>
-          <th field-name="Name" display-name="Име"></th>
-          <th field-name="Value" display-name="Стойност"  enable-filtering="false"></th>
+          <th field-name="Name" enable-filtering="true" display-name="Име"></th>
+          <th field-name="Value" display-name="Стойност"  enable-filtering="false" display-format="currency: 'лв. '"></th>
         </tr>
         </thead>
         <tbody>
         <tr>
           <td field-name="Name">{{gridDisplayItem.Name}}</td>
-          <td field-name="Value">{{gridDisplayItem.Value}} лв</td>
+          <td field-name="Value">{{gridDisplayItem.Value}}</td>
         </tr>
         </tbody>
 

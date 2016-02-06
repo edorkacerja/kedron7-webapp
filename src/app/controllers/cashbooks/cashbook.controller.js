@@ -5,7 +5,7 @@
     .module('kedron')
     .controller('CashbookController', CashbookController );
 
-  function CashbookController(Expense,toastr, QueryConstructor, $stateParams , $scope) {
+  function CashbookController(Expense,toastr, QueryConstructor, $stateParams , $scope , $timeout) {
     var vm = this;
     vm.top = 10 ; //number of items per page -> 10;
     // set available range
@@ -16,11 +16,13 @@
     vm.lowerBoundaryPrice = vm.minLowerBoundaryPrice;
     vm.upperBoundaryPrice = vm.maxUpperBoundaryPrice;
 
-    $scope.$watch('cb.lowerBoundaryPrice' , function() {
+    var timeoutPromise;
+    $scope.$watchGroup(['cb.lowerBoundaryPrice','cb.upperBoundaryPrice' ], function() {
+      $timeout.cancel(timeoutPromise);
+      var timeoutPromise = $timeout(function() {
         loadExpenses();
-    });
-    $scope.$watch('cb.upperBoundaryPrice' , function() {
-        loadExpenses();
+      }, 500);
+
     });
 
 
