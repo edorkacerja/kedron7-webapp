@@ -11,7 +11,7 @@
     vm.newExpense = new Expense();
 
     vm.noExpenseTypes = true;
-    Expense.payers({id: $stateParams.buildingId} ,
+    Expense.payers({building_id: $stateParams.buildingId} ,
       function(response) {
         vm.households = response;
       },
@@ -39,7 +39,7 @@
       //nullify filters and reinitialize the total
       vm.total = 0;
       vm.isFiltering = false;
-      vm.filters = {};
+      vm.filters = {fromToFilters: []};
       vm.householdPerson = null;
       for(var i = 0; i < vm.households.length ; i++ ){
         vm.total += vm.households[i].Value;
@@ -75,7 +75,10 @@
 
     //send request to teh server to get the values that have to be paid
     vm.sendReq = function(filterString) {
-      Expense.payers({id: $stateParams.buildingId , value: vm.total, method: vm.filters.householdPerson , filter: filterString } ,
+      if(!filterString) {
+        vm.filters.fromToFilters = [];
+      }
+      Expense.payers({building_id: $stateParams.buildingId , value: vm.total, method: vm.filters.householdPerson , filter: filterString } ,
         function(response) {
           vm.households = response;
         },
@@ -94,7 +97,7 @@
       vm.newExpense.ExpensePayersInformation = result;
 
 
-        vm.newExpense.$save({id: $stateParams.buildingId},function(data) {
+        vm.newExpense.$save({building_id: $stateParams.buildingId},function(data) {
         toastr.success('Разходът бе добавен', "Име: " + data.Name );
         $state.go('cashbook', {buildingId: $stateParams.buildingId});
       })
