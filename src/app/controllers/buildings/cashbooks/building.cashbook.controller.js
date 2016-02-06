@@ -3,9 +3,9 @@
 
   angular
     .module('kedron')
-    .controller('CashbookController', CashbookController );
+    .controller('BuildingCashbookController', BuildingCashbookController );
 
-  function CashbookController(Expense,toastr, QueryConstructor, $stateParams , $scope , $timeout) {
+  function BuildingCashbookController(Expense,toastr, QueryConstructor, $stateParams , $scope , $timeout) {
     var vm = this;
     vm.top = 10 ; //number of items per page -> 10;
     // set available range

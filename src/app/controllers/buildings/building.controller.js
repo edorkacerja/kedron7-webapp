@@ -6,7 +6,7 @@
     .controller('BuildingController', BuildingController );
 
   /** @ngInject */
-  function BuildingController(QueryConstructor,Building, Household,  $state, $stateParams, $modal, $scope, toastr , $window) {
+  function BuildingController(Building, $state, $stateParams, toastr , $window) {
        var vm = this;
 
 
@@ -45,11 +45,8 @@
 
 
        vm.gotoCashbook = function() {
-         $state.go('cashbook' , {buildingId: vm.building.Id})
+         $state.go('buildingDetail.cashbook' , {buildingId: vm.building.Id})
        };
-
-
-
 
 
 

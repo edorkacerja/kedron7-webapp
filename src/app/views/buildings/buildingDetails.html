@@ -1,14 +1,8 @@
 <acme-navbar></acme-navbar>
-<div class="container-fluid" >
-  <acme-sidebar></acme-sidebar>
-
-
+<div class="container" >
 
      <div class="row">
-       <div class="col-sm-6 col-md-4">
-         <button ng-click="bdetail.edit()"   class="btn btn-primary">Промени</button>
-         <button ng-click="bdetail.delete()" class="btn btn-danger">Изтрий</button>
-
+       <div class="col-sm-8 col-md-6">
         <div ng-show="bdetail.editMode">
           <div class="panel panel-default">
             <form name="bdetail.editForm" ng-submit="bdetail.update()" novalidate>
@@ -47,15 +41,24 @@
                      <li> Брой етажи: {{bdetail.building.FloorsCount}}</li>
                    </ul>
                  </div>
+                 <div class="panel-footer">
+                   <button ng-click="bdetail.edit()"   class="btn btn-primary">Промени</button>
+                   <button ng-click="bdetail.delete()" class="btn btn-danger">Изтрий</button>
+                 </div>
                </div>
              </div>
              <!-- Editing MODE -->
        </div><!-- buidling info end --><!-- /row -->
-       <div class="col-md-4 col-sm-6">
-         <button class="btn btn-primary" ng-click="bdetail.gotoCashbook()">Касова книга </button>
+       <!-- nav -->
+       <div class="col-sm-4 col-md-6">
+         <ul class="nav nav-pills nav-stacked">
+           <li ui-sref-active="active"><a ui-sref="buildingDetail.cashbook({buildingId: bdetail.building.Id})">Касова книга </a></li>
+           <li ui-sref-active="active"><a ui-sref="buildingDetail.households({buildingId: bdetail.building.Id})">Жилища </a></li>
+         </ul>
        </div>
 
      </div>
+     <!-- ui-view -->
      <div ui-view=></div>
 
 </div><!-- container -->

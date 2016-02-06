@@ -1,13 +1,7 @@
-<acme-navbar></acme-navbar>
-<div class="container-fluid">
-  <div class="row">
-    <button class="btn btn-info" ui-sref="buildingDetail({ buildingId: cb.buildingId})">Към сграда</button>
-    |
-    <a ui-sref="addExpense({buildingId: cb.buildingId})" class="btn btn-primary">Нов разход </a>
-  </div>
-  <div class="row">
+ <div class="row">
     <div class="col-sm-12">
       <h4>Разходи</h4>
+      <a ui-sref="addExpense({buildingId: cb.buildingId})" class="btn btn-primary">Нов разход </a>
       <div range-slider min="cb.minLowerBoundaryPrice" max="cb.maxUpperBoundaryPrice" model-min="cb.lowerBoundaryPrice" model-max="cb.upperBoundaryPrice" show-values="true" filter="currency:'лв.'"></div>
       <table tr-ng-grid="" items="cb.expenses" locale="bg" page-items="cb.top" total-items="cb.totalExpenses" enable-filtering='false'on-data-required="cb.onServerSideItemsRequested(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
         <thead>
@@ -30,6 +24,6 @@
 
   </div><!-- row -->
 
-</div><!-- container-fluid -->
+
 
 

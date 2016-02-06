@@ -24,6 +24,7 @@
         controller: 'BuildingsController',
         controllerAs: 'bd'
       })
+      //building detail
       .state('buildingDetail', {
         url: '/buildings/:buildingId',
         templateUrl: 'app/views/buildings/buildingDetails.html',
@@ -32,25 +33,18 @@
       })
       .state('buildingDetail.households' ,{
         url:'/buildings/:buildingId/households',
-        templateUrl: 'app/views/buildings/buildingDetails.households.html',
+        templateUrl: 'app/views/buildings/households/buildingDetails.households.html',
         controller: 'BuildingHouseholdsController',
         controllerAs: 'bhdetail'
 
        })
-      //households
-      .state('householdDetail', {
-        url: '/households/:householdId',
-        templateUrl: 'app/views/households/householdDetails.html',
-        controller: 'HouseholdController',
-        controllerAs: 'hdetail'
+      //cashbook
+      .state('buildingDetail.cashbook', {
+        url: '/buildings/:buildingId/cashbook',
+        templateUrl: 'app/views/buildings/cashbooks/cashbook.html',
+        controller: 'BuildingCashbookController',
+        controllerAs: 'cb'
       })
-     //cashbook
-     .state('cashbook', {
-      url: '/buildings/:buildingId/cashbook',
-      templateUrl: 'app/views/cashbooks/cashbook.html',
-      controller: 'CashbookController',
-      controllerAs: 'cb'
-    })
       //Expense Types
       .state('addExpense' , {
         url:'/buildings/:buildingId/expenses/new',
@@ -58,6 +52,14 @@
         controller: 'addExpenseController',
         controllerAs: 'exp'
       })
+      //households
+      .state('householdDetail', {
+        url: '/households/:householdId',
+        templateUrl: 'app/views/households/householdDetails.html',
+        controller: 'HouseholdController',
+        controllerAs: 'hdetail'
+      })
+
 
     ;
 

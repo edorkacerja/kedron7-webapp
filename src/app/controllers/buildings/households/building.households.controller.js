@@ -27,7 +27,7 @@
     //add a household
     vm.addHousehold = function() {
       $modal.open({
-        templateUrl: 'app/views/buildings/addHousehold.html',
+        templateUrl: 'app/views/buildings/households/addHousehold.html',
         controller: 'AddHouseholdController',
         controllerAs: 'adh',
         resolve: {
@@ -43,7 +43,7 @@
     };
 
     vm.gotoHousehold = function(id) {
-      $state.go('householdDetail',{ householdId: id , buildingId: vm.building.Id})
+      $state.go('householdDetail',{ householdId: id , buildingId: $scope.bdetail.building.Id})
     };
 
     $scope.$on('household:added', function(event,data) {
