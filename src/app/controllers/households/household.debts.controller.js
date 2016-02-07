@@ -8,6 +8,13 @@
   function HouseholdDebtsController( Debt,  QueryConstructor, $stateParams , toastr) {
     var vm = this;
     vm.top = 10;
+    // set available range
+    vm.minLowerBoundaryPrice = 0;
+    vm.maxUpperBoundaryPrice = 1000;
+
+    // default the user's values to the available range
+    vm.lowerBoundaryPrice = vm.minLowerBoundaryPrice;
+    vm.upperBoundaryPrice = vm.maxUpperBoundaryPrice;
 
     //household debts
     vm.onServerSideDebtsReq = function(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse) {

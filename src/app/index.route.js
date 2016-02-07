@@ -32,7 +32,7 @@
         controllerAs: 'bdetail'
       })
       .state('buildingDetail.households' ,{
-        url:'/buildings/:buildingId/households',
+        url:'/households',
         templateUrl: 'app/views/buildings/households/buildingDetails.households.html',
         controller: 'BuildingHouseholdsController',
         controllerAs: 'bhdetail'
@@ -40,7 +40,7 @@
        })
       //cashbook
       .state('buildingDetail.cashbook', {
-        url: '/buildings/:buildingId/cashbook',
+        url: '/cashbook',
         templateUrl: 'app/views/buildings/cashbooks/cashbook.html',
         controller: 'BuildingCashbookController',
         controllerAs: 'cb'
@@ -60,16 +60,35 @@
         controllerAs: 'hdetail'
       })
       .state('householdDetail.payments', {
-        url: '/households/:householdId/payments',
-        templateUrl: 'app/views/households/householdDetails.payments.html',
-        controller: 'HouseholdPaymentsController',
-        controllerAs: 'hpdetail'
+        url:'/payments',
+        views:{
+          "":{
+            templateUrl: 'app/views/households/householdDetails.payments.html',
+            controller: 'HouseholdPaymentsController',
+            controllerAs: 'hpdetail'
+          },
+          "filters": {
+            templateUrl: 'app/views/households/householdDetails.filters.html',
+            controller: 'HouseholdFilterController',
+            controllerAs: 'hfdetail'
+          }
+        }
       })
       .state('householdDetail.debts', {
-        url: '/households/:householdId/debts',
-        templateUrl: 'app/views/households/householdDetails.debts.html',
-        controller: 'HouseholdDebtsController',
-        controllerAs: 'hddetail'
+        url: '/debts',
+        views: {
+          "": {
+            templateUrl: 'app/views/households/householdDetails.debts.html',
+            controller: 'HouseholdDebtsController',
+            controllerAs: 'hddetail'
+          },
+          "filters": {
+            templateUrl: 'app/views/households/householdDetails.filters.html',
+            controller: 'HouseholdFilterController',
+            controllerAs: 'hfdetail'
+          }
+        }
+
       })
 
     ;

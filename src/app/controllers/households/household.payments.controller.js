@@ -8,7 +8,13 @@
   function HouseholdPaymentsController( Payment, QueryConstructor, $stateParams , toastr) {
     var vm = this;
     vm.top = 10;
+    // set available range
+    vm.minLowerBoundaryPrice = 0;
+    vm.maxUpperBoundaryPrice = 1000;
 
+    // default the user's values to the available range
+    vm.lowerBoundaryPrice = vm.minLowerBoundaryPrice;
+    vm.upperBoundaryPrice = vm.maxUpperBoundaryPrice;
     //household payments
     vm.onServerSidePaymentsReq = function(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse) {
       Payment.query({id: $stateParams.householdId ,top: vm.top, skip: QueryConstructor.skip(currentPage, vm.top), filter:QueryConstructor.filter(filterByFields), orderBy: QueryConstructor.order(orderBy, orderByReverse)},
