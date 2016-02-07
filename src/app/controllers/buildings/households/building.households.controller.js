@@ -43,7 +43,7 @@
     };
 
     vm.gotoHousehold = function(id) {
-      $state.go('householdDetail',{ householdId: id , buildingId: $scope.bdetail.building.Id})
+      $state.go('householdDetail.debts',{ householdId: id , buildingId: $scope.bdetail.building.Id})
     };
 
     $scope.$on('household:added', function(event,data) {

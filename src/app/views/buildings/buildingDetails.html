@@ -52,13 +52,12 @@
        <!-- nav -->
        <div class="col-sm-4 col-md-6">
          <ul class="nav nav-pills nav-stacked">
-           <li ui-sref-active="active"><a ui-sref="buildingDetail.cashbook({buildingId: bdetail.building.Id})">Касова книга </a></li>
            <li ui-sref-active="active"><a ui-sref="buildingDetail.households({buildingId: bdetail.building.Id})">Жилища </a></li>
+           <li ui-sref-active="active"><a ui-sref="buildingDetail.cashbook({buildingId: bdetail.building.Id})">Касова книга </a></li>
          </ul>
        </div>
 
      </div>
-     <!-- ui-view -->
      <div ui-view=></div>
-
+     <!-- ui-view for households and cashbook-->
 </div><!-- container -->

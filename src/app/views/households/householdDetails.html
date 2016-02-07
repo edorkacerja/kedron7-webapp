@@ -1,12 +1,10 @@
 <acme-navbar></acme-navbar>
-<div class="container-fluid" >
+<div class="container" >
   <div class="row">
 
-  <div class="col-sm-6 col-md-4">
-    <button class="btn btn-info" ui-sref="buildingDetail({ buildingId: hdetail.household.BuildingId})">Към сграда</button>
-    |
-    <button ng-click="hdetail.edit()"   class="btn btn-primary">Промени</button>
-    <button ng-click="hdetail.delete()" class="btn btn-danger">Изтрий</button>
+  <div class="col-sm-8 col-md-6">
+    <button class="btn btn-info" ui-sref="buildingDetail.households({ buildingId: hdetail.household.BuildingId})">Към сграда</button>
+
     <div ng-hide="hdetail.editMode">
       <div class="panel panel-default">
         <div class="panel-body">
@@ -18,11 +16,14 @@
             <li> Брой възрастни: {{hdetail.household.AdultsCount}}</li>
           </ul>
         </div>
+        <div class="panel-footer">
+          <button ng-click="hdetail.edit()"   class="btn btn-primary">Промени</button>
+          <button ng-click="hdetail.delete()" class="btn btn-danger">Изтрий</button>
+        </div>
       </div>
     </div>
     <!-- Editing MODE -->
     <div ng-show="hdetail.editMode">
-      <!--<div class="panel panel-default">-->
         <form name="hdetail.editForm" ng-submit="hdetail.update()" novalidate>
           <div class="panel-body">
             <div class="form-group row" ng-class="{ 'has-error' : (hdetail.editForm.name.$error.required || hdetail.editForm.name.$error.maxlength)&& hdetail.editForm.name.$dirty }">
@@ -40,7 +41,6 @@
                 <span ng-show="hdetail.editForm.number.$error.required  && !hdetail.editForm.number.$pristine" class="help-block">Моля, въведете номер на жилището!</span>
               </div>
             </div>
-
             <div class="row"> <!-- children and adults count row -->
               <div class="form-group col-md-6" ng-class="{ 'has-error' : hdetail.editForm.children.$error.required && hdetail.editForm.children.$dirty }">
                 <label class="col-md-4 control-label" for="children">Брой деца</label>
@@ -75,54 +75,17 @@
       </div>
 
     </div><!-- col-md-6 -->
+    <!-- nav -->
+    <div class="col-sm-4 col-md-6">
+      <ul class="nav nav-pills nav-stacked">
+        <li ui-sref-active="active"><a ui-sref="householdDetail.debts({householdId: hdetail.household.Id})">Задължения</a></li>
+        <li ui-sref-active="active"><a ui-sref="householdDetail.payments({householdId: hdetail.household.Id})">Плащания</a></li>
+      </ul>
+    </div>
   </div><!-- row -->
-  <div class="row">
-    <!-- todo ng-view??? -->
-    <div class="col-md-6 col-sm-12">
-      <h4>Задължения</h4>
-      <!-- trNgGrid -->
-      <table tr-ng-grid="" items="hdetail.debts" enable-filtering="false" locale="bg" page-items="hdetail.debtsTop" total-items="hdetail.totalDebts" on-data-required="hdetail.onServerSideDebtsReq(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
-        <thead>
-        <tr>
-          <th field-name="Value" display-name="Стойност" enable-filtering="false" ></th>
-          <th field-name="DateMade" display-name="Дата на създаване"  enable-filtering="false"></th>
-          <th field-name="ExpenseTypeName" display-name="Тип разход"  enable-filtering="false"></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td field-name="Value">{{gridDisplayItem.Value}} лв</td>
-          <td field-name="DateMade">{{gridDisplayItem.DateMade}}</td>
-          <td field-name="ExpenseTypeName">{{gridDisplayItem.ExpenseTypeName}}</td>
-          <td field-name="Id"><button class="btn btn-primary" ng-click="hdetail.payDebt(gridDisplayItem.Id)">Плати </button></td>
-        </tr>
-        </tbody>
-      </table>
-    </div><!-- debts col -->
-    <div class="col-md-6 col-sm-12">
-      <h4>Плащания</h4>
-      <!-- trNgGrid -->
+  <div ui-view></div>
+  <!-- ui-view for household debts and payments -->
 
-      <table tr-ng-grid="" items="hdetail.payments" enable-filtering="false" locale="bg" page-items="hdetail.paymentsTop" total-items="hdetail.totalPayments" on-data-required="hdetail.onServerSidePaymentsReq(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
-        <thead>
-        <tr>
-          <th field-name="Value" display-name="Стойност" enable-filtering="false" ></th>
-          <th field-name="DatePaid" display-name="Дата на плащане"  enable-filtering="false"></th>
-          <th field-name="ExpenseTypeName" display-name="Тип разход"  enable-filtering="false"></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td field-name="Value">{{gridDisplayItem.Value}} лв</td>
-          <td field-name="DatePaid">{{gridDisplayItem.DatePaid}}</td>
-          <td field-name="ExpenseTypeName">{{gridDisplayItem.ExpenseTypeName}}</td>
-        </tr>
-        </tbody>
-      </table>
-    </div><!-- payments col -->
-
-
-   </div>
 
   </div>
 

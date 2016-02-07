@@ -48,7 +48,7 @@
       //Expense Types
       .state('addExpense' , {
         url:'/buildings/:buildingId/expenses/new',
-        templateUrl:'app/views/cashbooks/expenses/addexpense.html',
+        templateUrl:'app/views/buildings/cashbooks/expenses/addexpense.html',
         controller: 'addExpenseController',
         controllerAs: 'exp'
       })
@@ -59,7 +59,18 @@
         controller: 'HouseholdController',
         controllerAs: 'hdetail'
       })
-
+      .state('householdDetail.payments', {
+        url: '/households/:householdId/payments',
+        templateUrl: 'app/views/households/householdDetails.payments.html',
+        controller: 'HouseholdPaymentsController',
+        controllerAs: 'hpdetail'
+      })
+      .state('householdDetail.debts', {
+        url: '/households/:householdId/debts',
+        templateUrl: 'app/views/households/householdDetails.debts.html',
+        controller: 'HouseholdDebtsController',
+        controllerAs: 'hddetail'
+      })
 
     ;
 

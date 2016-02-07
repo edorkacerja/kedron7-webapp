@@ -5,9 +5,9 @@
     .module('kedron')
     .controller('HouseholdController', HouseholdController );
 
-    function HouseholdController(Household , Debt, Payment, QueryConstructor, $stateParams , toastr, $state, $window) {
+    function HouseholdController(Household , $stateParams , toastr, $state, $window) {
       var vm = this;
-      vm.top = 10;
+
       vm.editMode = false;
 
       //household
@@ -15,30 +15,8 @@
         function (response) {
           vm.household = response;
         }, function() {
-          //todo add error
+          toastr.error("Не успя да се установи връзка с базата данни:" , response );
         });
-       //household debts
-        vm.onServerSideDebtsReq = function(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse) {
-          Debt.query({id: $stateParams.householdId ,top: vm.top, skip: QueryConstructor.skip(currentPage, vm.top), filter:QueryConstructor.filter(filterByFields), orderBy: QueryConstructor.order(orderBy, orderByReverse)},
-            function(response) {
-              vm.debts = response.Items;
-              vm.totalHouseholds = response.Count;
-            },
-            function(response) {
-              toastr.error("Не успя да се установи връзка с базата данни:" , response );
-            })
-        };
-       //household payments
-        vm.onServerSidePaymentsReq = function(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse) {
-          Payment.query({id: $stateParams.householdId ,top: vm.top, skip: QueryConstructor.skip(currentPage, vm.top), filter:QueryConstructor.filter(filterByFields), orderBy: QueryConstructor.order(orderBy, orderByReverse)},
-            function(response) {
-              vm.payments = response.Items;
-              vm.totalPayments = response.Count;
-            },
-            function(response) {
-              toastr.error("Не успя да се установи връзка с базата данни:" , response );
-            })
-        };
 
 
       vm.edit = function () {
@@ -68,22 +46,6 @@
         }
       };
 
-    //pay debt
-      vm.payDebt = function(id) {
-        Debt.update({debtId: id}, {id: id} ,function() {
-          //reinitialize the tables
-          Payment.query({id: $stateParams.householdId} , function(response){
-            vm.payments = response.Items;
-            vm.totalPayments = response.Count;
-          });
-          Debt.query({id: $stateParams.householdId} , function(response) {
-            vm.debts = response.Items;
-            vm.totalDebts = response.Count;
-          });
-          toastr.success('Заплащането протече успешно.');
-
-        })
-      };
 
 
   }
