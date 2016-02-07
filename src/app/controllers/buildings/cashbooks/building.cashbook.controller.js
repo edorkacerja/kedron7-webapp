@@ -29,7 +29,7 @@
     vm.buildingId = $stateParams.buildingId;
     vm.onServerSideItemsRequested = function(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse) {
        vm.currentPage = currentPage;
-       loadExpenses(vm.currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse);
+       loadExpenses(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse);
     };
 
     var loadExpenses = function(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse) {

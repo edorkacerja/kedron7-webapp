@@ -2,7 +2,8 @@
   <div class="col-sm-12">
     <h4>Задължения</h4>
     <!-- trNgGrid -->
-    <table tr-ng-grid="" items="hddetail.debts" enable-filtering="false" locale="bg" page-items="hddetail.debtsTop" total-items="hddetail.totalDebts" on-data-required="hddetail.onServerSideDebtsReq(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
+
+    <table tr-ng-grid="" items="hddetail.debts" enable-filtering="false" locale="bg" page-items="hddetail.debtsTop" total-items="hddetail.totalDebts" on-data-required="hddetail.onServerSideDebtsReq(currentPage, pageItems, orderBy, orderByReverse)">
       <thead>
       <tr>
         <th field-name="ExpenseTypeName" display-name="Тип разход"  enable-filtering="false"></th>

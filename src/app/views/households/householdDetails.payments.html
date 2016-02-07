@@ -3,7 +3,7 @@
     <h4>Плащания</h4>
     <!-- trNgGrid -->
 
-    <table tr-ng-grid="" items="hpdetail.payments" enable-filtering="false" locale="bg" page-items="hpdetail.paymentsTop" total-items="hpdetail.totalPayments" on-data-required="hpdetail.onServerSidePaymentsReq(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
+    <table tr-ng-grid="" items="hpdetail.payments" enable-filtering="false" locale="bg" page-items="hpdetail.paymentsTop" total-items="hpdetail.totalPayments" on-data-required="hpdetail.onServerSidePaymentsReq(currentPage, pageItems, orderBy, orderByReverse)">
       <thead>
       <tr>
         <th field-name="ExpenseTypeName" display-name="Тип разход"  enable-filtering="false"></th>

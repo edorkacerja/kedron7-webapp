@@ -5,20 +5,40 @@
     .module('kedron')
     .controller('HouseholdDebtsController', HouseholdDebtsController );
 
-  function HouseholdDebtsController( Debt,  QueryConstructor, $stateParams , toastr) {
+  function HouseholdDebtsController( Debt,  QueryConstructor, $stateParams , toastr , $scope) {
     var vm = this;
     vm.top = 10;
-    // set available range
-    vm.minLowerBoundaryPrice = 0;
-    vm.maxUpperBoundaryPrice = 1000;
 
-    // default the user's values to the available range
-    vm.lowerBoundaryPrice = vm.minLowerBoundaryPrice;
-    vm.upperBoundaryPrice = vm.maxUpperBoundaryPrice;
+    //listen to the filter
+    $scope.$on('filterUpdate', function (event, arg) {
+      vm.lowerBoundaryPrice = arg['lowerBoundary'];
+      vm.upperBoundaryPrice = arg['upperBoundary'];
+      vm.dateMadeLowerBoundary = arg['fromDate'];
+      vm.dateMadeUpperBoundary = arg['toDate'];
 
+      loadDebts();
+    });
     //household debts
-    vm.onServerSideDebtsReq = function(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse) {
-      Debt.query({id: $stateParams.householdId ,top: vm.top, skip: QueryConstructor.skip(currentPage, vm.top), filter:QueryConstructor.filter(filterByFields), orderBy: QueryConstructor.order(orderBy, orderByReverse)},
+        vm.onServerSideDebtsReq = function(currentPage, pageItems, orderBy, orderByReverse) {
+          vm.currentPage = currentPage;
+          loadDebts(currentPage, pageItems, orderBy, orderByReverse)
+    };
+
+
+    //pay debt
+    vm.payDebt = function(id) {
+      Debt.update({debtId: id}, {id: id} ,function() {
+        loadDebts();
+        toastr.success('Заплащането протече успешно.');
+
+      })
+    };
+   //
+    var loadDebts = function(currentPage, pageItems, orderBy, orderByReverse) {
+      //fix typos when done
+      Debt.query({id: $stateParams.householdId ,top: vm.top, skip: QueryConstructor.skip(vm.currentPage, vm.top), orderBy: QueryConstructor.order(orderBy, orderByReverse),
+        lowerBoundaryPrice: vm.lowerBoundaryPrice , upperBoundaryPrice: vm.upperBoundaryPrice, dateMadeLowerBondary: vm.dateMadeLowerBoundary , dateMadeUpperBondary: vm.dateMadeUpperBoundary},
+
         function(response) {
           vm.debts = response.Items;
           vm.totalHouseholds = response.Count;
@@ -26,21 +46,7 @@
         function(response) {
           toastr.error("Не успя да се установи връзка с базата данни:" , response );
         })
-    };
-
-
-    //pay debt
-    vm.payDebt = function(id) {
-      Debt.update({debtId: id}, {id: id} ,function() {
-        Debt.query({id: $stateParams.householdId} , function(response) {
-          vm.debts = response.Items;
-          vm.totalDebts = response.Count;
-        });
-        toastr.success('Заплащането протече успешно.');
-
-      })
-    };
-
+    }
 
   }
 

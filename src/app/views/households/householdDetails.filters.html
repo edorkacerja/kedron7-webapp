@@ -2,21 +2,24 @@
 <div class="row">
   <h4>Филтри</h4>
   <!-- from date -->
-  <div range-slider min="hpdetail.minLowerBoundaryPrice" max="hpdetail.maxUpperBoundaryPrice" model-min="hpdetail.lowerBoundaryPrice" model-max="hpdetail.upperBoundaryPrice" show-values="true" filter="currency:'лв.'"></div>
+  <h5>Стойност</h5>
+  <div range-slider min="hfdetail.minLowerBoundaryPrice" max="hfdetail.maxUpperBoundaryPrice" model-min="hfdetail.lowerBoundaryPrice" model-max="hfdetail.upperBoundaryPrice" show-values="true" filter="currency:'лв.'"></div>
   <div class="col-md-6">
+    <h5>От</h5>
     <p class="input-group">
-      <input type="text" class="form-control" uib-datepicker-popup="dd.MM.yyyy" ng-model="hpdetail.fromDate" is-open="hpdetail.fromDatePopup.opened" datepicker-options="dateOptions"  close-text="Затвори"  />
+      <input type="text" class="form-control"  datepicker-popup="dd.MM.yyyy" ng-model="hfdetail.fromDate" is-open="hfdetail.fromDatePopup.opened" datepicker-options="hfdetail.dateOptions"  close-text="Затвори"  />
               <span class="input-group-btn">
-                <button type="button" class="btn btn-default" ng-click="hpdetail.openFromDatePopup()"><i class="glyphicon glyphicon-calendar"></i></button>
+                <button type="button" class="btn btn-default" ng-click="hfdetail.openFromDatePopup()"><i class="glyphicon glyphicon-calendar"></i></button>
               </span>
     </p>
   </div>
   <!-- to date -->
   <div class="col-md-6">
+    <h5>До</h5>
     <p class="input-group">
-      <input type="text" class="form-control" uib-datepicker-popup ng-model="hpdetail.toDate" is-open="hpdetail.toDatePopup.opened"  datepicker-options="dateOptions" close-text="Затвори" />
+      <input type="text" class="form-control" datepicker-popup="dd.MM.yyyy" ng-model="hfdetail.toDate" is-open="hfdetail.toDatePopup.opened"  datepicker-options="hfdetail.dateOptions" close-text="Затвори" />
               <span class="input-group-btn">
-                <button type="button" class="btn btn-default" ng-click="hpdetail.openDatePopup()"><i class="glyphicon glyphicon-calendar"></i></button>
+                <button type="button" class="btn btn-default" ng-click="hfdetail.openToDatePopup()"><i class="glyphicon glyphicon-calendar"></i></button>
               </span>
     </p>
   </div>
