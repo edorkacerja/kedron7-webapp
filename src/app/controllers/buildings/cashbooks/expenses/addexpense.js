@@ -4,20 +4,14 @@
     .module('kedron')
     .controller('addExpenseController', addExpenseController );
 
-  function addExpenseController($stateParams,$state,  Expense, toastr) {
+  function addExpenseController($stateParams,$state,  Expense, households, toastr) {
     var vm = this;
     vm.buildingId = $stateParams.buildingId;
     vm.filters = {};
     vm.newExpense = new Expense();
 
     vm.noExpenseTypes = true;
-    Expense.payers({building_id: $stateParams.buildingId} ,
-      function(response) {
-        vm.households = response;
-      },
-      function(response) {
-          toastr.error("Не успя да се установи връзка с базата данни:" , response );
-      });
+    vm.households = households;
 
 
      //manual mode

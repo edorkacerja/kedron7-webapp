@@ -50,7 +50,12 @@
         url:'/buildings/:buildingId/expenses/new',
         templateUrl:'app/views/buildings/cashbooks/expenses/addexpense.html',
         controller: 'addExpenseController',
-        controllerAs: 'exp'
+        controllerAs: 'exp',
+        resolve: {
+          households: ['Expense', '$stateParams', function(Expense, $stateParams) {
+            return Expense.payers({building_id: $stateParams.buildingId});
+          }]
+        }
       })
       //households
       .state('householdDetail', {

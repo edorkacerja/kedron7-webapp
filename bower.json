@@ -19,7 +19,8 @@
     "animate.css": "~3.4.0",
     "angular": "~1.4.2",
     "tr-ng-grid": "~3.1.5",
-    "angular-rangeslider": "0.0.14"
+    "angular-rangeslider": "0.0.14",
+    "angular-loading-bar": "0.8.0"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.2"
