@@ -17,6 +17,9 @@
 .positive-balance {
   color: #5cb85c; }
 
+.danger-zone {
+  background: #f2dede; }
+
 /**
  *  Do not remove the comments below. It's the markers used by gulp-inject to inject
  *  all your sass files automatically

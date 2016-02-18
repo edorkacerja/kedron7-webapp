@@ -30,7 +30,7 @@
         headers: { 'Authorization': "Bearer " + auth.currentUser().accessToken }
       },
       payers: {
-        url: api + "/buildings/:building_id/expensePayers",
+        url: api + "/buildings/:building_id/expensepayers",
         method: 'GET',
         transformRequest: [],
         headers: { 'Authorization': "Bearer " + auth.currentUser().accessToken },
