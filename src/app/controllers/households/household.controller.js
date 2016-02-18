@@ -5,7 +5,7 @@
     .module('kedron')
     .controller('HouseholdController', HouseholdController );
 
-    function HouseholdController(Household , $stateParams , toastr, $state, $window) {
+    function HouseholdController(Household , $stateParams , toastr, $state, $window , $modal) {
       var vm = this;
 
       vm.editMode = false;
@@ -14,7 +14,6 @@
       Household.get({id: $stateParams.householdId},
         function (response) {
           vm.household = response;
-          console.log(response);
         }, function() {
           toastr.error("Не успя да се установи връзка с базата данни:" , response );
         });
@@ -47,6 +46,18 @@
         }
       };
 
+      vm.addDeposit = function() {
+        $modal.open({
+          templateUrl: 'app/views/households/addDeposit.html',
+          controller: 'AddDepositController',
+          controllerAs: 'adp',
+          resolve: {
+            householdId: function() {
+              return  vm.household.Id;
+            }
+          }
+        });
+      }
 
 
   }
