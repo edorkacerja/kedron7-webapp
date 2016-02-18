@@ -63,7 +63,7 @@
             <div class="form-group row" ng-class="{ 'has-error' : hdetail.editForm.floor.$error.required && hdetail.editForm.floor.$dirty }">
               <label class="col-md-2 control-label">Етаж</label>
               <div class="col-md-10">
-                <select ng-model="hdetail.household.Floor" class="form-control" name='floor' ng-options="n for n in [] | range:1:{{hdetail.floorsCount + 1}}" required></select>
+                <select ng-model="hdetail.household.Floor" class="form-control" name='floor' ng-options="n for n in [] | range:1:hdetail.household.BuildingFloors" required></select>
                 <span ng-show="hdetail.editForm.floor.$error.required  && !hdetail.editForm.floor.$pristine" class="help-block">Моля, изберете етаж на жилището!</span>
               </div>
             </div>

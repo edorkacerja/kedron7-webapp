@@ -33,14 +33,17 @@
         });
       };
 
-     $scope.$on('building:added' , function(event, data) {
-       Building.query( function(response) {
-         vm.buildings = response.Items
-         vm.totalBuildings = response.Count;
-       }, function(response) {
-         toastr.error("Не успя да се установи връзка с базата данни:" , response );
-       });
-     });
+     $scope.$on('building:added' , reloadCollection);
+
+
+    function reloadCollection(event, data) {
+      Building.query( function(response) {
+        vm.buildings = response.Items;
+        vm.totalBuildings = response.Count;
+      }, function(response) {
+        toastr.error("Не успя да се установи връзка с базата данни:" , response );
+      });
+    }
 
 
   }

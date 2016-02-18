@@ -62,7 +62,12 @@
         url: '/households/:householdId',
         templateUrl: 'app/views/households/householdDetails.html',
         controller: 'HouseholdController',
-        controllerAs: 'hdetail'
+        controllerAs: 'hdetail',
+        resolve: {
+          household: ['Household', '$stateParams', function(Household , $stateParams) {
+            return Household.get({id: $stateParams.householdId});
+          }]
+        }
       })
       .state('householdDetail.payments', {
         url:'/payments',
