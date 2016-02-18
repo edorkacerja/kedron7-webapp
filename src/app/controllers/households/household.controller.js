@@ -14,6 +14,7 @@
       Household.get({id: $stateParams.householdId},
         function (response) {
           vm.household = response;
+          console.log(response);
         }, function() {
           toastr.error("Не успя да се установи връзка с базата данни:" , response );
         });

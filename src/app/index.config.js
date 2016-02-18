@@ -19,7 +19,8 @@
     $httpProvider.defaults.useXDomain = true;
     //loading bar
     cfpLoadingBarProvider.includeBar = true;
-    cfpLoadingBarProvider.includeSpinner = true;
+    cfpLoadingBarProvider.includeSpinner = false;
+
 
 
     delete $httpProvider.defaults.headers.common['X-Requested-With'];

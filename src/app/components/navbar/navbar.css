@@ -1,6 +1,3 @@
-.acme-navbar-text {
-  color: green; }
-
 .navbar-brand {
   padding: 0 !important; }
 
@@ -8,5 +5,21 @@
   height: 40px;
   width: auto;
   margin-bottom: 5px; }
+
+.navbar {
+  border-bottom: 1px solid #40A43F; }
+
+.navbar .navbar-nav li a {
+  color: #40A43F; }
+
+
+/* spinner and loading bar */
+#loading-bar .bar {
+  background: #40A43F;
+  height: 3px; }
+
+#loading-bar-spinner .spinner-icon {
+
+}
 
 /*# sourceMappingURL=navbar.css.map */

@@ -12,9 +12,18 @@
           <ul>
             <li> Етаж: {{hdetail.household.Floor}}</li>
             <li> Номер: {{hdetail.household.Number}}</li>
-            <li> Брой деца: {{hdetail.household.ChildrenCount}}</li>
             <li> Брой възрастни: {{hdetail.household.AdultsCount}}</li>
           </ul>
+          <!-- balance -->
+          <div class="well well-sm">
+              <h5 class="inline">Баланс:
+                <span ng-class="hdetail.household.Balance < 0 ? 'negative-balance' : 'positive-balance'">
+                {{hdetail.household.Balance | currency: 'лв. '}}
+               </span>
+              </h5>
+              <button class='btn btn-primary inline'>Добави депозит</button>
+          </div>
+
         </div>
         <div class="panel-footer">
           <button ng-click="hdetail.edit()"   class="btn btn-primary">Промени</button>
@@ -41,15 +50,8 @@
                 <span ng-show="hdetail.editForm.number.$error.required  && !hdetail.editForm.number.$pristine" class="help-block">Моля, въведете номер на жилището!</span>
               </div>
             </div>
-            <div class="row"> <!-- children and adults count row -->
-              <div class="form-group col-md-6" ng-class="{ 'has-error' : hdetail.editForm.children.$error.required && hdetail.editForm.children.$dirty }">
-                <label class="col-md-4 control-label" for="children">Брой деца</label>
-                <div class="col-md-5">
-                  <input type="number" min="0" max="10" class="form-control" ng-model="hdetail.household.ChildrenCount" id="children" name="children" required />
-                  <span ng-show="hdetail.editForm.children.$error.required  && !hdetail.editForm.children.$pristine" class="help-block">Моля, въведете брой на деца в жилището!</span>
-                </div>
-              </div>
-              <div class="form-group col-md-6" ng-class="{ 'has-error' : hdetail.editForm.adults.$error.required && hdetail.editForm.adults.$dirty }">
+            <div class="row"> <!-- adults count row -->
+              <div class="form-group col-md-12" ng-class="{ 'has-error' : hdetail.editForm.adults.$error.required && hdetail.editForm.adults.$dirty }">
                 <label class="col-md-4 control-label" for="adults">Брой възрастни</label>
                 <div class="col-md-5">
                   <input type="number" min="0" max="10" class="form-control" ng-model="hdetail.household.AdultsCount" id="adults" name="adults" required />
@@ -86,6 +88,11 @@
   <div ui-view="filters"></div>
   <div ui-view></div>
   <!-- ui-view for household debts and payments -->
+  <div class="row">
+    <div class="col-md-6">
+
+    </div>
+  </div>
 
 
   </div>

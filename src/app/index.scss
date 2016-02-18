@@ -22,6 +22,18 @@ $icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/"
   }
 }
 
+
+.negative-balance {
+  color: #d9534f;
+}
+
+.positive-balance{
+  color: #5cb85c;
+}
+
+
+
+
 /**
  *  Do not remove the comments below. It's the markers used by gulp-inject to inject
  *  all your sass files automatically

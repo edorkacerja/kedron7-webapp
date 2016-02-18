@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AACA,iBAAkB;EAChB,KAAK,EAAE,OAAO;;AAGhB,iBAAiB;EACf,KAAK,EAAE,OAAO",
+"sources": ["households.scss"],
+"names": [],
+"file": "households.css"
+}

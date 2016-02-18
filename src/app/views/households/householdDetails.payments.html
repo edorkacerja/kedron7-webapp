@@ -15,7 +15,7 @@
       <tr>
         <td field-name="ExpenseTypeName">{{gridDisplayItem.ExpenseTypeName}}</td>
         <td field-name="DatePaid">{{gridDisplayItem.DatePaid}}</td>
-        <td field-name="Value">{{gridDisplayItem.Value}} лв</td>
+        <td field-name="Value">{{gridDisplayItem.Value | currency: 'лв. '}}</td>
       </tr>
       </tbody>
     </table>

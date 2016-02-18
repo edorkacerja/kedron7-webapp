@@ -11,6 +11,12 @@
   .thumbnail img.pull-right {
     width: 50px; }
 
+.negative-balance {
+  color: #d9534f; }
+
+.positive-balance {
+  color: #5cb85c; }
+
 /**
  *  Do not remove the comments below. It's the markers used by gulp-inject to inject
  *  all your sass files automatically
