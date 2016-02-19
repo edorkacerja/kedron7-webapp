@@ -50,15 +50,15 @@
                 <span ng-show="hdetail.editForm.number.$error.required  && !hdetail.editForm.number.$pristine" class="help-block">Моля, въведете номер на жилището!</span>
               </div>
             </div>
-            <div class="row"> <!-- adults count row -->
-              <div class="form-group col-md-12" ng-class="{ 'has-error' : hdetail.editForm.adults.$error.required && hdetail.editForm.adults.$dirty }">
-                <label class="col-md-4 control-label" for="adults">Брой възрастни</label>
-                <div class="col-md-5">
+            <!-- adults count row -->
+              <div class="form-group row" ng-class="{ 'has-error' : hdetail.editForm.adults.$error.required && hdetail.editForm.adults.$dirty }">
+                <label class="col-md-2 control-label" for="adults">Брой възрастни</label>
+                <div class="col-md-10">
                   <input type="number" min="0" max="10" class="form-control" ng-model="hdetail.household.AdultsCount" id="adults" name="adults" required />
                   <span ng-show="hdetail.editFormadults.$error.required  && !hdetail.editForm.adults.$pristine" class="help-block">Моля, въведете брой на възрастни в жилището!</span>
                 </div>
               </div>
-            </div><!-- row -->
+            <!-- row -->
 
             <div class="form-group row" ng-class="{ 'has-error' : hdetail.editForm.floor.$error.required && hdetail.editForm.floor.$dirty }">
               <label class="col-md-2 control-label">Етаж</label>
