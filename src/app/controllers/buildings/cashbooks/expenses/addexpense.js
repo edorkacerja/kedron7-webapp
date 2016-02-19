@@ -75,6 +75,7 @@
       Expense.payers({building_id: $stateParams.buildingId , value: vm.total, method: vm.filters.householdPerson , filter: filterString } ,
         function(response) {
           vm.households = response;
+          console.log(response);
         },
         function(response) {
           toastr.error("Не успя да се установи връзка с базата данни:" , response );

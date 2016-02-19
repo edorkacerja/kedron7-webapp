@@ -29,7 +29,12 @@
         url: '/buildings/:buildingId',
         templateUrl: 'app/views/buildings/buildingDetails.html',
         controller: 'BuildingController',
-        controllerAs: 'bdetail'
+        controllerAs: 'bdetail',
+        resolve: {
+          building: ['Building' , '$stateParams' , function(Building , $stateParams) {
+            return Building.get({ id: $stateParams.buildingId});
+          }]
+        }
       })
       .state('buildingDetail.households' ,{
         url:'/households',
@@ -98,9 +103,19 @@
             controllerAs: 'hfdetail'
           }
         }
-
       })
 
+      .state('householdDetail.deposits',{
+        url:'/deposits',
+        views: {
+          "": {
+            templateUrl: 'app/views/households/householdDetails.deposits.html',
+            controller:'HouseholdDepositsController',
+            controllerAs:'hdpdetail'
+          }
+        }
+
+      })
     ;
 
     $urlRouterProvider.otherwise('/');

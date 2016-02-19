@@ -6,15 +6,13 @@
     .controller('BuildingController', BuildingController );
 
   /** @ngInject */
-  function BuildingController(Building, $state, $stateParams, toastr , $window) {
+  function BuildingController(Building, $state, $stateParams, toastr , building, $window) {
        var vm = this;
 
 
       //editing mode for the building
        vm.editMode = false;
-        Building.get({ id: $stateParams.buildingId} , function(response) {
-         vm.building = response;
-       });
+       vm.building = building;
 
 
 

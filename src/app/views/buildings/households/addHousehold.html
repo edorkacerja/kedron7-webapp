@@ -19,14 +19,7 @@
                 </div>
               </div>
 
-              <div class="row"> <!-- children and adults count row -->
-                  <div class="form-group col-md-6" ng-class="{ 'has-error' : adh.householdForm.children.$error.required && adh.householdForm.children.$dirty }">
-                    <label class="col-md-4 control-label" for="children">Брой деца</label>
-                    <div class="col-md-5">
-                      <input type="number" min="0" max="10" class="form-control" ng-model="adh.newHousehold.ChildrenCount" id="children" name="children" required />
-                      <span ng-show="adh.householdForm.children.$error.required  && !adh.householdForm.children.$pristine" class="help-block">Моля, въведете брой на деца в жилището!</span>
-                    </div>
-                  </div>
+              <div class="row"> <!-- cadults count row -->
                 <div class="form-group col-md-6" ng-class="{ 'has-error' : adh.householdForm.adults.$error.required && adh.householdForm.adults.$dirty }">
                   <label class="col-md-4 control-label" for="adults">Брой възрастни</label>
                   <div class="col-md-5">
