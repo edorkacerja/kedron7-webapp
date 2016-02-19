@@ -26,8 +26,7 @@
 
         </div>
         <div class="panel-footer">
-          <button ng-click="hdetail.edit()"   class="btn btn-primary">Промени</button>
-          <button ng-click="hdetail.delete()" class="btn btn-danger">Изтрий</button>
+          <button ng-click="hdetail.edit()"   class="btn btn-primary">Настройки</button>
         </div>
       </div>
     </div>
@@ -67,10 +66,15 @@
                 <span ng-show="hdetail.editForm.floor.$error.required  && !hdetail.editForm.floor.$pristine" class="help-block">Моля, изберете етаж на жилището!</span>
               </div>
             </div>
-            <div class="panel-footer">
-              <button type="submit" ng-disabled="hdetail.editForm.$invalid" class="btn btn-success"> Запази промените </button>
-              <button type="button" class="btn btn-warning" ng-click="hdetail.editMode = false;">Отказ</button>
+
+            <div class="form-group ">
+              <button ng-click="hdetail.delete()" class="btn btn-danger btn-sm pull-right ">Remove Household</button>
             </div>
+          </div><!--  panel-body  -->
+
+          <div class="panel-footer">
+            <button type="submit" ng-disabled="hdetail.editForm.$invalid" class="btn btn-success"> Запази промените </button>
+            <button type="button" class="btn btn-warning" ng-click="hdetail.editMode = false;">Отказ</button>
           </div>
         </form>
 
