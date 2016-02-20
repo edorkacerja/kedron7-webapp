@@ -1,2 +1,21 @@
-i am a modal
- there also needs to be a controller
+
+<div class="modal-header">
+  <h3 class="modal-title">Добави депозит</h3>
+</div>
+<form name="adp.depositForm" role="form" ng-submit="adp.add()" novalidate>
+  <div class="modal-body">
+    <div class="form-group row" ng-class="{ 'has-error' : adp.depositForm.sum.$error.required && adp.depositForm.$dirty }">
+      <div class="col-md-12">
+        <div class="input-group">
+          <input type="number" min="0" step="any" class="form-control" name="sum" id="sum" placeholder="0.00" required ng-model="adp.deposit.Value" />
+          <span class="input-group-addon">лв</span>
+        </div>
+        <span ng-show="adp.depositForm.sum.$error.required  && !adp.depositForm.sum.$pristine" class="help-block">Моля, въведете сума!</span>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" ng-disabled="adb.buildingForm.$invalid" type="submit" >Регистрирай депозит</button>
+    <button class="btn btn-warning" type="button" ng-click="adp.cancel()">Отказ</button>
+  </div>
+</form>

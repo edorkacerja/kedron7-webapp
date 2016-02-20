@@ -41,6 +41,7 @@
         templateUrl: 'app/views/households/addDeposit.html',
         controller: 'AddDepositController',
         controllerAs: 'adp',
+        size: 'sm',
         resolve: {
           householdId: function() {
             return  vm.household.Id;

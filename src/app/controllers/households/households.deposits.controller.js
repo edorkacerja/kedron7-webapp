@@ -8,9 +8,9 @@
     .module('kedron')
     .controller('HouseholdDepositsController', HouseholdDepositsController );
 
-  function HouseholdPaymentsController( Deposit, QueryConstructor, $stateParams , toastr , $scope) {
+  function HouseholdDepositsController( Deposit, QueryConstructor, $stateParams , toastr , $scope) {
     var vm = this;
-    vm.top = 10;
+    vm.deposit = new Deposit();
 
 
 
