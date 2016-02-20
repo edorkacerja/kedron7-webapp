@@ -1,1 +1,16 @@
-deposits view
+
+<table tr-ng-grid="" items="hdpdetail.deposits" enable-filtering="false" locale="bg" page-items="hdpdetail.top" total-items="hdpdetail.totalDeposits" on-data-required="hdpdetail.onServerSideItemsRequested(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
+  <thead>
+  <tr>
+    <th field-name="DateCreated" display-name="Дата на депозиране" enable-filtering="true" ></th>
+    <th field-name="Value" display-name="Стойност"  enable-filtering="true"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td field-name="DateCreated">{{gridDisplayItem.DateCreated}}</td>
+    <td field-name="Value">{{gridDisplayItem.Value}}</td>
+  </tr>
+  </tbody>
+
+</table>

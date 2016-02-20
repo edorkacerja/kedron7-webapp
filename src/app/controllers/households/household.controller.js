@@ -50,6 +50,7 @@
       });
     };
 
+    //listen when when the deposit gets successfully added
     $scope.$on("deposit:added" , function( event , data) {
       vm.household.Balance += data.Value;
     })

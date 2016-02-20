@@ -17,7 +17,8 @@
       },
       query: {
         method: 'GET',
-        headers: { 'Authorization': "Bearer " + auth.currentUser().accessToken }
+        headers: { 'Authorization': "Bearer " + auth.currentUser().accessToken },
+        isArray: true //todo remove when API is ready
       },
       delete: {
         method: 'DELETE',

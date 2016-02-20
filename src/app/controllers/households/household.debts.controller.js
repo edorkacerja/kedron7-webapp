@@ -9,8 +9,18 @@
     var vm = this;
     vm.top = 10;
 
-    //listen to the filter
+    //listen to the filter and when the deposit gets successfully added
     $scope.$on('filterUpdate', function (event, arg) {
+      vm.lowerBoundaryPrice = arg['lowerBoundary'];
+      vm.upperBoundaryPrice = arg['upperBoundary'];
+      vm.dateMadeLowerBoundary = arg['fromDate'];
+      vm.dateMadeUpperBoundary = arg['toDate'];
+
+      loadDebts();
+    });
+
+    //todo refactor?
+    $scope.$on('deposit:added', function (event, arg) {
       vm.lowerBoundaryPrice = arg['lowerBoundary'];
       vm.upperBoundaryPrice = arg['upperBoundary'];
       vm.dateMadeLowerBoundary = arg['fromDate'];

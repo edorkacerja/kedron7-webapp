@@ -9,7 +9,8 @@
     var vm = this;
     vm.top = 10;
 
-    //listen to the filter
+    //listen to the filter and when the deposit gets successfully added
+
     $scope.$on('filterUpdate', function (event, arg) {
       vm.lowerBoundaryPrice = arg['lowerBoundary'];
       vm.upperBoundaryPrice = arg['upperBoundary'];
@@ -18,6 +19,16 @@
 
       loadPayments();
     });
+    //todo refactor?
+    $scope.$on('deposit:added', function (event, arg) {
+      vm.lowerBoundaryPrice = arg['lowerBoundary'];
+      vm.upperBoundaryPrice = arg['upperBoundary'];
+      vm.datePaidLowerBoundary = arg['fromDate'];
+      vm.datePaidUpperBoundary = arg['toDate'];
+
+      loadPayments();
+    });
+
 
     //household payments
     vm.onServerSidePaymentsReq = function(currentPage, pageItems, orderBy, orderByReverse) {
