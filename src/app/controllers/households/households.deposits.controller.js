@@ -10,7 +10,7 @@
 
   function HouseholdDepositsController( Deposit, QueryConstructor, $stateParams , toastr , $scope) {
     var vm = this;
-    vm.deposit = new Deposit();
+
 
 
 

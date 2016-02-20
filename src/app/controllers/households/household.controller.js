@@ -5,7 +5,7 @@
     .module('kedron')
     .controller('HouseholdController', HouseholdController );
 
-  function HouseholdController(Household , household, toastr, $state, $window , $modal) {
+  function HouseholdController(Household , household, toastr, $state, $window , $modal, $scope , $stateParams) {
     var vm = this;
     vm.editMode = false;
 
@@ -48,7 +48,13 @@
           }
         }
       });
-    }
+    };
+
+    $scope.$on("deposit:added" , function( event , data) {
+      vm.household.Balance += data.Value;
+    })
+
+
 
 
   }

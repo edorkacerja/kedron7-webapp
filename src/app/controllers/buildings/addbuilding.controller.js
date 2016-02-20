@@ -18,8 +18,8 @@ function AddBuildingController(Building, $modalInstance, $rootScope , toastr) {
       vm.buildingForm.$setPristine();
       $rootScope.$broadcast('building:added' , data);
       toastr.success('Сградата бе добавена', "Адрес: " + data.Address );
-      $modalInstance.dismiss()
-    })
+      $modalInstance.dismiss();
+    } )// todo add a failure function
   };
 
 
