@@ -23,11 +23,11 @@
               <!-- adults count row -->
 
                 <div class="form-group row" ng-class="{ 'has-error' : adh.householdForm.adults.$error.required && adh.householdForm.adults.$dirty }">
-                  <label class="col-md-2 control-label" for="adults">Брой възрастни</label>
+                  <label class="col-md-2 control-label" for="residents">Брой живущи</label>
                   <div class="col-md-10">
 
-                    <input type="number" min="0" max="10" class="form-control" ng-model="adh.newHousehold.AdultsCount" id="adults" name="adults" required />
-                    <span ng-show="adh.householdForm.adults.$error.required  && !adh.householdForm.adults.$pristine" class="help-block">Моля, въведете брой на възрастни в жилището!</span>
+                    <input type="number" min="0" max="10" class="form-control" ng-model="adh.newHousehold.Residents" id="residents" name="residents" required />
+                    <span ng-show="adh.householdForm.residents.$error.required  && !adh.householdForm.residents.$pristine" class="help-block">Моля, въведете брой на живущи в жилището!</span>
                   </div>
                 </div>
 
