@@ -20,34 +20,32 @@
     $scope.$on('filterUpdate', function (event, arg) {
       vm.lowerBoundaryPrice = arg['lowerBoundary'];
       vm.upperBoundaryPrice = arg['upperBoundary'];
-      vm.datePaidLowerBoundary = arg['fromDate'];
-      vm.datePaidUpperBoundary = arg['toDate'];
-
+      vm.dateMadeLowerboundary = arg['fromDate'];
+      vm.dateMadeUpperboundary = arg['toDate'];
       loadDeposits();
     });
     //todo refactor?
     $scope.$on('deposit:added', function (event, arg) {
       vm.lowerBoundaryPrice = arg['lowerBoundary'];
       vm.upperBoundaryPrice = arg['upperBoundary'];
-      vm.datePaidLowerBoundary = arg['fromDate'];
-      vm.datePaidUpperBoundary = arg['toDate'];
+      vm.dateMadeLowerboundary = arg['fromDate'];
+      vm.dateMadeUpperboundary = arg['toDate'];
 
       loadDeposits();
     });
 
 
 
-    vm.onServerSideItemsRequested = function(currentPage, pageItems, filterByFields, orderBy, orderByReverse) {
+    vm.onServerSideItemsRequested = function(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse) {
       vm.currentPage = currentPage;
-      loadDeposits(pageItems, filterByFields, orderBy, orderByReverse)
+      loadDeposits(currentPage, pageItems,  filterByFields, orderBy, orderByReverse)
     };
 
 
 
-    var loadDeposits = function(pageItems, filterBy, filterByFields, orderBy, orderByReverse) {//todo change when the API is ready
-
+    var loadDeposits = function(currentPage, pageItems,  filterByFields, orderBy, orderByReverse) {
        Deposit.query({id: $stateParams.householdId ,top: vm.top, skip: QueryConstructor.skip(vm.currentPage, vm.top), orderBy: QueryConstructor.order(orderBy, orderByReverse),
-           lowerBoundaryPrice: vm.lowerBoundaryPrice , upperBoundaryPrice: vm.upperBoundaryPrice, datePaidLowerBoundary: vm.datePaidLowerBoundary , datePaidUpperBoundary: vm.datePaidUpperBoundary},
+           lowerBoundaryPrice: vm.lowerBoundaryPrice , upperBoundaryPrice: vm.upperBoundaryPrice, dateMadeLowerboundary: vm.dateMadeLowerboundary , dateMadeUpperboundary: vm.dateMadeUpperboundary},
          function(response) {
          vm.deposits = response.Items;
          vm.totalDeposits = response.Count;

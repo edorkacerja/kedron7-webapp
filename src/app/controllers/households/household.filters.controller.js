@@ -44,8 +44,10 @@
 
     var timeoutPromise;
     $scope.$watchGroup(['hfdetail.lowerBoundaryPrice','hfdetail.upperBoundaryPrice' , 'hfdetail.toDate', 'hfdetail.fromDate'], function() {
+
       $timeout.cancel(timeoutPromise);
       var timeoutPromise = $timeout(function() {
+
         $rootScope.$broadcast('filterUpdate', {
           'lowerBoundary': vm.lowerBoundaryPrice,
           'upperBoundary': vm.upperBoundaryPrice ,
