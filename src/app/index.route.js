@@ -112,6 +112,11 @@
             templateUrl: 'app/views/households/householdDetails.deposits.html',
             controller:'HouseholdDepositsController',
             controllerAs:'hdpdetail'
+          },
+          "filters":{
+            templateUrl: 'app/views/households/householdDetails.filters.html',
+            controller: 'HouseholdFilterController',
+            controllerAs: 'hfdetail'
           }
         }
 
