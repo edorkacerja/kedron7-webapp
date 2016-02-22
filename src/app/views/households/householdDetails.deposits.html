@@ -14,6 +14,7 @@
       <tr>
         <td field-name="DateCreated">{{gridDisplayItem.DateCreated }}</td>
         <td field-name="Value">{{gridDisplayItem.Value | currency: 'лв. '}}</td>
+        <td field-name="Id"><button class="btn btn-danger" ng-click="hdpdetail.deleteDeposit(gridDisplayItem.Id)">Delete </button></td>
       </tr>
       </tbody>
     </table>

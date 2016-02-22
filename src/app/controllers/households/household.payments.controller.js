@@ -5,7 +5,7 @@
     .module('kedron')
     .controller('HouseholdPaymentsController', HouseholdPaymentsController );
 
-  function HouseholdPaymentsController( Payment, QueryConstructor, $stateParams , toastr , $scope) {
+  function HouseholdPaymentsController( Payment, QueryConstructor, $stateParams , toastr , $scope, $window) {
     var vm = this;
     vm.top = 10;
 
@@ -35,6 +35,24 @@
         vm.currentPage = currentPage;
         loadPayments(currentPage, pageItems,  orderBy, orderByReverse)
     };
+
+
+
+    //delete payment
+    vm.deletePayment = function(id) {
+      if($window.confirm('Сигурни ли сте, че искате да изтриете това жилище?')) {
+
+        Payment.delete({debtId: id}, function () { //todo fix this when the endpoint in the api is ready
+
+          loadPayments();
+          toastr.success('Заплащането протече успешно.');
+
+        }, function(response){
+          toastr.error("Не успя да се установи връзка с базата данни:" , response);
+        });
+      }
+    };
+
 
 
    var loadPayments = function(currentPage, pageItems,  orderBy, orderByReverse) {

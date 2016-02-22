@@ -5,7 +5,7 @@
     .module('kedron')
     .controller('HouseholdDebtsController', HouseholdDebtsController );
 
-  function HouseholdDebtsController( Debt,  QueryConstructor, $stateParams , toastr , $scope) {
+  function HouseholdDebtsController( Debt,  QueryConstructor, $stateParams , toastr , $window, $scope) {
     var vm = this;
     vm.top = 10;
 
@@ -43,11 +43,29 @@
 
       })
     };
+
+
+    //delete debt
+    vm.deleteDebt = function(id) {
+      if($window.confirm('Сигурни ли сте, че искате да изтриете това жилище?')) {
+
+        Debt.delete({debtId: id}, function () {
+
+          loadDebts();
+          toastr.success('Заплащането протече успешно.');
+
+        }, function(response){
+          toastr.error("Не успя да се установи връзка с базата данни:" , response);
+        });
+      }
+    };
+
+
    //
     var loadDebts = function(currentPage, pageItems, orderBy, orderByReverse) {
-      //fix typos when done
+
       Debt.query({id: $stateParams.householdId ,top: vm.top, skip: QueryConstructor.skip(vm.currentPage, vm.top), orderBy: QueryConstructor.order(orderBy, orderByReverse),
-        lowerBoundaryPrice: vm.lowerBoundaryPrice , upperBoundaryPrice: vm.upperBoundaryPrice, dateMadeLowerBondary: vm.dateMadeLowerBoundary , dateMadeUpperBondary: vm.dateMadeUpperBoundary},
+        lowerBoundaryPrice: vm.lowerBoundaryPrice , upperBoundaryPrice: vm.upperBoundaryPrice, dateMadeLowerBoundary: vm.dateMadeLowerBoundary , dateMadeUpperBoundary: vm.dateMadeUpperBoundary},
 
         function(response) {
           vm.debts = response.Items;

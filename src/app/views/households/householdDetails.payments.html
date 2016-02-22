@@ -16,6 +16,7 @@
         <td field-name="ExpenseTypeName">{{gridDisplayItem.ExpenseTypeName}}</td>
         <td field-name="DatePaid">{{gridDisplayItem.DatePaid}}</td>
         <td field-name="Value">{{gridDisplayItem.Value | currency: 'лв. '}}</td>
+        <td field-name="Id"><button class="btn btn-danger" ng-click="hpdetail.deletePayment(gridDisplayItem.Id)">Delete </button></td>
       </tr>
       </tbody>
     </table>
