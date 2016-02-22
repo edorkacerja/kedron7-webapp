@@ -17,6 +17,7 @@
         <td field-name="DateMade">{{gridDisplayItem.DateMade}}</td>
         <td field-name="Value">{{gridDisplayItem.Value  | currency: 'лв. '}} лв</td>
         <td field-name="Id"><button class="btn btn-primary" ng-click="hddetail.payDebt(gridDisplayItem.Id)">Плати </button></td>
+        <td field-name="Id"><button class="btn btn-danger" ng-click="hddetail.deleteDebt(gridDisplayItem.Id)">Delete </button></td>
       </tr>
       </tbody>
     </table>

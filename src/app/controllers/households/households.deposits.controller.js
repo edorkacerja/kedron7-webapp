@@ -8,7 +8,7 @@
     .module('kedron')
     .controller('HouseholdDepositsController', HouseholdDepositsController );
 
-  function HouseholdDepositsController( Deposit, QueryConstructor, $stateParams , toastr , $scope) {
+  function HouseholdDepositsController( Deposit, QueryConstructor, $stateParams , toastr , $scope, $window) {
     var vm = this;
 
     vm.top = 10;
@@ -41,6 +41,22 @@
       loadDeposits(currentPage, pageItems,  filterByFields, orderBy, orderByReverse)
     };
 
+
+    //delete deposit
+    vm.deleteDeposit = function(id) {
+      console.log(id);
+      if($window.confirm('Сигурни ли сте, че искате да изтриете това жилище?')) {
+
+        Deposit.delete({depositId: id}, function () {
+
+          loadDeposits();
+          toastr.success('Заплащането протече успешно.');
+
+        }, function(response){
+          toastr.error("Не успя да се установи връзка с базата данни:" , response);
+        });
+      }
+    };
 
 
     var loadDeposits = function(currentPage, pageItems,  filterByFields, orderBy, orderByReverse) {

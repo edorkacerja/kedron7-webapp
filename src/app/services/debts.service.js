@@ -20,6 +20,7 @@
         headers: { 'Authorization': "Bearer " + auth.currentUser().accessToken }
       },
       delete: {
+        url: api + "/debts/:debtId",
         method: 'DELETE',
         headers: { 'Authorization': "Bearer " + auth.currentUser().accessToken }
       },

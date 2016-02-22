@@ -19,7 +19,7 @@
         method: 'GET',
         headers: { 'Authorization': "Bearer " + auth.currentUser().accessToken }
       },
-      delete: {
+      delete: {//todo put the right URL when the endpoint in the api is ready?
         method: 'DELETE',
         headers: { 'Authorization': "Bearer " + auth.currentUser().accessToken }
       },
