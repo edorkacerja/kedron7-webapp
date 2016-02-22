@@ -46,10 +46,17 @@
                    <li> Населено място: {{bdetail.building.Location}} </li>
                    <li> Брой етажи: {{bdetail.building.FloorsCount}}</li>
                  </ul>
+                 <div class="well well-sm">
+                   <h5 class="inline">Баланс:
+                    <span ng-class="bdetail.building.BuildingBalance < 0 ? 'negative-balance' : 'positive-balance'">
+                    {{bdetail.building.BuildingBalance | currency: 'лв. '}}
+                   </span>
+                   </h5>
+
+                 </div>
                </div>
                <div class="panel-footer">
                  <button ng-click="bdetail.edit()"   class="btn btn-primary">Настройки</button>
-
                </div>
              </div>
          </div>

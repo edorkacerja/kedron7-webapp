@@ -67,7 +67,7 @@
                   <select ng-model="hdetail.household.Floor" class="form-control" name='floor' ng-options="n for n in [] | range:1:hdetail.household.BuildingFloors" required></select>
                   <span ng-show="hdetail.editForm.floor.$error.required  && !hdetail.editForm.floor.$pristine" class="help-block">Моля, изберете етаж на жилището!</span>
                 </div>
-              </div> 
+              </div>
 
               <div class="form-group ">
                 <button ng-click="hdetail.delete()" class="btn btn-danger btn-sm pull-right ">Remove Household</button>
@@ -96,11 +96,7 @@
   <div ui-view="filters"></div>
   <div ui-view></div>
   <!-- ui-view for household debts and payments -->
-  <div class="row">
-    <div class="col-md-6">
 
-    </div>
-  </div>
 
 
   </div>

@@ -43,13 +43,33 @@
         controllerAs: 'bhdetail'
 
        })
-      //cashbook
+      //building detail cashbook
       .state('buildingDetail.cashbook', {
         url: '/cashbook',
         templateUrl: 'app/views/buildings/cashbooks/cashbook.html',
         controller: 'BuildingCashbookController',
         controllerAs: 'cb'
       })
+      //cashbook expenses
+      .state('buildingDetail.cashbook.expenses' , {
+        url: '/expenses',
+        views:{
+          "":{
+            templateUrl: 'app/views/buildings/cashbooks/cashbook.expenses.html',
+            controller: 'BuildingCashbookExpensesController',
+            controllerAs: 'cbe'
+          },
+          //todo implement filter
+          //"filters": {
+          //  templateUrl: 'app/views/households/householdDetails.filters.html',
+          //  controller: 'HouseholdFilterController',
+          //  controllerAs: 'hfdetail'
+          //}
+        }
+
+      })
+
+      //cashbook expense
       //Expense Types
       .state('addExpense' , {
         url:'/buildings/:buildingId/expenses/new',
