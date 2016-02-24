@@ -17,6 +17,7 @@
         headers: { 'Authorization': "Bearer " + auth.currentUser().accessToken }
       },
       delete: {
+        url: api + '/Expenses/:ExpenseId',
         method: 'DELETE',
         headers: { 'Authorization': "Bearer " + auth.currentUser().accessToken }
       },

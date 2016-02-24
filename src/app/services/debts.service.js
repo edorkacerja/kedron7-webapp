@@ -27,11 +27,6 @@
       save: {
         method: 'POST',
         headers: { 'Authorization': "Bearer " + auth.currentUser().accessToken }
-      },
-      update: {
-        url: api +"/debts/:debtId/pay",
-        method: 'PUT',
-        headers: { 'Authorization': "Bearer " + auth.currentUser().accessToken }
       }
     });
   }

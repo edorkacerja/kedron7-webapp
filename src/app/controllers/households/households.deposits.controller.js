@@ -44,7 +44,7 @@
 
     //delete deposit
     vm.deleteDeposit = function(id) {
-      console.log(id);
+
       if($window.confirm('Сигурни ли сте, че искате да изтриете това жилище?')) {
 
         HouseholdDeposit.delete({depositId: id}, function () {

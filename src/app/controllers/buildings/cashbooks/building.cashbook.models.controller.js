@@ -5,7 +5,7 @@
     .module('kedron')
     .controller('BuildingCashbookModelsController', BuildingCashbookModelsController );
 
-  function BuildingCashbookModelsController(Model,toastr, QueryConstructor, $stateParams , $scope , $timeout) {
+  function BuildingCashbookModelsController(Model, toastr, QueryConstructor, $stateParams , $scope , $timeout, $window) {
     var vm = this;
     vm.top = 10 ; //number of items per page -> 10;
     // set available range
@@ -24,6 +24,23 @@
       }, 500);
 
     });
+
+    //delete expense
+    vm.deleteBuildingExpense = function(expense_id) {
+
+      if($window.confirm('Сигурни ли сте, че искате да изтриете това жилище?')) {
+        console.log(expense_id);
+        //todo remove comment lines when API is fixed
+        Model.delete({ExpenseId: expense_id}, function () {
+          loadModels();
+          toastr.success('Заплащането протече успешно.');
+
+
+        }, function(response){
+          toastr.error("Не успя да се установи връзка с базата данни:" , response);
+        });
+      }
+    };
 
 
     vm.buildingId = $stateParams.buildingId;
