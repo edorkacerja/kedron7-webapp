@@ -8,7 +8,8 @@
   function HouseholdDebtsController( Debt,  QueryConstructor, $stateParams , toastr , $window, $scope) {
     var vm = this;
     vm.top = 10;
-
+    vm.isPaid = true;
+   //todo add something to control isPaid
     //listen to the filter and when the deposit gets successfully added
     $scope.$on('filterUpdate', function (event, arg) {
       vm.lowerBoundaryPrice = arg['lowerBoundary'];
@@ -61,11 +62,12 @@
     };
 
 
-   //
+
     var loadDebts = function(currentPage, pageItems, orderBy, orderByReverse) {
 
       Debt.query({id: $stateParams.householdId ,top: vm.top, skip: QueryConstructor.skip(vm.currentPage, vm.top), orderBy: QueryConstructor.order(orderBy, orderByReverse),
-        lowerBoundaryPrice: vm.lowerBoundaryPrice , upperBoundaryPrice: vm.upperBoundaryPrice, dateMadeLowerBoundary: vm.dateMadeLowerBoundary , dateMadeUpperBoundary: vm.dateMadeUpperBoundary},
+        lowerBoundaryPrice: vm.lowerBoundaryPrice , upperBoundaryPrice: vm.upperBoundaryPrice, dateMadeLowerBoundary: vm.dateMadeLowerBoundary , dateMadeUpperBoundary: vm.dateMadeUpperBoundary,
+        isPaid: vm.isPaid},
 
         function(response) {
           vm.debts = response.Items;

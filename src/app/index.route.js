@@ -56,8 +56,35 @@
         views:{
           "":{
             templateUrl: 'app/views/buildings/cashbooks/cashbook.expenses.html',
-            controller: 'BuildingCashbookExpensesController',
-            controllerAs: 'cbe'
+            controller: 'BuildingCashbookModelsController',
+            controllerAs: 'cbm',
+            resolve: {
+              Model: ['Expense', function(Expense) {
+                return Expense;
+              }]
+            }
+          },
+          //todo implement filter
+          //"filters": {
+          //  templateUrl: 'app/views/households/householdDetails.filters.html',
+          //  controller: 'HouseholdFilterController',
+          //  controllerAs: 'hfdetail'
+          //}
+        }
+
+      })
+      .state('buildingDetail.cashbook.deposits' , {
+        url: '/deposits',
+        views:{
+          "":{
+            templateUrl: 'app/views/buildings/cashbooks/cashbook.deposits.html',
+            controller: 'BuildingCashbookModelsController',
+            controllerAs: 'cbm',
+            resolve: {
+              Model: ['BuildingDeposit', function(BuildingDeposit) {
+                return BuildingDeposit;
+              }]
+            }
           },
           //todo implement filter
           //"filters": {

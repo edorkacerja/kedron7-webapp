@@ -6,24 +6,26 @@
 
   angular
     .module('kedron')
-    .factory('Payment',payment);
+    .factory('HouseholdDeposit',deposit);
 
 
-  function payment($resource , auth, api ) {
-    return $resource(api +"/households/:id/payments", { id: '@id'}, {
+  function deposit($resource , auth, api ) {
+    return $resource(api +"/households/:id/deposits", { id: '@id'}, {
       get: {
         method: 'GET',
         headers: { 'Authorization': 'Bearer '+  auth.currentUser().accessToken }
       },
       query: {
         method: 'GET',
-        headers: { 'Authorization': "Bearer " + auth.currentUser().accessToken }
+        headers: { 'Authorization': "Bearer " + auth.currentUser().accessToken },
       },
-      delete: {//todo put the right URL when the endpoint in the api is ready?
+      delete: {
+        url: api + "/deposits/:depositId",
         method: 'DELETE',
         headers: { 'Authorization': "Bearer " + auth.currentUser().accessToken }
       },
       save: {
+        url:api +"/households/:id/adddeposit",
         method: 'POST',
         headers: { 'Authorization': "Bearer " + auth.currentUser().accessToken }
       },

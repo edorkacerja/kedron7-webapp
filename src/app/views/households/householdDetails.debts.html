@@ -1,8 +1,17 @@
 <div class="row">
   <div class="col-sm-12">
-    <h4>Задължения</h4>
-    <!-- trNgGrid -->
 
+    <h4>Задължения</h4>
+    <!-- isPaid filter -->
+    <div class="row">
+      <div class="col-sm-6">
+        <button class="btn btn-primary btn-lg btn-block" ng-model="hddetail.isPaid" btn-radio="true">Платени</button>
+      </div>
+      <div class="col-sm-6">
+        <button class="btn btn-primary btn-lg btn-block" ng-model="hddetail.isPaid" btn-radio="false">Неплатени</button>
+      </div>
+    </div>
+    <!-- isPaid filter -->
     <table tr-ng-grid="" items="hddetail.debts" enable-filtering="false" locale="bg" page-items="hddetail.debtsTop" total-items="hddetail.totalDebts" on-data-required="hddetail.onServerSideDebtsReq(currentPage, pageItems, orderBy, orderByReverse)">
       <thead>
       <tr>
@@ -16,8 +25,11 @@
         <td field-name="ExpenseTypeName">{{gridDisplayItem.ExpenseTypeName}}</td>
         <td field-name="DateMade">{{gridDisplayItem.DateMade}}</td>
         <td field-name="Value">{{gridDisplayItem.Value  | currency: 'лв. '}} лв</td>
-        <td field-name="Id"><button class="btn btn-primary" ng-click="hddetail.payDebt(gridDisplayItem.Id)">Плати </button></td>
-        <td field-name="Id"><button class="btn btn-danger" ng-click="hddetail.deleteDebt(gridDisplayItem.Id)">Delete </button></td>
+        <td field-name="Id">
+          <button class="btn btn-primary" ng-click="hddetail.payDebt(gridDisplayItem.Id)">Плати </button>
+          <button class="btn btn-danger" ng-click="hddetail.deleteDebt(gridDisplayItem.Id)">Изтрий</button>
+        </td>
+
       </tr>
       </tbody>
     </table>

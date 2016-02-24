@@ -1,9 +1,9 @@
 <div class="row">
   <div class="col-sm-12">
     <h4>Разходи</h4>
-    <a ui-sref="addExpense({buildingId: cbe.buildingId})" class="btn btn-primary">Добави разход </a>
-    <div range-slider min="cbe.minLowerBoundaryPrice" max="cbe.maxUpperBoundaryPrice" model-min="cbe.lowerBoundaryPrice" model-max="cbe.upperBoundaryPrice" show-values="true" filter="currency:'лв.'"></div>
-    <table tr-ng-grid="" items="cbe.expenses" locale="bg" page-items="cbe.top" total-items="cbe.totalExpenses" enable-filtering='false'on-data-required="cbe.onServerSideItemsRequested(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
+    <a ui-sref="addExpense({buildingId: cbm.buildingId})" class="btn btn-primary">Добави разход </a>
+    <div range-slider min="cbm.minLowerBoundaryPrice" max="cbm.maxUpperBoundaryPrice" model-min="cbm.lowerBoundaryPrice" model-max="cbm.upperBoundaryPrice" show-values="true" filter="currency:'лв.'"></div>
+    <table tr-ng-grid="" items="cbm.modelsCollection" locale="bg" page-items="cbm.top" total-items="cbm.modelsCount" enable-filtering='false'on-data-required="cbm.onServerSideItemsRequested(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
       <thead>
       <tr>
         <th field-name="Name" enable-filtering="true" display-name="Име"></th>

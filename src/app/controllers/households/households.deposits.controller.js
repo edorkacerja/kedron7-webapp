@@ -8,7 +8,7 @@
     .module('kedron')
     .controller('HouseholdDepositsController', HouseholdDepositsController );
 
-  function HouseholdDepositsController( Deposit, QueryConstructor, $stateParams , toastr , $scope, $window) {
+  function HouseholdDepositsController( HouseholdDeposit, QueryConstructor, $stateParams , toastr , $scope, $window) {
     var vm = this;
 
     vm.top = 10;
@@ -47,8 +47,7 @@
       console.log(id);
       if($window.confirm('Сигурни ли сте, че искате да изтриете това жилище?')) {
 
-        Deposit.delete({depositId: id}, function () {
-
+        HouseholdDeposit.delete({depositId: id}, function () {
           loadDeposits();
           toastr.success('Заплащането протече успешно.');
 
@@ -60,7 +59,7 @@
 
 
     var loadDeposits = function(currentPage, pageItems,  filterByFields, orderBy, orderByReverse) {
-       Deposit.query({id: $stateParams.householdId ,top: vm.top, skip: QueryConstructor.skip(vm.currentPage, vm.top), orderBy: QueryConstructor.order(orderBy, orderByReverse),
+       HouseholdDeposit.query({id: $stateParams.householdId ,top: vm.top, skip: QueryConstructor.skip(vm.currentPage, vm.top), orderBy: QueryConstructor.order(orderBy, orderByReverse),
            lowerBoundaryPrice: vm.lowerBoundaryPrice , upperBoundaryPrice: vm.upperBoundaryPrice, dateMadeLowerboundary: vm.dateMadeLowerboundary , dateMadeUpperboundary: vm.dateMadeUpperboundary},
          function(response) {
          vm.deposits = response.Items;

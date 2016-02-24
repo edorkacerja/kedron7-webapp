@@ -1,8 +1,8 @@
 <div class="row">
   <div class="col-sm-12">
     <h4>Депозити</h4>
-    <div range-slider min="cbd.minLowerBoundaryPrice" max="cbd.maxUpperBoundaryPrice" model-min="cbd.lowerBoundaryPrice" model-max="cbd.upperBoundaryPrice" show-values="true" filter="currency:'лв.'"></div>
-    <table tr-ng-grid="" items="cbd.expenses" locale="bg" page-items="cbd.top" total-items="cbe.totalDeposits" enable-filtering='false'on-data-required="cbd.onServerSideItemsRequested(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
+    <div range-slider min="cbm.minLowerBoundaryPrice" max="cbm.maxUpperBoundaryPrice" model-min="cbm.lowerBoundaryPrice" model-max="cbm.upperBoundaryPrice" show-values="true" filter="currency:'лв.'"></div>
+    <table tr-ng-grid="" items="cbm.modelsCollection" locale="bg" page-items="cbm.top" total-items="cbm.modelsCount" enable-filtering='false'on-data-required="cbm.onServerSideItemsRequested(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
       <thead>
       <tr>
         <th field-name="Name" enable-filtering="true" display-name="Име"></th>
