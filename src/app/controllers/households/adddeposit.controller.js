@@ -5,9 +5,9 @@
     .module('kedron')
     .controller('AddDepositController', AddDepositController );
 
-  function AddDepositController(Deposit, $modalInstance, householdId, $rootScope , toastr) {
+  function AddDepositController(HouseholdDeposit, $modalInstance, householdId, $rootScope , toastr) {
     var vm = this;
-    vm.deposit = new Deposit();
+    vm.deposit = new HouseholdDeposit();
 
 
 
