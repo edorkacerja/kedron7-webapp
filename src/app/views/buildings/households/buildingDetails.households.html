@@ -9,7 +9,7 @@
         <th field-name="Name" display-name="Име"  enable-filtering="true"></th>
         <th field-name="Number" display-name="Номер" enable-filtering="true"></th>
         <th field-name="Floor" display-name="Етаж" enable-filtering="true"></th>
-        <th field-name="AdultsCount" display-name="Брой възрастни" enable-filtering="true"></th>
+        <th field-name="Residents" display-name="Number of residents" enable-filtering="true"></th>
       </tr>
       </thead>
       <tbody>
@@ -17,7 +17,7 @@
         <td field-name="Name">{{gridDisplayItem.Name}}</td>
         <td field-name="Number">{{gridDisplayItem.Number}}</td>
         <td field-name="Floor">{{gridDisplayItem.Floor}}</td>
-        <td field-name="AdultsCount">{{gridDisplayItem.AdultsCount}}</td>
+        <td field-name="Residents">{{gridDisplayItem.Residents}}</td>
         <td field-name="Id"><button class="btn btn-primary" ng-click="bhdetail.gotoHousehold(gridDisplayItem.Id )">Отвори</button></td>
       </tr>
       </tbody>

@@ -28,7 +28,12 @@
        },
         update: {
           method: 'PUT'
-        }
+        },
+         getBalance: {
+           method: 'GET',
+           url: api +"/househoulds/:id/balance",
+           headers: { 'Authorization': "Bearer " + auth.currentUser().accessToken }
+         }
      });
    }
 

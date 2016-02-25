@@ -75,14 +75,14 @@
             <th>Имe</th>
             <th>Номер</th>
             <th>Етаж</th>
-            <th>Брой възрастни</th>
+            <th>Броят на жителите</th>
             <th>Дължима сума</th>
           <tr ng-repeat="household in exp.households">
             <td><input id="isPaying" type="checkbox" ng-model="household.IsPaying"  ng-change="exp.isPayingChecked($index)" aria-label="is paying"></td>
             <td>{{household.Name}}</td>
             <td>{{household.Number}}</td>
             <td>{{household.Floor}}</td>
-            <td>{{household.AdultsCount}}</td>
+            <td>{{household.Residents}}</td>
             <td>
               <div class="form-inline">
                 <span>Стойност:</span>

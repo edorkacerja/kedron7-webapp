@@ -20,10 +20,10 @@
               </div>
 
 
-              <!-- adults count row -->
+              <!-- residents count row -->
 
-                <div class="form-group row" ng-class="{ 'has-error' : adh.householdForm.adults.$error.required && adh.householdForm.adults.$dirty }">
-                  <label class="col-md-2 control-label" for="residents">Брой живущи</label>
+                <div class="form-group row" ng-class="{ 'has-error' : adh.householdForm.residents.$error.required && adh.householdForm.residents.$dirty }">
+                  <label class="col-md-2 control-label" for="residents">Number of residents</label>
                   <div class="col-md-10">
 
                     <input type="number" min="0" max="10" class="form-control" ng-model="adh.newHousehold.Residents" id="residents" name="residents" required />

@@ -10,6 +10,16 @@
     vm.top = 10;
     vm.isPaid = true;
    //todo add something to control isPaid
+
+    $scope.$watch('hddetail.isPaid',function(){
+      console.log("isPaid has changed");
+      loadDebts();
+    });
+
+
+
+
+
     //listen to the filter and when the deposit gets successfully added
     $scope.$on('filterUpdate', function (event, arg) {
       vm.lowerBoundaryPrice = arg['lowerBoundary'];
@@ -29,6 +39,8 @@
 
       loadDebts();
     });
+
+
     //household debts
         vm.onServerSideDebtsReq = function(currentPage, pageItems, orderBy, orderByReverse) {
           vm.currentPage = currentPage;
@@ -36,14 +48,7 @@
     };
 
 
-    //pay debt
-    vm.payDebt = function(id) {
-      Debt.update({debtId: id}, {id: id} ,function() {
-        loadDebts();
-        toastr.success('Заплащането протече успешно.');
 
-      })
-    };
 
 
     //delete debt
@@ -52,7 +57,7 @@
 
         Debt.delete({debtId: id}, function () {
 
-          loadDebts();
+          loadDebts(currentPage);
           toastr.success('Заплащането протече успешно.');
 
         }, function(response){

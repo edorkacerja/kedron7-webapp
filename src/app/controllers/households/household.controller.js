@@ -52,7 +52,12 @@
 
     //listen when when the deposit gets successfully added
     $scope.$on("deposit:added" , function( event , data) {
-      vm.household.Balance += data.Value;
+      Household.getBalance({id: vm.household.Id} , function(response){
+        vm.household.Balance = response;
+
+      }, function(error){
+        //todo log this error somehow.
+      });
     })
 
 

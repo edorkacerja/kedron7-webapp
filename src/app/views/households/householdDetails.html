@@ -12,7 +12,7 @@
           <ul>
             <li> Етаж: {{hdetail.household.Floor}}</li>
             <li> Номер: {{hdetail.household.Number}}</li>
-            <li> Брой възрастни: {{hdetail.household.AdultsCount}}</li>
+            <li> Броят на жителите: {{hdetail.household.Residents}}</li>
           </ul>
           <!-- balance -->
           <div class="well well-sm">
@@ -51,12 +51,12 @@
                   <span ng-show="hdetail.editForm.number.$error.required  && !hdetail.editForm.number.$pristine" class="help-block">Моля, въведете номер на жилището!</span>
                 </div>
               </div>
-              <!-- adults count row -->
-                <div class="form-group row" ng-class="{ 'has-error' : hdetail.editForm.adults.$error.required && hdetail.editForm.adults.$dirty }">
-                  <label class="col-md-2 control-label" for="adults">Брой възрастни</label>
+              <!-- residents count row -->
+                <div class="form-group row" ng-class="{ 'has-error' : hdetail.editForm.residents.$error.required && hdetail.editForm.residents.$dirty }">
+                  <label class="col-md-2 control-label" for="residents">number of residents</label>
                   <div class="col-md-10">
-                    <input type="number" min="0" max="10" class="form-control" ng-model="hdetail.household.AdultsCount" id="adults" name="adults" required />
-                    <span ng-show="hdetail.editFormadults.$error.required  && !hdetail.editForm.adults.$pristine" class="help-block">Моля, въведете брой на възрастни в жилището!</span>
+                    <input type="number" min="0" max="10" class="form-control" ng-model="hdetail.household.Residents" id="residents" name="residents" required />
+                    <span ng-show="hdetail.editFormresidents.$error.required  && !hdetail.editForm.residents.$pristine" class="help-block">Моля, въведете брой на възрастни в жилището!</span>
                   </div>
                 </div>
               <!-- row -->
