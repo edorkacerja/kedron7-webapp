@@ -31,7 +31,7 @@
         },
          getBalance: {
            method: 'GET',
-           url: api +"/househoulds/:id/balance",
+           url: api +"/households/:id/balance",
            headers: { 'Authorization': "Bearer " + auth.currentUser().accessToken }
          }
      });
