@@ -24,7 +24,6 @@
       vm.dateMadeUpperboundary = arg['toDate'];
       loadDeposits();
     });
-    //todo refactor?
     $scope.$on('deposit:added', function (event, arg) {
       vm.lowerBoundaryPrice = arg['lowerBoundary'];
       vm.upperBoundaryPrice = arg['upperBoundary'];
