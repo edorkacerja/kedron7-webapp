@@ -50,23 +50,11 @@
       });
     };
 
-    ////listen  when the deposit gets successfully added
-    //$scope.$on("deposit:added" , function( event , data) {
-    //  console.log('asd');
-    //  Household.getBalance({id: vm.household.Id} , function(response){
-    //    console.log(response);
-    //    vm.household.Balance = response;
-    //
-    //  }, function(error){
-    //    //todo log this error somehow.
-    //  });
-    //})
+
 
     $scope.$on("deposit:added" , function( event , data) {
         Household.getBalance({id: vm.household.Id}).$promise.then(function(response){
-          console.log(response);
-          vm.household.Balance = response;
-
+          vm.household.Balance = response.Value;
         }, function(error){
           //todo log this error somehow.
         });
