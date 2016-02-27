@@ -54,14 +54,7 @@
 
     $scope.$on("deposit:added" , function( event , data) {
         Household.getBalance({id: vm.household.Id}).$promise.then(function(response){
-<<<<<<< HEAD
-          console.log(response.toJSON().Value);
-
-          vm.household.Balance = response.toJSON().Value;
-
-=======
           vm.household.Balance = response.Value;
->>>>>>> eaf38c80ff14d0795e3c4097df1bd1b1e578e70e
         }, function(error){
           //todo log this error somehow.
         });
