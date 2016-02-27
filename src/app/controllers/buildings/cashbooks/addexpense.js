@@ -10,7 +10,6 @@
     vm.filters = {};
     vm.newExpense = new Expense();
 
-    vm.noExpenseTypes = true;
     vm.households = households;
 
 
@@ -57,10 +56,10 @@
     vm.updateFilters = function() {
       var filterString = '';
       for (var j = 0; j < vm.filters.fromToFilters.length; j++){
-        if(j == (vm.filters.fromToFilters.length - 1)) {
-          filterString += vm.filters.fromToFilters[j].attribute + vm.filters.fromToFilters[j].condition + vm.filters.fromToFilters[j].value;
-        } else {
-          filterString += vm.filters.fromToFilters[j].attribute + vm.filters.fromToFilters[j].condition + vm.filters.fromToFilters[j].value + ','
+          if( j == 0) {
+            filterString += vm.filters.fromToFilters[j].attribute + vm.filters.fromToFilters[j].comparison + vm.filters.fromToFilters[j].value;
+        } else  {
+            filterString += ' ' +  vm.filters.fromToFilters[j].logical + ' ' + vm.filters.fromToFilters[j].attribute + vm.filters.fromToFilters[j].comparison + vm.filters.fromToFilters[j].value ;
         }
       }
 

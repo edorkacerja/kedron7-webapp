@@ -20,6 +20,10 @@
 .danger-zone {
   background: #f2dede; }
 
+.no-padding {
+  padding: 0 !important;
+  margin: 0 !important; }
+
 /**
  *  Do not remove the comments below. It's the markers used by gulp-inject to inject
  *  all your sass files automatically
