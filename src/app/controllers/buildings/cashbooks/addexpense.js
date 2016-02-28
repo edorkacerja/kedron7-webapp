@@ -4,21 +4,43 @@
     .module('kedron')
     .controller('addExpenseController', addExpenseController );
 
-  function addExpenseController($stateParams,$state,  Expense, households, toastr) {
+  function addExpenseController($stateParams,$state, $scope,  Expense, toastr ) {
     var vm = this;
     vm.buildingId = $stateParams.buildingId;
     vm.filters = {};
     vm.newExpense = new Expense();
 
-    vm.households = households;
 
 
+
+    $scope.$watch('exp.isExpenseAdded', function() {
+      if(vm.isExpenseAdded) {
+        Expense.payers({building_id: $stateParams.buildingId}).$promise.then(
+          function(response) {
+            vm.households = response;
+          }, function(error) {
+
+          }
+        );
+      }
+    });
+
+
+
+     //make an array of household expense values that are fixed.
+     //the list is used to avoid changing the values of the households with custom expenses
+     var fixedList = [];
+     //a variable that stores the total of all fixed items
+     var fixedTotal = 0;
      //manual mode
-    vm.isPayingChecked = function(index) {
-      if(vm.households[index].isPaying) {
-        vm.households[index].Value = 1;
+    vm.isFixedChecked = function(index) {
+      if( vm.households[index].isFixed) {
+          fixedList.push(vm.households[index]);
+          fixedTotal += vm.households[index].Value;
       } else {
-        vm.households[index].Value = 0;
+        var ind = fixedList.indexOf(index);
+        fixedTotal += vm.households[ind].Value;
+        fixedList.splice(ind, 1);
       }
       updateTotal();
     };
@@ -27,15 +49,26 @@
        vm.households[index].Value > 0 ? vm.households[index].IsPaying = true : vm.households[index].IsPaying = false;
       updateTotal();
     };
+    //calculate the remainder of the sum without the fixed items
 
     function updateTotal() {
-      //nullify filters and reinitialize the total
-      vm.total = 0;
+      //nullify filters
       vm.isFiltering = false;
       vm.filters = {fromToFilters: []};
       vm.householdPerson = null;
+      //remove the fixed elements
+      var diff = $(vm.households).not(fixedList).get();
+      var remainderTotal =  vm.total - fixedTotal;
+      //return if the remainder is a fixed value
+      if(remainderTotal < 0) return;
+      var avgRemainder = remainderTotal/diff.length;
       for(var i = 0; i < vm.households.length ; i++ ){
-        vm.total += vm.households[i].Value;
+
+        if(indexOfId()) {
+
+        } else {
+          vm.households[i].Value = avgRemainder;
+        }
       }
     }
 
@@ -88,8 +121,6 @@
             result.push({HouseholdId: vm.households[i].Id , Value: vm.households[i].Value});
          }
       vm.newExpense.ExpensePayersInformation = result;
-
-
         vm.newExpense.$save({building_id: $stateParams.buildingId},function(data) {
         toastr.success('Разходът бе добавен', "Име: " + data.Name );
         $state.go('cashbook', {buildingId: $stateParams.buildingId});

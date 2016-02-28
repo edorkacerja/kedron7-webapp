@@ -15,7 +15,7 @@
           <div class="col-lg-7 col-lg-offset-3 col-md-3 col-md-offset-3 col-sm-6 col-xs-12">
              <h2><span>Общo:</span></h2>
              <div class="input-group">
-               <input  type="number"  min="0" step="any" class="form-control inline" ng-model="exp.total" ng-change="exp.isFiltering = true" />
+               <input  type="number"  min="0" step="any" class="form-control inline" ng-model="exp.total" ng-change="exp.isFiltering = true; exp.isExpenseAdded = true" />
                <span class="input-group-addon">лв.</span>
              </div>
 
@@ -75,17 +75,20 @@
         <!-- FILTERS END -->
 
 
+       <div class="row" ng-if="exp.households">
         <!-- building households table -->
         <h4>Начисления по жилища</h4>
         <table class="table table-condensed">
-            <th>Плаща</th>
+            <th>Фиксиране</th>
             <th>Имe</th>
             <th>Номер</th>
             <th>Етаж</th>
             <th>Броят на жителите</th>
             <th>Дължима сума</th>
           <tr ng-repeat="household in exp.households">
-            <td><input id="isPaying" type="checkbox" ng-model="household.IsPaying"  ng-change="exp.isPayingChecked($index)" aria-label="is paying"></td>
+            <td><button type="button" class="btn btn-default" aria-label="Fix Price" id="isPaying" ng-model="household.isFixed"  ng-change="exp.isFixedChecked($index)" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
+              <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+            </button> </td>
             <td>{{household.Name}}</td>
             <td>{{household.Number}}</td>
             <td>{{household.Floor}}</td>
@@ -103,6 +106,8 @@
           </tr>
         </table>
         <button class="btn btn-success" ng-disabled="!exp.newExpense.Name" ng-click="exp.addExpense()">Добави разход</button>
+      </div><!-- row -->
+
       </div>
     </div>
   </div>
