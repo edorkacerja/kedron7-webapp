@@ -95,6 +95,23 @@
         }
 
       })
+      //cashbook reports
+      .state('buildingDetail.cashbook.reports', {
+        url: '/reports',
+        views: {
+          "": {
+            templateUrl: 'app/views/buildings/cashbooks/cashbook.reports.html',
+            controller: 'BuildingCashbookModelsController',
+            controllerAs: 'cbm',
+            resolve: {
+              Model: ['Expense', function (Expense) {    //todo modify this when reports api is ready
+                return Expense;
+              }]
+            }
+          },
+          //todo implement filter
+        }
+      })
 
       //cashbook expense
       //Expense Types
