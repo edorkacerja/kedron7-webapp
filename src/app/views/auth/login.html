@@ -11,16 +11,28 @@
 
            <div class="panel-body">
               <div  class="alert alert-danger" role="alert" ng-show="login.status">{{login.status}}</div>
-              <form role="form" name="loginform">
-                  <div class="form-group">
-                    <label for="user"> Електронна поща </label>
-                    <input type="text" id="user" ng-model="user.email" class="form-control" placeholder="Вашата електронна поща" required/>
-                  </div>
+              <form role="form" name="loginform" novalidate>
 
-                  <div class="form-group">
-                    <label> Парола</label>
-                    <input type="password" ng-model="user.password" class="form-control" placeholder="Вашата парола" required/>
-                  </div>
+
+                <div class="form-group" ng-class="{ 'has-error' : loginform.user.$error.required && !loginform.user.$pristine }">
+                  <label for="user" class="control-label">Електронна поща</label>
+
+                  <input type="text" class="form-control" id="user" name="user" placeholder="Вашата електронна поща"
+                         ng-model="user.email" required>
+                  <span ng-show="loginform.user.$error.required && !loginform.user.$pristine" class="help-block">Your Last name is required.</span>
+
+                </div>
+
+
+                <div class="form-group" ng-class="{ 'has-error' : loginform.password.$error.required && !loginform.password.$pristine }">
+                  <label for="user" class="control-label">Парола</label>
+
+                  <input type="password" class="form-control" id="password" name="password" placeholder="Вашата парола"
+                         ng-model="user.password" required>
+                  <span ng-show="loginform.password.$error.required && !loginform.password.$pristine" class="help-block">Your Password is required.</span>
+
+                </div>
+
 
                   <button type="submit" class="btn btn-default" ng-disabled="form1.$invalid" ng-click="login.login(user)">Вход</button>
 

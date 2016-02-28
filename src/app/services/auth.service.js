@@ -6,6 +6,7 @@
 
    function auth( $http, $window ,  $q , api , $rootScope ) {
 
+
      //LOG IN
      this.login = function(user) {
         var deferred = $q.defer();
@@ -69,10 +70,11 @@
 
      //currentUser
      this.currentUser = function() {
-       if ($window.sessionStorage["userInfo"]) {
+       if ($window.sessionStorage["userInfo"] !== 'null') {
            return JSON.parse($window.sessionStorage["userInfo"]);
        } else {
           //return {userName: 'icaka'};
+         console.log("current user is null");
           return null;
        }
      };
