@@ -42,7 +42,6 @@
 
     //household debts
         vm.onServerSideDebtsReq = function(currentPage, pageItems, orderBy, orderByReverse) {
-          vm.currentPage = currentPage;
           loadDebts(currentPage, pageItems, orderBy, orderByReverse)
     };
 

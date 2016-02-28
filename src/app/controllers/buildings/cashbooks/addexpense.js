@@ -32,23 +32,26 @@
      var fixedList = [];
      //a variable that stores the total of all fixed items
      var fixedTotal = 0;
-     //manual mode
-    vm.isFixedChecked = function(index) {
-      if( vm.households[index].isFixed) {
-          fixedList.push(vm.households[index]);
-          fixedTotal += vm.households[index].Value;
-      } else {
-        var ind = fixedList.indexOf(index);
-        fixedTotal += vm.households[ind].Value;
-        fixedList.splice(ind, 1);
+     //change to manual mode
+    //triggered when the user manually changes the Value
+    vm.changePaymentStatus = function(index){
+      if(!vm.households[index].isFixed) {
+        //if it is not fixed, set it to fixed and put into the fixedList
+        vm.households[index].isFixed = 1;
+        fixedList.push(vm.households[index]);
       }
+      updateFixedTotal();
       updateTotal();
     };
 
-    vm.changePaymentStatus = function(index){
-       vm.households[index].Value > 0 ? vm.households[index].IsPaying = true : vm.households[index].IsPaying = false;
-      updateTotal();
-    };
+    //calculate the sum of the fixed items
+    function updateFixedTotal() {
+      fixedTotal = 0;
+      console.log(fixedList);
+      angular.forEach(fixedList, function(value, key) {
+        fixedTotal += value.Value;
+      })
+    }
     //calculate the remainder of the sum without the fixed items
 
     function updateTotal() {
@@ -56,21 +59,30 @@
       vm.isFiltering = false;
       vm.filters = {fromToFilters: []};
       vm.householdPerson = null;
-      //remove the fixed elements
-      var diff = $(vm.households).not(fixedList).get();
-      var remainderTotal =  vm.total - fixedTotal;
+      //find the differences
+      var remainderTotal = vm.total - fixedTotal;
+      var diffCount = vm.households.length - fixedList.length;
       //return if the remainder is a fixed value
-      if(remainderTotal < 0) return;
-      var avgRemainder = remainderTotal/diff.length;
-      for(var i = 0; i < vm.households.length ; i++ ){
+      if (remainderTotal < 0) return;
+      var avgRemainder = remainderTotal/diffCount;
 
-        if(indexOfId()) {
-
-        } else {
-          vm.households[i].Value = avgRemainder;
+      //this won't be good for large buildings
+      for(var i = 0 ; i < vm.households.length ; i ++) {
+        var isFixed = false;
+        for( var f = 0 ; f < fixedList.length ; f ++ ) {
+          if(fixedList[f].Id === vm.households[i].Id) {
+            console.log('identical!');
+            isFixed = true;
+            break;
+          }
         }
+        if(!isFixed) vm.households[i].Value = avgRemainder;
+
       }
+
+
     }
+
 
     //custom mode
     vm.filters.fromToFilters = [];
