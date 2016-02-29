@@ -7,15 +7,16 @@
       <thead>
       <tr>
         <th field-name="Name" enable-filtering="true" display-name="Име"></th>
+        <th field-name="DateMade" enable-filtering="false"  display-format="date: 'MM/dd/yyyy | h:mma'" display-name="Дата на създаване"></th>
         <th field-name="Value" display-name="Стойност"  enable-filtering="false" display-format="currency: 'лв. '"></th>
-
       </tr>
       </thead>
       <tbody>
       <tr>
         <td field-name="Name">{{gridDisplayItem.Name}}</td>
+        <td field-name="DateMade">{{gridDisplayItem.Value}}</td>
         <td field-name="Value">{{gridDisplayItem.Value}}</td>
-        <td field-name="Id"><button class="btn btn-danger" ng-click="cbm.deleteBuildingExpense(gridDisplayItem.Id)">Delete </button></td>
+        <td field-name="Id"><button class="btn btn-danger" ng-click="cbm.deleteBuildingExpense(gridDisplayItem.Id)">Изтрий </button></td>
       </tr>
       </tbody>
 

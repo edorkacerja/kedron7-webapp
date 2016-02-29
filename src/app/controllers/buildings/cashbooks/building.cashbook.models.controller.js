@@ -29,13 +29,9 @@
     vm.deleteBuildingExpense = function(expense_id) {
 
       if($window.confirm('Сигурни ли сте, че искате да изтриете това жилище?')) {
-        console.log(expense_id);
-        //todo remove comment lines when API is fixed
         Model.delete({ExpenseId: expense_id}, function () {
           loadModels();
           toastr.success('Заплащането протече успешно.');
-
-
         }, function(response){
           toastr.error("Не успя да се установи връзка с базата данни:" , response);
         });
@@ -54,6 +50,7 @@
           upperBoundaryPrice: vm.upperBoundaryPrice , lowerBoundaryPrice: vm.lowerBoundaryPrice } ,
         function(response) {
           vm.modelsCollection= response.Items;
+          console.log(response.Items);
           vm.modelsCount = response.Count;
         }, function(response){
           toastr.error("Не успя да се установи връзка с базата данни:" , response );
