@@ -19,8 +19,6 @@
                },
                function(error) {
                  toastr.error("Неуспешно влизане в системата" , error );
-                 console.log(error.data.error_description);
-                 alert(error.data.error_description);
                  vm.errorMessage = error.data.error_description;
                }
             );
