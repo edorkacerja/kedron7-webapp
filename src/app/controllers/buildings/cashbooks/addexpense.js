@@ -13,18 +13,6 @@
 
 
 
-    $scope.$watch('exp.isExpenseAdded', function() {
-      if(vm.isExpenseAdded) {
-        Expense.payers({building_id: $stateParams.buildingId}).$promise.then(
-          function(response) {
-            vm.households = response;
-          }, function(error) {
-
-          }
-        );
-      }
-    });
-
 
 
      //make an array of household expense values that are fixed.
@@ -32,9 +20,19 @@
      var fixedList = [];
      //a variable that stores the total of all fixed items
      var fixedTotal = 0;
+
+    vm.checkFixDebt = function(index) {
+      console.log('upcall');
+      if(vm.households[index].isFixed) {
+        fixedList.push(vm.households[index]);
+      } else {
+        vm.households[index].isFixed = 0;
+        fixedList.splice(index,1);
+      }
+    };
      //change to manual mode
     //triggered when the user manually changes the Value
-    vm.changePaymentStatus = function(index){
+    vm.fixDebt = function(index){
       if(!vm.households[index].isFixed) {
         //if it is not fixed, set it to fixed and put into the fixedList
         vm.households[index].isFixed = 1;

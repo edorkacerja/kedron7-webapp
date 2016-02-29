@@ -15,7 +15,7 @@
           <div class="col-lg-7 col-lg-offset-3 col-md-3 col-md-offset-3 col-sm-6 col-xs-12">
              <h2><span>Общo:</span></h2>
              <div class="input-group">
-               <input  type="number"  min="0" step="any" class="form-control inline" ng-model="exp.total" ng-change="exp.isFiltering = true; exp.isExpenseAdded = true" />
+               <input  type="number"  min="0" step="any" class="form-control inline" ng-model="exp.total" ng-change="exp.isFiltering = true;" />
                <span class="input-group-addon">лв.</span>
              </div>
 
@@ -86,7 +86,7 @@
             <th>Броят на жителите</th>
             <th>Дължима сума</th>
           <tr ng-repeat="household in exp.households">
-            <td><button type="button" class="btn btn-default" aria-label="Fix Price" id="isPaying" ng-model="household.isFixed"  ng-change="exp.isFixedChecked($index)" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
+            <td><button type="button" class="btn btn-default" aria-label="Fix Price" id="isPaying" ng-model="household.isFixed"  ng-change="exp.checkFixDebt($index)" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
               <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
             </button> </td>
             <td>{{household.Name}}</td>
@@ -97,7 +97,7 @@
               <div class="form-inline">
                 <span>Стойност:</span>
                 <div class="input-group">
-                  <input type="number" min="0" step="any" class="form-control"  ng-model="household.Value" ng-change="exp.changePaymentStatus($index)"/>
+                  <input type="number" min="0" step="any" class="form-control"  ng-model="household.Value" ng-change="exp.fixDebt($index)"/>
                   <span class="input-group-addon">лв</span>
                 </div>
 
