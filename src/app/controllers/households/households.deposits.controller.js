@@ -25,11 +25,6 @@
       loadDeposits();
     });
     $scope.$on('deposit:added', function (event, arg) {
-      vm.lowerBoundaryPrice = arg['lowerBoundary'];
-      vm.upperBoundaryPrice = arg['upperBoundary'];
-      vm.dateMadeLowerboundary = arg['fromDate'];
-      vm.dateMadeUpperboundary = arg['toDate'];
-
       loadDeposits();
     });
 
@@ -58,7 +53,7 @@
 
 
     var loadDeposits = function(currentPage, pageItems,  filterByFields, orderBy, orderByReverse) {
-       HouseholdDeposit.query({id: $stateParams.householdId ,top: vm.top, skip: QueryConstructor.skip(vm.currentPage, vm.top), orderBy: QueryConstructor.order(orderBy, orderByReverse),
+       HouseholdDeposit.query({id: $stateParams.householdId ,top: vm.top, skip: QueryConstructor.skip(currentPage, vm.top), orderBy: QueryConstructor.order(orderBy, orderByReverse),
            lowerBoundaryPrice: vm.lowerBoundaryPrice , upperBoundaryPrice: vm.upperBoundaryPrice, dateMadeLowerboundary: vm.dateMadeLowerboundary , dateMadeUpperboundary: vm.dateMadeUpperboundary},
          function(response) {
          vm.deposits = response.Items;

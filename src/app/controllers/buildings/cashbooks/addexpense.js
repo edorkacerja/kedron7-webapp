@@ -10,11 +10,6 @@
     vm.filters = {};
     vm.newExpense = new Expense();
 
-
-
-
-
-
      //make an array of household expense values that are fixed.
      //the list is used to avoid changing the values of the households with custom expenses
      var fixedList = [];

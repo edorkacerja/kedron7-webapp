@@ -11,6 +11,11 @@
   function HouseholdFilterController( $scope, toastr , $rootScope , $timeout) {
     var vm = this;
     // set available range
+    $scope.$on('isPaid:changed',function(event,args){
+      //returns true or false
+      //true - the items are paid, false - the items are not paid yet
+      vm.isPaid = args;
+    });
     vm.minLowerBoundaryPrice = 0;
     vm.maxUpperBoundaryPrice = 1000;
 
@@ -18,14 +23,6 @@
     vm.lowerBoundaryPrice = vm.minLowerBoundaryPrice;
     vm.upperBoundaryPrice = vm.maxUpperBoundaryPrice;
 
-    vm.fromDatePopup = {
-      opened: false
-    };
-
-
-    vm.toDatePopup = {
-      opened: false
-    };
 
 
 
@@ -34,16 +31,10 @@
       startingDay: 1
     };
 
-    vm.openFromDatePopup = function() {
-      vm.fromDatePopup.opened = true;
-    };
-
-    vm.openToDatePopup = function() {
-      vm.toDatePopup.opened = true;
-    };
 
     var timeoutPromise;
-    $scope.$watchGroup(['hfdetail.lowerBoundaryPrice','hfdetail.upperBoundaryPrice' , 'hfdetail.toDate', 'hfdetail.fromDate'], function() {
+    $scope.$watchGroup(['hfdetail.lowerBoundaryPrice','hfdetail.upperBoundaryPrice' , 'hfdetail.toDateMade', 'hfdetail.fromDateMade',
+     'hfdetail.fromDatePaid', 'hfdetail.toDatePaid'], function() {
 
       $timeout.cancel(timeoutPromise);
       var timeoutPromise = $timeout(function() {
@@ -51,8 +42,10 @@
         $rootScope.$broadcast('filterUpdate', {
           'lowerBoundary': vm.lowerBoundaryPrice,
           'upperBoundary': vm.upperBoundaryPrice ,
-          'fromDate': vm.fromDate,
-          'toDate': vm.toDate
+          'fromDateMade': vm.fromDateMade,
+          'toDateMade': vm.toDateMade,
+          'fromDatePaid': vm.fromDatePaid,
+          'toDatePaid':  vm.toDatePaid
         });
       }, 500);
 
