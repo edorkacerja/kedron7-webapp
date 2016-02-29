@@ -15,7 +15,7 @@
           <div class="col-lg-7 col-lg-offset-3 col-md-3 col-md-offset-3 col-sm-6 col-xs-12">
              <h2><span>Общo:</span></h2>
              <div class="input-group">
-               <input  type="number"  min="0" step="any" class="form-control inline" ng-model="exp.total" ng-change="exp.isFiltering = true" />
+               <input  type="number"  min="0" step="any" class="form-control inline" ng-model="exp.total" ng-change="exp.isFiltering = true;" />
                <span class="input-group-addon">лв.</span>
              </div>
 
@@ -34,29 +34,36 @@
                   <div class="panel-body">
                   <fieldset><!-- ADD NEW FILTER  START -->
                     <div class="row">
-                      <div class="form-group col-md-3">
+                      <div class="form-group col-md-2 no-padding" ng-if="exp.filters.fromToFilters.length > 0">
+                        <select class="form-control" ng-model="newFilter.logical" ng-init="newFilter.logical = 'AND'" >
+                          <option value="OR"> ИЛИ </option>
+                          <option value="AND"> И </option>
+                          <option value="NOT"> БЕЗ </option>
+                        </select>
+                      </div>
+                      <div class="form-group col-md-3 no-padding">
                         <select class="form-control" ng-model="newFilter.attribute" ng-init="newFilter.attribute = 'Floor'" >
                           <option value="Number">Номер на апартамент</option>
                           <option value="Floor">Етаж</option>
                         </select>
                       </div>
-                      <div class="form-group col-md-2">
-                        <select class="form-control" ng-model="newFilter.condition" ng-init="newFilter.condition = '>'" >
+                      <div class="form-group col-md-2 no-padding">
+                        <select class="form-control" ng-model="newFilter.comparison" ng-init="newFilter.comparison = '>'" >
                           <option value=">"> > </option>
                           <option value="<"> < </option>
                           <option value="="> = </option>
                         </select>
                       </div>
-                      <div class="form-group col-md-3">
+                      <div class="form-group col-md-3 no-padding">
                         <input type="number" min="0"  ng-model="newFilter.value" class="form-control" ng-init="newFilter.value = 0 "/>
                       </div>
-                      <div class="form-group col-md-4">
+                      <div class="form-group col-md-2 no-padding">
                         <button class="btn btn-info" ng-click="exp.addFromToFilter(newFilter)">Добави</button>
                       </div>
                     </div>
                   </fieldset><!-- ADD NEW FILTER END -->
                   <ul  class='list-group'  >
-                    <li ng-repeat="filter in exp.filters.fromToFilters track by $index" class="list-group-item clearfix">{{filter.attribute | attribute}} {{filter.condition}} {{filter.value}} <button class="btn btn-error btn-sm pull-right"  ng-click="exp.removeFromToFilter($index)">Премахни</button></li>
+                    <li ng-repeat="filter in exp.filters.fromToFilters track by $index" class="list-group-item clearfix">{{filter.logical}} {{filter.attribute | attribute}} {{filter.comparison}} {{filter.value}}  <button class="btn btn-error btn-sm pull-right"  ng-click="exp.removeFromToFilter($index)">Премахни</button></li>
                   </ul>
                 </div><!-- filters panel body end -->
               </div><!-- filters panel end -->
@@ -68,17 +75,20 @@
         <!-- FILTERS END -->
 
 
+       <div class="row" ng-if="exp.households">
         <!-- building households table -->
         <h4>Начисления по жилища</h4>
         <table class="table table-condensed">
-            <th>Плаща</th>
+            <th>Фиксиране</th>
             <th>Имe</th>
             <th>Номер</th>
             <th>Етаж</th>
             <th>Броят на жителите</th>
             <th>Дължима сума</th>
           <tr ng-repeat="household in exp.households">
-            <td><input id="isPaying" type="checkbox" ng-model="household.IsPaying"  ng-change="exp.isPayingChecked($index)" aria-label="is paying"></td>
+            <td><button type="button" class="btn btn-default" aria-label="Fix Price" id="isPaying" ng-model="household.isFixed"  ng-change="exp.checkFixDebt($index)" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0">
+              <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>
+            </button> </td>
             <td>{{household.Name}}</td>
             <td>{{household.Number}}</td>
             <td>{{household.Floor}}</td>
@@ -87,7 +97,7 @@
               <div class="form-inline">
                 <span>Стойност:</span>
                 <div class="input-group">
-                  <input type="number" min="0" step="any" class="form-control"  ng-model="household.Value" ng-change="exp.changePaymentStatus($index)"/>
+                  <input type="number" min="0" step="any" class="form-control"  ng-model="household.Value" ng-change="exp.fixDebt($index)"/>
                   <span class="input-group-addon">лв</span>
                 </div>
 
@@ -96,6 +106,8 @@
           </tr>
         </table>
         <button class="btn btn-success" ng-disabled="!exp.newExpense.Name" ng-click="exp.addExpense()">Добави разход</button>
+      </div><!-- row -->
+
       </div>
     </div>
   </div>

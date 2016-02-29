@@ -4,41 +4,78 @@
     .module('kedron')
     .controller('addExpenseController', addExpenseController );
 
-  function addExpenseController($stateParams,$state,  Expense, households, toastr) {
+  function addExpenseController($stateParams,$state, $scope,  Expense, toastr ) {
     var vm = this;
     vm.buildingId = $stateParams.buildingId;
     vm.filters = {};
     vm.newExpense = new Expense();
 
-    vm.noExpenseTypes = true;
-    vm.households = households;
+     //make an array of household expense values that are fixed.
+     //the list is used to avoid changing the values of the households with custom expenses
+     var fixedList = [];
+     //a variable that stores the total of all fixed items
+     var fixedTotal = 0;
 
-
-     //manual mode
-    vm.isPayingChecked = function(index) {
-      if(vm.households[index].isPaying) {
-        vm.households[index].Value = 1;
+    vm.checkFixDebt = function(index) {
+      console.log('upcall');
+      if(vm.households[index].isFixed) {
+        fixedList.push(vm.households[index]);
       } else {
-        vm.households[index].Value = 0;
+        vm.households[index].isFixed = 0;
+        fixedList.splice(index,1);
       }
+    };
+     //change to manual mode
+    //triggered when the user manually changes the Value
+    vm.fixDebt = function(index){
+      if(!vm.households[index].isFixed) {
+        //if it is not fixed, set it to fixed and put into the fixedList
+        vm.households[index].isFixed = 1;
+        fixedList.push(vm.households[index]);
+      }
+      updateFixedTotal();
       updateTotal();
     };
 
-    vm.changePaymentStatus = function(index){
-       vm.households[index].Value > 0 ? vm.households[index].IsPaying = true : vm.households[index].IsPaying = false;
-      updateTotal();
-    };
+    //calculate the sum of the fixed items
+    function updateFixedTotal() {
+      fixedTotal = 0;
+      console.log(fixedList);
+      angular.forEach(fixedList, function(value, key) {
+        fixedTotal += value.Value;
+      })
+    }
+    //calculate the remainder of the sum without the fixed items
 
     function updateTotal() {
-      //nullify filters and reinitialize the total
-      vm.total = 0;
+      //nullify filters
       vm.isFiltering = false;
       vm.filters = {fromToFilters: []};
       vm.householdPerson = null;
-      for(var i = 0; i < vm.households.length ; i++ ){
-        vm.total += vm.households[i].Value;
+      //find the differences
+      var remainderTotal = vm.total - fixedTotal;
+      var diffCount = vm.households.length - fixedList.length;
+      //return if the remainder is a fixed value
+      if (remainderTotal < 0) return;
+      var avgRemainder = remainderTotal/diffCount;
+
+      //this won't be good for large buildings
+      for(var i = 0 ; i < vm.households.length ; i ++) {
+        var isFixed = false;
+        for( var f = 0 ; f < fixedList.length ; f ++ ) {
+          if(fixedList[f].Id === vm.households[i].Id) {
+            console.log('identical!');
+            isFixed = true;
+            break;
+          }
+        }
+        if(!isFixed) vm.households[i].Value = avgRemainder;
+
       }
+
+
     }
+
 
     //custom mode
     vm.filters.fromToFilters = [];
@@ -57,10 +94,10 @@
     vm.updateFilters = function() {
       var filterString = '';
       for (var j = 0; j < vm.filters.fromToFilters.length; j++){
-        if(j == (vm.filters.fromToFilters.length - 1)) {
-          filterString += vm.filters.fromToFilters[j].attribute + vm.filters.fromToFilters[j].condition + vm.filters.fromToFilters[j].value;
-        } else {
-          filterString += vm.filters.fromToFilters[j].attribute + vm.filters.fromToFilters[j].condition + vm.filters.fromToFilters[j].value + ','
+          if( j == 0) {
+            filterString += vm.filters.fromToFilters[j].attribute + vm.filters.fromToFilters[j].comparison + vm.filters.fromToFilters[j].value;
+        } else  {
+            filterString += ' ' +  vm.filters.fromToFilters[j].logical + ' ' + vm.filters.fromToFilters[j].attribute + vm.filters.fromToFilters[j].comparison + vm.filters.fromToFilters[j].value ;
         }
       }
 
@@ -89,8 +126,6 @@
             result.push({HouseholdId: vm.households[i].Id , Value: vm.households[i].Value});
          }
       vm.newExpense.ExpensePayersInformation = result;
-
-
         vm.newExpense.$save({building_id: $stateParams.buildingId},function(data) {
         toastr.success('Разходът бе добавен', "Име: " + data.Name );
         $state.go('cashbook', {buildingId: $stateParams.buildingId});

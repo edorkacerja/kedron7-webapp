@@ -6,28 +6,52 @@
 
   </div><!-- value row -->
   <div class="row">
+    <h5>Дата на създаване</h5>
     <div class="col-md-6">
-      <!-- from date -->
+      <!-- from date made-->
       <h5>От</h5>
       <p class="input-group">
-        <input type="text" class="form-control"  datepicker-popup="dd.MM.yyyy" ng-model="hfdetail.fromDate" is-open="hfdetail.fromDatePopup.opened" datepicker-options="hfdetail.dateOptions"  close-text="Затвори"  />
+        <input type="text" class="form-control"  datepicker-popup="dd.MM.yyyy" ng-model="hfdetail.fromDateMade" is-open="hfdetail.fromDateMadePopup.opened"  ng-init="hfdetail.fromDateMadePopup.opened=false" datepicker-options="hfdetail.dateOptions"  close-text="Затвори"  />
               <span class="input-group-btn">
-                <button type="button" class="btn btn-default" ng-click="hfdetail.openFromDatePopup()"><i class="glyphicon glyphicon-calendar"></i></button>
+                <button type="button" class="btn btn-default" ng-click="hfdetail.fromDateMadePopup.opened=true"><i class="glyphicon glyphicon-calendar"></i></button>
               </span>
       </p>
     </div>
-    <!-- to date -->
+    <!-- to date made-->
     <div class="col-md-6">
       <h5>До</h5>
       <p class="input-group">
-        <input type="text" class="form-control" datepicker-popup="dd.MM.yyyy" ng-model="hfdetail.toDate" is-open="hfdetail.toDatePopup.opened"  datepicker-options="hfdetail.dateOptions" close-text="Затвори" />
+        <input type="text" class="form-control" datepicker-popup="dd.MM.yyyy" ng-model="hfdetail.toDateMade" is-open="hfdetail.toDateMadePopup.opened"  ng-init="hfdetail.toDateMadePopup.opened=false"  datepicker-options="hfdetail.dateOptions" close-text="Затвори" />
               <span class="input-group-btn">
-                <button type="button" class="btn btn-default" ng-click="hfdetail.openToDatePopup()"><i class="glyphicon glyphicon-calendar"></i></button>
+                <button type="button" class="btn btn-default" ng-click="hfdetail.toDateMadePopup.opened=true"><i class="glyphicon glyphicon-calendar"></i></button>
               </span>
       </p>
     </div>
-  </div><!-- dates row -->
+  </div><!-- dates made row -->
+  <div class="row" ng-if="hfdetail.isPaid">
 
+    <h5>Дата на плащане</h5>
+    <div class="col-md-6">
+      <!-- from date made-->
+      <h5>От</h5>
+      <p class="input-group">
+        <input type="text" class="form-control"  datepicker-popup="dd.MM.yyyy" ng-model="hfdetail.fromDatePaid" is-open="hfdetail.fromDatePaidPopup.opened" ng-init="hfdetail.fromDatePaidPopup.opened=false" datepicker-options="hfdetail.dateOptions"  close-text="Затвори"  />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="hfdetail.fromDatePaidPopup.opened=true"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+      </p>
+    </div>
+    <!-- to date made-->
+    <div class="col-md-6">
+      <h5>До</h5>
+      <p class="input-group">
+        <input type="text" class="form-control" datepicker-popup="dd.MM.yyyy" ng-model="hfdetail.toDatePaid" is-open="hfdetail.toDatePaidPopup.opened" ng-init="hfdetail.toDatePaidPopup.opened=false" datepicker-options="hfdetail.dateOptions" close-text="Затвори" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="hfdetail.toDatePaidPopup.opened=true"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+      </p>
+    </div>
+  </div><!-- dates paid row -->
 
 
 </div>
