@@ -64,12 +64,11 @@
               }]
             }
           },
-          //todo implement filter
-          //"filters": {
-          //  templateUrl: 'app/views/households/householdDetails.filters.html',
-          //  controller: 'HouseholdFilterController',
-          //  controllerAs: 'hfdetail'
-          //}
+          "filters": {
+            templateUrl: 'app/views/filter/filter.html',
+            controller: 'FilterController',
+            controllerAs: 'filter'
+          }
         }
 
       })
@@ -86,12 +85,11 @@
               }]
             }
           },
-          //todo implement filter
-          //"filters": {
-          //  templateUrl: 'app/views/households/householdDetails.filters.html',
-          //  controller: 'HouseholdFilterController',
-          //  controllerAs: 'hfdetail'
-          //}
+          "filters": {
+            templateUrl: 'app/views/filter/filter.html',
+            controller: 'FilterController',
+            controllerAs: 'filter'
+          }
         }
 
       })
@@ -104,12 +102,14 @@
             controller: 'BuildingCashbookModelsController',
             controllerAs: 'cbm',
             resolve: {
-              Model: ['Expense', function (Expense) {    //todo modify this when reports api is ready
+              Expenses: ['Expense', function (Expense) {    //todo modify this when reports api is ready
                 return Expense;
+              }],
+              Deposits: ['BuildingDeposit' , function(BuildingDeposit) {
+                return BuildingDeposit
               }]
             }
-          },
-          //todo implement filter
+          }
         }
       })
 
@@ -142,9 +142,9 @@
             controllerAs: 'hpdetail'
           },
           "filters": {
-            templateUrl: 'app/views/households/householdDetails.filters.html',
-            controller: 'HouseholdFilterController',
-            controllerAs: 'hfdetail'
+            templateUrl: 'app/views/filter/filter.html',
+            controller: 'FilterController',
+            controllerAs: 'filter'
           }
         }
       })
@@ -157,9 +157,9 @@
             controllerAs: 'hddetail'
           },
           "filters": {
-            templateUrl: 'app/views/households/householdDetails.filters.html',
-            controller: 'HouseholdFilterController',
-            controllerAs: 'hfdetail'
+            templateUrl: 'app/views/filter/filter.html',
+            controller: 'FilterController',
+            controllerAs: 'filter'
           }
         }
       })
@@ -173,9 +173,9 @@
             controllerAs:'hdpdetail'
           },
           "filters":{
-            templateUrl: 'app/views/households/householdDetails.filters.html',
-            controller: 'HouseholdFilterController',
-            controllerAs: 'hfdetail'
+            templateUrl: 'app/views/filter/filter.html',
+            controller: 'FilterController',
+            controllerAs: 'filter'
           }
         }
 

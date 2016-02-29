@@ -11,7 +11,7 @@
 
 
   function deposit($resource , auth, api ) {
-    return $resource(api +"/building/:building_id/deposits", { id: '@id'}, {
+    return $resource(api +"/buildings/:building_id/deposits", { id: '@id'}, {
       get: {
         method: 'GET',
         headers: { 'Authorization': 'Bearer '+  auth.currentUser().accessToken }

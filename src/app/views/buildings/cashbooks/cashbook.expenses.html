@@ -2,7 +2,6 @@
   <div class="col-sm-12">
     <h4>Разходи</h4>
     <a ui-sref="addExpense({buildingId: cbm.buildingId})" class="btn btn-primary">Добави разход </a>
-    <div range-slider min="cbm.minLowerBoundaryPrice" max="cbm.maxUpperBoundaryPrice" model-min="cbm.lowerBoundaryPrice" model-max="cbm.upperBoundaryPrice" show-values="true" filter="currency:'лв.'"></div>
     <table tr-ng-grid="" items="cbm.modelsCollection" locale="bg" page-items="cbm.top" total-items="cbm.modelsCount" enable-filtering='false'on-data-required="cbm.onServerSideItemsRequested(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
       <thead>
       <tr>
@@ -14,7 +13,7 @@
       <tbody>
       <tr>
         <td field-name="Name">{{gridDisplayItem.Name}}</td>
-        <td field-name="DateMade">{{gridDisplayItem.Value}}</td>
+        <td field-name="DateMade">{{gridDisplayItem.DateMade}}</td>
         <td field-name="Value">{{gridDisplayItem.Value}}</td>
         <td field-name="Id"><button class="btn btn-danger" ng-click="cbm.deleteBuildingExpense(gridDisplayItem.Id)">Изтрий </button></td>
       </tr>
