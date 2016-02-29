@@ -14,11 +14,10 @@
       </thead>
       <tbody>
       <tr>
-        <td field-name="Name">{{gridDisplayItem.Name}}</td>
+        <td field-name="Name"><a class="btn btn-default btn-block"  ui-sref="householdDetail({householdId: gridItem.Id})">{{gridDisplayItem.Name}}</a></td>
         <td field-name="Number">{{gridDisplayItem.Number}}</td>
         <td field-name="Floor">{{gridDisplayItem.Floor}}</td>
         <td field-name="Residents">{{gridDisplayItem.Residents}}</td>
-        <td field-name="Id"><button class="btn btn-primary" ng-click="bhdetail.gotoHousehold(gridDisplayItem.Id )">Отвори</button></td>
       </tr>
       </tbody>
 

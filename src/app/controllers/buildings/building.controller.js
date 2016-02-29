@@ -33,20 +33,12 @@
          if($window.confirm('Сигурни ли сте, че искате да изтриете тази сграда?')) {
            Building.delete({id: vm.building.Id},function() {
              $state.go('buildings');
-             toastr.warning('Сградата бе изтрита успешно.');
+             toastr.success('Сградата бе изтрита успешно.');
            }, function(error){
              toastr.warning(error);
            });
          }
        };
-       //add a household
-
-
-       vm.gotoCashbook = function() {
-         $state.go('buildingDetail.cashbook' , {buildingId: vm.building.Id})
-       };
-
-
 
 
   }

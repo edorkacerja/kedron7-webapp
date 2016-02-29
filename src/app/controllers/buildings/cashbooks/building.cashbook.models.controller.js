@@ -7,6 +7,7 @@
 
   function BuildingCashbookModelsController(Model, toastr, QueryConstructor, $stateParams , $scope , $window) {
     var vm = this;
+    vm.top = 10;
     //listen to the filter and when the deposit gets successfully added
     $scope.$on('filterUpdate', function (event, arg) {
       vm.lowerBoundaryPrice = arg['lowerBoundary'];
@@ -41,7 +42,6 @@
           upperBoundaryPrice: vm.upperBoundaryPrice , lowerBoundaryPrice: vm.lowerBoundaryPrice, dateMadeUpperBoundary: vm.dateMadeUpperboundary , dateMadeLowerBoundary: vm.dateMadeLowerboundary } ,
         function(response) {
           vm.modelsCollection= response.Items;
-          console.log(response.Items);
           vm.modelsCount = response.Count;
         }, function(response){
           toastr.error("Не успя да се установи връзка с базата данни:" , response );

@@ -9,7 +9,13 @@
     vm.buildingId = $stateParams.buildingId;
     vm.filters = {};
     vm.newExpense = new Expense();
-
+     //fired when the total is changed in the input box
+     vm.totalChanged = function() {
+       vm.filters = {fromToFilters: []};
+       vm.householdPerson = null;
+       vm.isFiltering = true;
+       vm.households = null;
+     };
      //make an array of household expense values that are fixed.
      //the list is used to avoid changing the values of the households with custom expenses
      var fixedList = [];
@@ -64,7 +70,6 @@
         var isFixed = false;
         for( var f = 0 ; f < fixedList.length ; f ++ ) {
           if(fixedList[f].Id === vm.households[i].Id) {
-            console.log('identical!');
             isFixed = true;
             break;
           }
