@@ -1,17 +1,20 @@
 <div class="row">
   <div class="col-sm-12">
     <h4>Депозити</h4>
-    <div range-slider min="cbm.minLowerBoundaryPrice" max="cbm.maxUpperBoundaryPrice" model-min="cbm.lowerBoundaryPrice" model-max="cbm.upperBoundaryPrice" show-values="true" filter="currency:'лв.'"></div>
     <table tr-ng-grid="" items="cbm.modelsCollection" locale="bg" page-items="cbm.top" total-items="cbm.modelsCount" enable-filtering='false'on-data-required="cbm.onServerSideItemsRequested(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
       <thead>
       <tr>
-        <th field-name="Name" enable-filtering="true" display-name="Име"></th>
+        <th field-name="HouseholdName" enable-filtering="true" display-name="Име на жилище"></th>
+        <th field-name="HouseholdId" enable-filtering="false"></th>
+        <th field-name="DateMade" enable-filtering="false"  display-format="date: 'MM/dd/yyyy | h:mma'" display-name="Дата на създаване"></th>
         <th field-name="Value" display-name="Стойност"  enable-filtering="false" display-format="currency: 'лв. '"></th>
       </tr>
       </thead>
       <tbody>
       <tr>
-        <td field-name="Name">{{gridDisplayItem.Name}}</td>
+        <td field-name="HouseholdName">{{gridDisplayItem.HouseholdName}}</td>
+        <td field-name="HouseholdId">{{gridDisplayItem.HouseholdId}}</td>
+        <td field-name="DateMade">{{gridDisplayItem.DateMade}}</td>
         <td field-name="Value">{{gridDisplayItem.Value}}</td>
       </tr>
       </tbody>

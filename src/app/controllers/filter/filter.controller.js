@@ -6,9 +6,9 @@
 
   angular
     .module('kedron')
-    .controller('HouseholdFilterController', HouseholdFilterController );
-
-  function HouseholdFilterController( $scope, toastr , $rootScope , $timeout) {
+    .controller('FilterController', FilterController );
+  //this filter is used for household debts, deposits and building expenses and deposits
+  function FilterController( $scope, toastr , $rootScope , $timeout) {
     var vm = this;
     // set available range
     $scope.$on('isPaid:changed',function(event,args){
@@ -33,8 +33,8 @@
 
 
     var timeoutPromise;
-    $scope.$watchGroup(['hfdetail.lowerBoundaryPrice','hfdetail.upperBoundaryPrice' , 'hfdetail.toDateMade', 'hfdetail.fromDateMade',
-     'hfdetail.fromDatePaid', 'hfdetail.toDatePaid'], function() {
+    $scope.$watchGroup(['filter.lowerBoundaryPrice','filter.upperBoundaryPrice' , 'filter.toDateMade', 'filter.fromDateMade',
+      'filter.fromDatePaid', 'filter.toDatePaid'], function() {
 
       $timeout.cancel(timeoutPromise);
       var timeoutPromise = $timeout(function() {
