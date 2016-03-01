@@ -23,6 +23,11 @@
                     <input type="number"  ng-model="bdetail.building.FloorsCount" class="form-control" id="floors" placeholder="Floors" required>
                     <span ng-show="bdetail.editForm.floors.$error.required  && !bdetail.editForm.floors.$pristine" class="help-block">Моля, въведете число от 1 до 80!</span>
                   </div>
+                  <div class="form-group" ng-class="{ 'has-error' : bdetail.editForm.CompanyTax.$error.required && bdetail.editForm.ConpanyTax.$dirty }">
+                    <label for="CompanyTax">Company Tax</label>
+                    <input type="number"  ng-model="bdetail.building.CompanyTax" class="form-control" id="CompanyTax" placeholder="CompanyTax" required>
+                    <span ng-show="bdetail.editForm.CompanyTax.$error.required  && !bdetail.editForm.CompanyTax.$pristine" class="help-block">Моля, въведете число от 1 до 80!</span>
+                  </div>
 
                 <div class="form-group">
                   <button ng-click="bdetail.delete()" class="btn btn-danger btn-sm pull-right">Премахни сграда</button>
@@ -45,6 +50,7 @@
                  <ul>
                    <li> Населено място: {{bdetail.building.Location}} </li>
                    <li> Брой етажи: {{bdetail.building.FloorsCount}}</li>
+                   <li> Company Tax: {{bdetail.building.CompanyTax}}</li>
                  </ul>
                  <div class="well well-sm">
                    <h5 class="inline">Баланс:
