@@ -12,26 +12,21 @@
   function deposit($resource , auth, api ) {
     return $resource(api +"/households/:id/deposits", { id: '@id'}, {
       get: {
-        method: 'GET',
-        headers: { 'Authorization': 'Bearer '+  auth.currentUser().accessToken }
+        method: 'GET'
       },
       query: {
-        method: 'GET',
-        headers: { 'Authorization': "Bearer " + auth.currentUser().accessToken },
+        method: 'GET'
       },
       delete: {
         url: api + "/deposits/:depositId",
-        method: 'DELETE',
-        headers: { 'Authorization': "Bearer " + auth.currentUser().accessToken }
+        method: 'DELETE'
       },
       save: {
         url:api +"/households/:id/adddeposit",
-        method: 'POST',
-        headers: { 'Authorization': "Bearer " + auth.currentUser().accessToken }
+        method: 'POST'
       },
       update: {
-        method: 'PUT',
-        headers: { 'Authorization': "Bearer " + auth.currentUser().accessToken }
+        method: 'PUT'
       }
     });
   }

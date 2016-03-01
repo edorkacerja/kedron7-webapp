@@ -16,7 +16,10 @@
     toastrConfig.positionClass = 'toast-top-right';
     toastrConfig.preventDuplicates = true;
     toastrConfig.progressBar = true;
+    //enable CORS
     $httpProvider.defaults.useXDomain = true;
+    //push the authInterceptor service
+    $httpProvider.interceptors.push('authInterceptor');
     //loading bar
     cfpLoadingBarProvider.includeBar = true;
     cfpLoadingBarProvider.includeSpinner = false;

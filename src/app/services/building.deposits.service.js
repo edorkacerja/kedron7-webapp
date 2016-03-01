@@ -13,12 +13,10 @@
   function deposit($resource , auth, api ) {
     return $resource(api +"/buildings/:building_id/deposits", { id: '@id'}, {
       get: {
-        method: 'GET',
-        headers: { 'Authorization': 'Bearer '+  auth.currentUser().accessToken }
+        method: 'GET'
       },
       query: {
-        method: 'GET',
-        headers: { 'Authorization': "Bearer " + auth.currentUser().accessToken }
+        method: 'GET'
       }
     });
   }

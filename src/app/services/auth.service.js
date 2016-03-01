@@ -70,11 +70,9 @@
 
      //currentUser
      this.currentUser = function() {
-       if ($window.sessionStorage["userInfo"] !== 'null') {
+       if ($window.sessionStorage["userInfo"] != null) {
            return JSON.parse($window.sessionStorage["userInfo"]);
        } else {
-          //return {userName: 'icaka'};
-         console.log("current user is null");
           return null;
        }
      };
@@ -82,7 +80,7 @@
 
       //run on page reload to reinitialize the user info
        function initf() {
-           if ($window.sessionStorage["userInfo"]) {
+           if ($window.sessionStorage["userInfo"] != null) {
                $rootScope.userInfo = JSON.parse($window.sessionStorage["userInfo"]);
            }
        }
@@ -92,6 +90,3 @@
 
 })();
 
-
-//"senart@ymail.com"
-// "123456g"

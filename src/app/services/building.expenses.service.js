@@ -9,32 +9,26 @@
   function expense($resource , auth, api ) {
     return $resource(api +"/buildings/:building_id/expenses", { building_id: '@buildingid'}, {
       get: {
-        method: 'GET',
-        headers: { 'Authorization': 'Bearer '+  auth.currentUser().accessToken }
+        method: 'GET'
       },
       query: {
-        method: 'GET',
-        headers: { 'Authorization': "Bearer " + auth.currentUser().accessToken }
+        method: 'GET'
       },
       delete: {
         url: api + '/Expenses/:ExpenseId',
-        method: 'DELETE',
-        headers: { 'Authorization': "Bearer " + auth.currentUser().accessToken }
+        method: 'DELETE'
       },
       save: {
         url: api + "/buildings/:building_id/addexpense",
-        method: 'POST',
-        headers: { 'Authorization': "Bearer " + auth.currentUser().accessToken }
+        method: 'POST'
       },
       update: {
-        method: 'PUT',
-        headers: { 'Authorization': "Bearer " + auth.currentUser().accessToken }
+        method: 'PUT'
       },
       payers: {
         url: api + "/buildings/:building_id/expensepayers",
         method: 'GET',
         transformRequest: [],
-        headers: { 'Authorization': "Bearer " + auth.currentUser().accessToken },
         isArray: true
       }
     });

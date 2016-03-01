@@ -9,24 +9,19 @@
    function building($resource , auth, api ) {
      return $resource(api +"/buildings/:id", { id: '@id'}, {
         get: {
-          method: 'GET',
-          headers: { 'Authorization': 'Bearer '+  auth.currentUser().accessToken }
+          method: 'GET'
         },
         query: {
-          method: 'GET',
-          headers: { 'Authorization': "Bearer " + auth.currentUser().accessToken }
+          method: 'GET'
         },
         delete: {
-          method: 'DELETE',
-          headers: { 'Authorization': "Bearer " + auth.currentUser().accessToken }
+          method: 'DELETE'
         },
         save: {
-         method: 'POST',
-         headers: { 'Authorization': "Bearer " + auth.currentUser().accessToken }
+         method: 'POST'
        },
         update: {
-          method: 'PUT',
-          headers: { 'Authorization': "Bearer " + auth.currentUser().accessToken }
+          method: 'PUT'
         }
      });
    }
