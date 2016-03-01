@@ -8,7 +8,7 @@
     return {
       request: function (config) {
         config.headers = config.headers || {};
-        if(JSON.parse($window.sessionStorage["userInfo"]) != null) {
+        if(JSON.parse($window.sessionStorage["userInfo"]) !== 'null') {
           config.headers.Authorization = 'Bearer ' + JSON.parse($window.sessionStorage["userInfo"]).accessToken;
         }
         return config;
