@@ -8,9 +8,9 @@
   /** @ngInject */
   function LoginController( auth, $state, toastr) {
     var vm = this;
-    if (auth.currentUser()) {
-      $state.go('buildings');
-    }
+
+
+
     vm.login = function(user) {
             auth.login(user).then(
                function() {
@@ -19,10 +19,15 @@
                },
                function(error) {
                  toastr.error("Неуспешно влизане в системата" , error );
+                 vm.errorMessage = error.data.error_description;
                }
             );
 
     }
+
+    //Handling the error message of form validation
+
+
 
 
   }
