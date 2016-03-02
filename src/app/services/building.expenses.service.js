@@ -7,7 +7,7 @@
 
 
   function expense($resource , auth, api ) {
-    return $resource(api +"/buildings/:building_id/expenses", { building_id: '@buildingid'}, {
+    return $resource(api +"/buildings/:building_id/expenses", { building_id: '@buildingId', id: '@id'}, {
       get: {
         method: 'GET'
       },
@@ -15,7 +15,7 @@
         method: 'GET'
       },
       delete: {
-        url: api + '/Expenses/:ExpenseId',
+        url: api + '/Expenses/:id',
         method: 'DELETE'
       },
       save: {

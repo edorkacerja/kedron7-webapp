@@ -15,7 +15,7 @@
         <td field-name="Name">{{gridDisplayItem.Name}}</td>
         <td field-name="DateMade">{{gridDisplayItem.DateMade}}</td>
         <td field-name="Value">{{gridDisplayItem.Value}}</td>
-        <td field-name="Id"><button class="btn btn-danger" ng-click="cbm.deleteBuildingExpense(gridDisplayItem.Id)">Изтрий </button></td>
+        <td field-name="Id"><button class="btn btn-danger" ng-really-message="Сигурни ли сте, че искате да изтриете този разход?" ng-really-click="cbm.deleteModel(gridDisplayItem.Id)" >Изтрий </button></td>
       </tr>
       </tbody>
 

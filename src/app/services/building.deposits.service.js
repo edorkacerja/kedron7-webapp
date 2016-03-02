@@ -11,12 +11,16 @@
 
 
   function deposit($resource , auth, api ) {
-    return $resource(api +"/buildings/:building_id/deposits", { id: '@id'}, {
+    return $resource(api +"/buildings/:building_id/deposits", { building_id: '@building_id' , id: '@id' }, {
       get: {
         method: 'GET'
       },
       query: {
         method: 'GET'
+      },
+      delete: {
+        url: api + '/Deposits/:id',
+        method: 'DELETE'
       }
     });
   }

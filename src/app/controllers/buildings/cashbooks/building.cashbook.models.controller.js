@@ -19,15 +19,14 @@
     });
     //delete expense
     //todo fix?
-    vm.deleteBuildingExpense = function(expense_id) {
-      if($window.confirm('Сигурни ли сте, че искате да изтриете това жилище?')) {
-        Model.delete({ExpenseId: expense_id}, function () {
+    vm.deleteModel = function(id) {
+        Model.delete({id: id}, function () {
           loadModels();
           toastr.success('Заплащането протече успешно.');
         }, function(response){
           toastr.error("Не успя да се установи връзка с базата данни:" , response);
         });
-      }
+
     };
 
 
