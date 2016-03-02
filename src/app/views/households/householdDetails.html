@@ -69,6 +69,22 @@
                 </div>
               </div>
 
+              <div class="form-group row" ng-class="{ 'has-error' : (hdetail.editForm.phone.$error.maxlength)&& hdetail.editForm.phone.$dirty }">
+                <label class="col-md-2 control-label" for="phone">Phone</label>
+                <div class="col-md-10">
+                  <input type="text" class="form-control" id="phone" name="phone" ng-model="hdetail.household.Phone" ng-maxlength="100"/>
+                  <span class="help-block" ng-show="hdetail.editForm.phone.$error.maxlength">Please enter a valid phone number!</span>
+                </div>
+              </div>
+
+              <div class="form-group row" ng-class="{ 'has-error' : (hdetail.editForm.notes.$error.maxlength)&& hdetail.editForm.notes.$dirty }">
+                <label class="col-md-2 control-label" for="notes">Notes</label>
+                <div class="col-md-10">
+                  <input type="text" class="form-control" id="notes" name="notes" ng-model="hdetail.household.Notes" ng-maxlength="200"/>
+                  <span class="help-block" ng-show="hdetail.editForm.Notes.$error.maxlength">Please enter a valid Note!</span>
+                </div>
+              </div>
+
               <div class="form-group ">
                 <button ng-click="hdetail.delete()" class="btn btn-danger btn-sm pull-right ">Remove Household</button>
               </div>

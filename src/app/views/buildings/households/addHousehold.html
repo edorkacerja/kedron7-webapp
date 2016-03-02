@@ -38,6 +38,22 @@
                   <span ng-show="adh.householdForm.floor.$error.required  && !adh.householdForm.floor.$pristine" class="help-block">Моля, изберете етаж на жилището!</span>
                 </div>
               </div>
+
+              <div class="form-group row" ng-class="{ 'has-error' : (adh.householdForm.Phone.$error.maxlength)&& adh.householdForm.name.$dirty }">
+                <label class="col-md-2 control-label" for="Phone">Phone</label>
+                <div class="col-md-10">
+                  <input type="text" class="form-control" id="Phone" name="Phone" ng-model="adh.newHousehold.Phone" ng-maxlength="100"/>
+                  <span class="help-block" ng-show="adh.householdForm.Phone.$error.maxlength">Please enter a valid phone number!</span>
+                </div>
+              </div>
+
+              <div class="form-group row" ng-class="{ 'has-error' : (adh.householdForm.Notes.$error.maxlength)&& adh.householdForm.Notes.$dirty }">
+                <label class="col-md-2 control-label" for="Notes">Notes</label>
+                <div class="col-md-10">
+                  <input type="text" class="form-control" id="Notes" name="Notes" ng-model="adh.newHousehold.Notes" ng-maxlength="100"/>
+                  <span class="help-block" ng-show="adh.householdForm.Notes.$error.maxlength">Please enter a shorter note!</span>
+                </div>
+              </div>
     </div><!-- modal body -->
   <div class="modal-footer">
       <button class="btn btn-primary" ng-disabled="adh.householdForm.$invalid" type="submit" >Добави</button>
