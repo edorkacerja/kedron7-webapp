@@ -44,10 +44,12 @@
 
 
     //delete debt
+    //todo fix
     vm.deleteDebt = function(id) {
-      if($window.confirm('Сигурни ли сте, че искате да изтриете това жилище?')) {
+      if($window.confirm('Сигурни ли сте, че искате да изтриете това задължение?')) {
         Debt.delete({debtId: id}, function () {
           loadDebts();
+          $rootScope.$broadcast('balance:update');//broadcast to update balance
           toastr.success('Изтриването протече успешно.');
         }, function(response){
           toastr.error("Не успя да се установи връзка с базата данни:" , response);

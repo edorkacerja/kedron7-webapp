@@ -6,13 +6,13 @@
     <table tr-ng-grid="" items="hdpdetail.deposits" enable-filtering="false" locale="bg" page-items="hdpdetail.top" total-items="hdpdetail.totalDeposits" on-data-required="hdpdetail.onServerSideItemsRequested(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
       <thead>
       <tr>
-        <th field-name="DateCreated" display-name="Дата на депозиране"  enable-filtering="false" display-format="date: 'MM/dd/yyyy | h:mma'"></th>
+        <th field-name="DateMade" display-name="Дата на депозиране"  enable-filtering="false" display-format="date: 'MM/dd/yyyy | h:mma'"></th>
         <th field-name="Value" display-name="Стойност"  enable-filtering="false" display-format="currency: 'лв. '"></th>
       </tr>
       </thead>
       <tbody>
       <tr>
-        <td field-name="DateCreated">{{gridDisplayItem.DateCreated }}</td>
+        <td field-name="DateMade">{{gridDisplayItem.DateMade }}</td>
         <td field-name="Value">{{gridDisplayItem.Value | currency: 'лв. '}}</td>
         <td field-name="Id"><button class="btn btn-danger" ng-click="hdpdetail.deleteDeposit(gridDisplayItem.Id)">Изтрий</button></td>
       </tr>

@@ -8,7 +8,7 @@
     .module('kedron')
     .controller('HouseholdDepositsController', HouseholdDepositsController );
 
-  function HouseholdDepositsController( HouseholdDeposit, QueryConstructor, $stateParams , toastr , $scope, $window) {
+  function HouseholdDepositsController( HouseholdDeposit, QueryConstructor, $stateParams , toastr , $scope, $window , $rootScope) {
     var vm = this;
 
     vm.top = 10;
@@ -26,6 +26,7 @@
     });
     $scope.$on('deposit:added', function (event, arg) {
       loadDeposits();
+      $rootScope.$broadcast('balance:update', vm.isPaid);//broadcast to update balance
     });
 
 
@@ -40,11 +41,10 @@
     vm.deleteDeposit = function(id) {
 
       if($window.confirm('Сигурни ли сте, че искате да изтриете това жилище?')) {
-
         HouseholdDeposit.delete({depositId: id}, function () {
           loadDeposits();
           toastr.success('Заплащането протече успешно.');
-
+          $rootScope.$broadcast('balance:update');//broadcast to update balance
         }, function(response){
           toastr.error("Не успя да се установи връзка с базата данни:" , response);
         });
@@ -56,6 +56,7 @@
        HouseholdDeposit.query({id: $stateParams.householdId ,top: vm.top, skip: QueryConstructor.skip(currentPage, vm.top), orderBy: QueryConstructor.order(orderBy, orderByReverse),
            lowerBoundaryPrice: vm.lowerBoundaryPrice , upperBoundaryPrice: vm.upperBoundaryPrice, dateMadeLowerboundary: vm.dateMadeLowerboundary , dateMadeUpperboundary: vm.dateMadeUpperboundary},
          function(response) {
+           console.log(response.Items);
          vm.deposits = response.Items;
          vm.totalDeposits = response.Count;
        },
