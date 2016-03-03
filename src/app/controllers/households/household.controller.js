@@ -53,16 +53,6 @@
 
 
     $scope.$on("balance:update" , function( event , data) {
-      console.log('asd');
-      Household.getBalance({id: vm.household.Id}).$promise.then(function(response){
-        vm.household.Balance = response.Value;
-      }, function(error){
-        //todo log this error somehow.
-      });
-    });
-
-
-    $scope.$on("deposit:added" , function( event , data) {
       Household.getBalance({id: vm.household.Id}).$promise.then(function(response){
         vm.household.Balance = response.Value;
       }, function(error){

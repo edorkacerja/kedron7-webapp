@@ -6,7 +6,7 @@
     .controller('BuildingController', BuildingController );
 
   /** @ngInject */
-  function BuildingController(Building, $state, $stateParams, toastr , building, $window) {
+  function BuildingController(Building, $state, toastr , building, $window , $scope ) {
        var vm = this;
 
 
@@ -40,6 +40,15 @@
          }
        };
 
+      //fired on model delete
+      $scope.$on("balance:update" , function( event , data) {
+          Building.getBalance({id: vm.building.Id} , function(response) {
+            vm.building.Balance = response.Value;
+            }, function(error) {
+            toastr.warning(error);
+
+          })
+      });
 
   }
 })();

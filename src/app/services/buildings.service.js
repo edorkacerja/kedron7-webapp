@@ -22,7 +22,11 @@
        },
         update: {
           method: 'PUT'
-        }
+        },
+       getBalance: {
+         method: 'GET',
+         url: api +"/buildings/:id/balance"
+       }
      });
    }
 

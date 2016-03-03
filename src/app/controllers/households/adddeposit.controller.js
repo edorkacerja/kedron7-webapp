@@ -14,7 +14,7 @@
     vm.add = function() {
       vm.deposit.$save({id: householdId} ,function(data) {
         vm.depositForm.$setPristine();
-        $rootScope.$broadcast("deposit:added" , data);
+        $rootScope.$broadcast("balance:update");
         toastr.success('Успешен депозит', "Сума: " + data.Value + " лв." );
         $modalInstance.dismiss();
       });

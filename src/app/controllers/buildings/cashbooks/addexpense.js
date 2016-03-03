@@ -133,7 +133,7 @@
       vm.newExpense.ExpensePayersInformation = result;
         vm.newExpense.$save({building_id: $stateParams.buildingId},function(data) {
         toastr.success('Разходът бе добавен', "Име: " + data.Name );
-        $state.go('cashbook', {buildingId: $stateParams.buildingId});
+        $state.go('buildingDetail.cashbook', {buildingId: $stateParams.buildingId});
       })
     }
 

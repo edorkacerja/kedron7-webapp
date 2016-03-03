@@ -5,7 +5,7 @@
     .module('kedron')
     .controller('BuildingCashbookModelsController', BuildingCashbookModelsController );
 
-  function BuildingCashbookModelsController(Model, toastr, QueryConstructor, $stateParams , $scope , $window) {
+  function BuildingCashbookModelsController(Model, $rootScope , $scope ,toastr, QueryConstructor, $stateParams ) {
     var vm = this;
     vm.top = 10;
     //listen to the filter and when the deposit gets successfully added
@@ -22,7 +22,8 @@
     vm.deleteModel = function(id) {
         Model.delete({id: id}, function () {
           loadModels();
-          toastr.success('Заплащането протече успешно.');
+          $rootScope.$broadcast("balance:update");
+          toastr.success('Операцията протече успешно.');
         }, function(response){
           toastr.error("Не успя да се установи връзка с базата данни:" , response);
         });
