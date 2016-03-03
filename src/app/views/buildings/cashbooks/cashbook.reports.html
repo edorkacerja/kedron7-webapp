@@ -1,1 +1,6 @@
-this is the view for reports
+<p class="input-group">
+  <input type="text" class="form-control"  datepicker-popup="MM-yyyy" ng-model="cbr.Date" datepicker-options="{minMode: 'month'}" datepicker-mode="'month'"  is-open="cbr.DatePopup.opened" ng-init="cbr.DatePopup.opened=false"  close-text="Затвори"  />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="cbr.DatePopup.opened=true"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+</p>

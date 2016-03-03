@@ -36,6 +36,7 @@
           }]
         }
       })
+      //building households
       .state('buildingDetail.households' ,{
         url:'/households',
         templateUrl: 'app/views/buildings/households/buildingDetails.households.html',
@@ -72,6 +73,7 @@
         }
 
       })
+      //cashbook deposits
       .state('buildingDetail.cashbook.deposits' , {
         url: '/deposits',
         views:{
@@ -99,13 +101,13 @@
         views: {
           "": {
             templateUrl: 'app/views/buildings/cashbooks/cashbook.reports.html',
-            controller: 'BuildingCashbookModelsController',
-            controllerAs: 'cbm',
+            controller: 'BuildingCashbookReportsController',
+            controllerAs: 'cbr',
             resolve: {
-              Expenses: ['Expense', function (Expense) {    //todo modify this when reports api is ready
+              Expense: ['Expense', function (Expense) {
                 return Expense;
               }],
-              Deposits: ['BuildingDeposit' , function(BuildingDeposit) {
+              Deposit: ['BuildingDeposit' , function(BuildingDeposit) {
                 return BuildingDeposit
               }]
             }
