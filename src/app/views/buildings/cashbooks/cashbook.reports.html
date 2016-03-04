@@ -1,6 +1,33 @@
-<p class="input-group">
-  <input type="text" class="form-control"  datepicker-popup="MM-yyyy" ng-model="cbr.Date" datepicker-options="{minMode: 'month'}" datepicker-mode="'month'"  is-open="cbr.DatePopup.opened" ng-init="cbr.DatePopup.opened=false"  close-text="Затвори"  />
+<div class="row">
+
+  <p class="input-group">
+    <input type="text" class="form-control"  datepicker-popup="MM-yyyy" ng-model="cbr.Date" datepicker-options="{minMode: 'month'}" datepicker-mode="'month'"  is-open="cbr.DatePopup.opened" ng-init="cbr.DatePopup.opened=false"  close-text="Затвори"  />
               <span class="input-group-btn">
                 <button type="button" class="btn btn-default" ng-click="cbr.DatePopup.opened=true"><i class="glyphicon glyphicon-calendar"></i></button>
               </span>
-</p>
+  </p>
+
+
+</div><!-- date -->
+<div ng-if="cbr.Date"><!-- show only if a date is set -->
+  <div class="row">
+    <div class="col-md-12">
+      <button ng-init="cbr.ExpensesCollapsed = true" type="button" class="btn btn-default" ng-click="cbr.ExpensesCollapsed = !cbr.ExpensesCollapsed">{{cbr.expensesTotal}}<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': cbr.ExpensesCollapsed, 'glyphicon-chevron-right': !cbr.ExpensesCollapsed}"></i></button>
+      <div collapse="cbr.ExpensesCollapsed">
+        <div class="well well-lg">Some content</div>
+      </div>
+    </div>
+  </div><!-- expenses row -->
+
+
+  <div class="row">
+    <div class="col-md-12">
+      <button ng-init="cbr.DepositsCollapsed = true" type="button" class="btn btn-default" ng-click="cbr.DepositsCollapsed = !cbr.DepositsCollapsed">{{cbr.depositsTotal}}<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': cbr.DepositsCollapsed, 'glyphicon-chevron-right': !cbr.DepositsCollapsed}"></i></button>
+      <div collapse="cbr.DepositsCollapsed">
+        <div class="well well-lg">Some content</div>
+      </div>
+    </div>
+  </div><!-- deposits row -->
+
+</div>
+
