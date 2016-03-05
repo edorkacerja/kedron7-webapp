@@ -24,24 +24,22 @@
         Deposit.query(params  , function(response) {
           vm.deposits = response.Items;
           angular.forEach(vm.deposits , function(value,key) {
-
             vm.depositsTotal += value.Value;
           });
-          vm.totalDeposits = response.depositCount;
+          vm.totalDeposits = response.Count;
         });
         Expense.query(params , function(response) {
           vm.expenses = response.Items;
           angular.forEach(vm.expenses , function(value,key) {
             vm.expensesTotal += value.Value;
           });
-          vm.totalExpenses = response.expenseCount;
+          vm.totalExpenses = response.Count;
         })
 
       }
 
 
     });
-
 
 
 
