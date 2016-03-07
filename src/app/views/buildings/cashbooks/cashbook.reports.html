@@ -10,65 +10,70 @@
 
 </div><!-- date -->
 <div ng-if="cbr.Date"><!-- show only if a date is set -->
-  <div class="row">
+    <div class="row">
+          <div class="col-sm-7">
+            <h1>Разходи</h1>
+          </div>
+          <div class="col-sm-5">
+            <button ng-init="cbr.ExpensesCollapsed = true" type="button" class="btn btn-default btn-lg btn-block" ng-click="cbr.ExpensesCollapsed = !cbr.ExpensesCollapsed"><h2 class="inline-heading">{{cbr.expensesTotal | currency: '.лв '}} </h2><i class=" glyphicon" ng-class="{'glyphicon-chevron-down': cbr.ExpensesCollapsed, 'glyphicon-chevron-right': !cbr.ExpensesCollapsed}"></i></button>
+          </div>
+    </div><!-- row -->
+     <div class="row" collapse="cbr.ExpensesCollapsed">
+       <div class="table-responsive">
+         <table class="table">
+           <thead>
+           <tr>
+             <th>Име</th>
+             <th>Дата на създаване</th>
+             <th>Сума</th>
+           </tr>
+           </thead>
+           <tr ng-repeat="expense in cbr.expenses">
+             <td>{{expense.Name}}</td>
+             <td>{{expense.DateMade | date: 'MM/dd/yyyy | h:mma'}}</td>
+             <td>{{expense.Value |  currency: '.лв '}}</td>
+           </tr>
+         </table>
+       </div><!-- table - responsive -->
+     </div><!-- collapse -->
+<!-- -------------------------------------------------------------- -->
+    <div class="row">
         <div class="col-sm-7">
-          <h1>Разходи</h1>
+          <h1>Депозити</h1>
         </div>
         <div class="col-sm-5">
-          <button ng-init="cbr.ExpensesCollapsed = true" type="button" class="btn btn-default btn-lg btn-block" ng-click="cbr.ExpensesCollapsed = !cbr.ExpensesCollapsed"><h2 class="inline-heading">{{cbr.expensesTotal | currency: '.лв '}} </h2><i class=" glyphicon" ng-class="{'glyphicon-chevron-down': cbr.ExpensesCollapsed, 'glyphicon-chevron-right': !cbr.ExpensesCollapsed}"></i></button>
+          <button ng-init="cbr.DepositsCollapsed = true" type="button" class="btn btn-default btn-lg btn-block" ng-click="cbr.DepositsCollapsed = !cbr.DepositsCollapsed"><h2 class="inline-heading">{{cbr.depositsTotal | currency: '.лв '}}</h2><i class="glyphicon" ng-class="{'glyphicon-chevron-down': cbr.DepositsCollapsed, 'glyphicon-chevron-right': !cbr.DepositsCollapsed}"></i></button>
         </div>
-  </div><!-- row -->
-  <div class="row">
-   <div collapse="cbr.ExpensesCollapsed">
-     <div class="table-responsive">
-       <table class="table">
-         <thead>
-         <tr>
-           <th>Име</th>
-           <th>Дата на създаване</th>
-           <th>Сума</th>
-         </tr>
-         </thead>
-         <tr ng-repeat="expense in cbr.expenses">
-           <td>{{expense.Name}}</td>
-           <td>{{expense.DateMade}}</td>
-           <td>{{expense.Value |  currency: '.лв '}}</td>
-         </tr>
-       </table>
-     </div><!-- table - responsive -->
-   </div><!-- collapse -->
-  </div> <!--expenses row -->
-
+      </div><!-- row -->
+    <div class="row" collapse="cbr.DepositsCollapsed">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+              <tr>
+                <th>Име</th>
+                <th>Дата на създаване</th>
+                <th>Сума</th>
+              </tr>
+              </thead>
+              <tr ng-repeat="deposit in cbr.deposits">
+                <td>{{deposit.HouseholdName}}</td>
+                <td>{{deposit.DateMade | date: 'MM/dd/yyyy | h:mma'}}</td>
+                <td>{{deposit.Value | currency: '.лв '}}</td>
+              </tr>
+            </table>
+          </div><!-- table - responsive -->
+        </div><!-- collapse -->
+<!-- --------------------------------------------------------------- -->
     <div class="row">
       <div class="col-sm-7">
-        <h1>Депозити</h1>
+        <h1>Приходи от такси</h1>
       </div>
+
       <div class="col-sm-5">
-        <button ng-init="cbr.DepositsCollapsed = true" type="button" class="btn btn-default btn-lg btn-block" ng-click="cbr.DepositsCollapsed = !cbr.DepositsCollapsed"><h2 class="inline-heading">{{cbr.depositsTotal | currency: '.лв '}}</h2><i class="glyphicon" ng-class="{'glyphicon-chevron-down': cbr.DepositsCollapsed, 'glyphicon-chevron-right': !cbr.DepositsCollapsed}"></i></button>
+       <h2 class="text-center">{{cbr.profit | currency: '.лв '}}</h2>
       </div>
     </div><!-- row -->
-
-    <div class="row">
-      <div collapse="cbr.DepositsCollapsed">
-        <div class="table-responsive">
-          <table class="table">
-            <thead>
-            <tr>
-              <th>Име</th>
-              <th>Дата на създаване</th>
-              <th>Сума</th>
-            </tr>
-            </thead>
-            <tr ng-repeat="deposit in cbr.deposits">
-              <td>{{deposit.Name}}</td>
-              <td>{{deposit.DateMade}}</td>
-              <td>{{deposit.Value | currency: '.лв '}}</td>
-            </tr>
-          </table>
-        </div><!-- table - responsive -->
-      </div><!-- collapse -->
-  </div><!-- deposits row -->
-  </div><!-- ng-if -->
+</div><!-- ng-if -->
 
 
 

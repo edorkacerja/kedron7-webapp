@@ -17,7 +17,7 @@
       vm.isPaid = args;
     });
     vm.minLowerBoundaryPrice = 0;
-    vm.maxUpperBoundaryPrice = 1000;
+    vm.maxUpperBoundaryPrice = 10000;
 
     // default the user's values to the available range
     vm.lowerBoundaryPrice = vm.minLowerBoundaryPrice;

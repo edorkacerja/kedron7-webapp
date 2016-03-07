@@ -114,9 +114,23 @@
           }
         }
       })
-
-      //cashbook expense
-      //Expense Types
+      //cashbook notices
+      .state('buildingDetail.cashbook.notices', {
+        url:'/notices',
+        views: {
+          "": {
+            templateUrl: 'app/views/buildings/cashbooks/cashbook.notices.html',
+            controller: 'BuildingCashbookNoticesController',
+            controllerAs: 'cbn',
+            resolve: {
+              Households: ['$stateParams' ,'Household' , function($stateParams, Household) {
+                return Household.query({building_id: $stateParams.buildingId});
+              }]
+            }
+          }
+        }
+      })
+      //cashbook expenses
       .state('addExpense' , {
         url:'/buildings/:buildingId/expenses/new',
         templateUrl:'app/views/buildings/cashbooks/expenses/addexpense.html',

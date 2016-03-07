@@ -25,7 +25,7 @@
       <tr>
         <td field-name="ExpenseTypeName">{{gridDisplayItem.ExpenseTypeName}}</td>
         <td field-name="DateMade">{{gridDisplayItem.DateMade}}</td>
-        <td ng-if="hddetail.isPaid" field-name="DatePaid">{{gridDisplayItem.DatePaid}}</td>
+        <td ng-if="hddetail.isPaid" field-name="DatePaid" display-name="Дата на плащане">{{gridDisplayItem.DatePaid | date: 'MM/dd/yyyy | h:mma'}}</td>
         <td field-name="Value">{{gridDisplayItem.Value  | currency: 'лв. '}} лв</td>
         <td field-name="Id">
           <button class="btn btn-danger" ng-click="hddetail.deleteDebt(gridDisplayItem.Id)">Изтрий</button>
