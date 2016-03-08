@@ -5,7 +5,7 @@
        <div class="col-sm-8 col-md-6">
         <div ng-show="bdetail.editMode">
           <div class="panel panel-default">
-            <form name="bdetail.editForm" ng-submit="bdetail.update()" novalidate>
+            <form name="bdetail.editForm" novalidate>
               <div class="panel-body">
 
                   <div class="form-group" ng-class="{ 'has-error' : bdetail.editForm.address.$error.required && bdetail.editForm.address.$dirty }">
@@ -26,7 +26,7 @@
                   <div class="form-group" ng-class="{ 'has-error' : bdetail.editForm.CompanyTax.$error.required && bdetail.editForm.ConpanyTax.$dirty }">
                     <label for="CompanyTax">Такса</label>
                     <input type="number"  ng-model="bdetail.building.CompanyTax" class="form-control" id="CompanyTax" placeholder="CompanyTax" required>
-                    <span ng-show="bdetail.editForm.CompanyTax.$error.required  && !bdetail.editForm.CompanyTax.$pristine" class="help-block">Моля, въведете число от 1 до 80!</span>
+                    <span ng-show="bdetail.editForm.CompanyTax.$error.required  && !bdetail.editForm.CompanyTax.$pristine" class="help-block">Моля, въведете валидна сума!</span>
                   </div>
 
                 <div class="form-group">
@@ -35,7 +35,7 @@
               </div>
 
               <div class="panel-footer">
-                <button type="submit" ng-disabled="bdetail.editForm.$invalid" class="btn btn-success"> Запази промените </button>
+                <button type="submit" click-and-disable="bdetail.update()" ng-disabled="bdetail.editForm.$invalid" class="btn btn-success"> Запази промените </button>
                 <button type="button" class="btn btn-warning" ng-click="bdetail.editMode = false;">Отказ</button>
               </div>
             </form>

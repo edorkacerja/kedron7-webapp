@@ -2,7 +2,7 @@
 <div class="modal-header">
     <h3 class="modal-title">Добави сграда на адрес: {{ building.address}}</h3>
 </div>
-<form name="adb.buildingForm" role="form" ng-submit="adb.add()" novalidate>
+<form name="adb.buildingForm" role="form"  novalidate>
   <div class="modal-body">
       <div class="form-group row" ng-class="{ 'has-error' : adb.buildingForm.address.$error.required && adb.buildingForm.address.$dirty }">
         <label class="col-md-2 control-label" for="address">Адрес</label>
@@ -29,15 +29,15 @@
       </div>
 
       <div class="form-group row" ng-class="{ 'has-error' : adb.buildingForm.companyTax.$error.required && adb.buildingForm.companyTax.$dirty }">
-        <label class="col-md-2 control-label" for="floors">Company Tax</label>
+        <label class="col-md-2 control-label" for="floors">Такса</label>
         <div class="col-md-10">
           <input type="number" ng-model="adb.building.CompanyTax" class="form-control" id="tax" name="tax" min="1" placeholder="Company Tax" required>
-          <span ng-show="adb.buildingForm.companyTax.$error.required  && !adb.buildingForm.companyTax.$pristine" class="help-block">Please add a real value.</span>
+          <span ng-show="adb.buildingForm.companyTax.$error.required  && !adb.buildingForm.companyTax.$pristine" class="help-block">Моля, въведете валидна сума!</span>
         </div>
       </div>
   </div>
   <div class="modal-footer">
-      <button class="btn btn-primary" ng-disabled="adb.buildingForm.$invalid" type="submit" >Добави</button>
+      <button class="btn btn-primary" click-and-disable="adb.add()" ng-disabled="adb.buildingForm.$invalid" type="submit" >Добави</button>
       <button class="btn btn-warning" type="button" ng-click="adb.cancel()">Отказ</button>
   </div>
 </form>

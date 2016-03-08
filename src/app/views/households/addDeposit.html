@@ -2,7 +2,7 @@
 <div class="modal-header">
   <h3 class="modal-title">Добави депозит</h3>
 </div>
-<form name="adp.depositForm" role="form" ng-submit="adp.add()" novalidate>
+<form name="adp.depositForm" role="form" novalidate>
   <div class="modal-body">
     <div class="form-group row" ng-class="{ 'has-error' : adp.depositForm.sum.$error.required && adp.depositForm.$dirty }">
       <div class="col-md-12">
@@ -15,7 +15,7 @@
     </div>
   </div>
   <div class="modal-footer">
-    <button class="btn btn-primary" ng-disabled="adp.depositForm.$invalid" type="submit" >Регистрирай депозит</button>
+    <button class="btn btn-primary" click-and-disable="adp.add()"  ng-disabled="adp.depositForm.$invalid" type="submit" >Регистрирай депозит</button>
     <button class="btn btn-warning" type="button" ng-click="adp.cancel()">Отказ</button>
   </div>
 </form>

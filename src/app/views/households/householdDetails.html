@@ -34,7 +34,7 @@
     <div ng-show="hdetail.editMode">
       <div class="panel panel-default">
 
-        <form name="hdetail.editForm" ng-submit="hdetail.update()" novalidate>
+        <form name="hdetail.editForm"  novalidate>
             <div class="panel-body">
               <div class="form-group row" ng-class="{ 'has-error' : (hdetail.editForm.name.$error.required || hdetail.editForm.name.$error.maxlength)&& hdetail.editForm.name.$dirty }">
                 <label class="col-md-2 control-label" for="name">Име</label>
@@ -91,7 +91,7 @@
             </div><!--  panel-body  -->
 
             <div class="panel-footer">
-              <button type="submit" ng-disabled="hdetail.editForm.$invalid" class="btn btn-success"> Запази промените </button>
+              <button type="submit" click-and-disable="hdetail.update()"   ng-disabled="hdetail.editForm.$invalid" class="btn btn-success"> Запази промените </button>
               <button type="button" class="btn btn-warning" ng-click="hdetail.editMode = false;">Отказ</button>
             </div>
           </form>
