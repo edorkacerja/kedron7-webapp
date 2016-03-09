@@ -34,20 +34,22 @@
 
     var timeoutPromise;
     $scope.$watchGroup(['filter.lowerBoundaryPrice','filter.upperBoundaryPrice' , 'filter.toDateMade', 'filter.fromDateMade',
-      'filter.fromDatePaid', 'filter.toDatePaid'], function() {
+      'filter.fromDatePaid', 'filter.toDatePaid'], function(newValue, oldValue) {
+     if(newValue !== oldValue) {
+       $timeout.cancel(timeoutPromise);
+       var timeoutPromise = $timeout(function() {
 
-      $timeout.cancel(timeoutPromise);
-      var timeoutPromise = $timeout(function() {
+         $rootScope.$broadcast('filterUpdate', {
+           'lowerBoundary': vm.lowerBoundaryPrice,
+           'upperBoundary': vm.upperBoundaryPrice ,
+           'fromDateMade': vm.fromDateMade,
+           'toDateMade': vm.toDateMade,
+           'fromDatePaid': vm.fromDatePaid,
+           'toDatePaid':  vm.toDatePaid
+         });
+       }, 500);
 
-        $rootScope.$broadcast('filterUpdate', {
-          'lowerBoundary': vm.lowerBoundaryPrice,
-          'upperBoundary': vm.upperBoundaryPrice ,
-          'fromDateMade': vm.fromDateMade,
-          'toDateMade': vm.toDateMade,
-          'fromDatePaid': vm.fromDatePaid,
-          'toDatePaid':  vm.toDatePaid
-        });
-      }, 500);
+     }
 
     });
 

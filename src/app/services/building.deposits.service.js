@@ -10,8 +10,8 @@
     .factory('BuildingDeposit',deposit);
 
 
-  function deposit($resource , auth, api ) {
-    return $resource(api +"/buildings/:building_id/deposits", { building_id: '@building_id' , id: '@id' }, {
+  function deposit($resource , api ) {
+    return $resource(api +"/buildings/:building_id/deposits", { building_id: '@buildingId' }, {
       get: {
         method: 'GET'
       },
@@ -19,7 +19,7 @@
         method: 'GET'
       },
       delete: {
-        url: api + '/Deposits/:id',
+        url: api + '/deposits/:id',
         method: 'DELETE'
       }
     });

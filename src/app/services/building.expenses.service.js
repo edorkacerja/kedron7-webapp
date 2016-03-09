@@ -6,8 +6,8 @@
     .factory('Expense',expense);
 
 
-  function expense($resource , auth, api ) {
-    return $resource(api +"/buildings/:building_id/expenses", { building_id: '@buildingId', id: '@id'}, {
+  function expense($resource , api ) {
+    return $resource(api +"/buildings/:building_id/expenses", { building_id: '@buildingId'}, {
       get: {
         method: 'GET'
       },
@@ -15,7 +15,7 @@
         method: 'GET'
       },
       delete: {
-        url: api + '/Expenses/:id',
+        url: api + '/expenses/:id',
         method: 'DELETE'
       },
       save: {

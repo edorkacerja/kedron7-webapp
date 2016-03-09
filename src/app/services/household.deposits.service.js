@@ -10,7 +10,7 @@
 
 
   function deposit($resource , auth, api ) {
-    return $resource(api +"/households/:id/deposits", { id: '@id'}, {
+    return $resource(api +"/households/:household_id/deposits", { household_id: '@householdId'}, {
       get: {
         method: 'GET'
       },
@@ -22,7 +22,7 @@
         method: 'DELETE'
       },
       save: {
-        url:api +"/households/:id/adddeposit",
+        url:api +"/households/:householdId/adddeposit",
         method: 'POST'
       },
       update: {

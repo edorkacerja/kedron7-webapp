@@ -37,16 +37,12 @@
     };
 
     vm.addDeposit = function() {
+      $scope.householdId = vm.household.Id;
       $modal.open({
         templateUrl: 'app/views/households/addDeposit.html',
         controller: 'AddDepositController',
         controllerAs: 'adp',
-        size: 'sm',
-        resolve: {
-          householdId: function() {
-            return  vm.household.Id;
-          }
-        }
+        size: 'sm'
       });
     };
 

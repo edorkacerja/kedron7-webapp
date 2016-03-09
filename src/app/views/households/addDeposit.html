@@ -7,7 +7,7 @@
     <div class="form-group row" ng-class="{ 'has-error' : adp.depositForm.sum.$error.required && adp.depositForm.$dirty }">
       <div class="col-md-12">
         <div class="input-group">
-          <input type="number" min="1" step="any" class="form-control" name="sum" id="sum" placeholder="0.00" required ng-model="adp.deposit.Value" />
+          <input type="number" min="1" step="any" class="form-control" name="sum" id="sum" placeholder="0.00" ng-disabled="adp.isPayingDebt" ng-model="adp.deposit.Value" />
           <span class="input-group-addon">лв</span>
         </div>
         <span ng-show="adp.depositForm.sum.$error.required  && !adp.depositForm.sum.$pristine" class="help-block">Моля, въведете сума!</span>

@@ -14,7 +14,7 @@
       <tr>
         <td field-name="DateMade">{{gridDisplayItem.DateMade }}</td>
         <td field-name="Value">{{gridDisplayItem.Value | currency: 'лв. '}}</td>
-        <td field-name="Id"><button class="btn btn-danger" ng-click="hdpdetail.deleteDeposit(gridDisplayItem.Id)">Изтрий</button></td>
+        <td field-name="Id"><button class="btn btn-danger" ng-really-message="Сигурни ли сте, че искате да изтриете този депозит?" ng-really-click="hdpdetail.deleteDeposit(gridDisplayItem.Id)">Изтрий</button></td>
       </tr>
       </tbody>
     </table>

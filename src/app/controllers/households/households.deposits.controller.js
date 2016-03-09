@@ -33,14 +33,16 @@
 
     vm.onServerSideItemsRequested = function(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse) {
       vm.currentPage = currentPage;
-      loadDeposits(currentPage, pageItems,  filterByFields, orderBy, orderByReverse)
+      if(!vm.filterUpdate){
+        loadDeposits(currentPage, pageItems,  filterByFields, orderBy, orderByReverse);
+        vm.filterUpdate = false;
+      }
+
     };
 
 
     //delete deposit
     vm.deleteDeposit = function(id) {
-
-      if($window.confirm('Сигурни ли сте, че искате да изтриете това жилище?')) {
         HouseholdDeposit.delete({depositId: id}, function () {
           loadDeposits();
           toastr.success('Заплащането протече успешно.');
@@ -48,15 +50,14 @@
         }, function(response){
           toastr.error("Не успя да се установи връзка с базата данни:" , response);
         });
-      }
+
     };
 
 
     var loadDeposits = function(currentPage, pageItems,  filterByFields, orderBy, orderByReverse) {
-       HouseholdDeposit.query({id: $stateParams.householdId ,top: vm.top, skip: QueryConstructor.skip(currentPage, vm.top), orderBy: QueryConstructor.order(orderBy, orderByReverse),
+       HouseholdDeposit.query({household_id: $stateParams.householdId ,top: vm.top, skip: QueryConstructor.skip(vm.currentPage, vm.top), orderBy: QueryConstructor.order(orderBy, orderByReverse),
            lowerBoundaryPrice: vm.lowerBoundaryPrice , upperBoundaryPrice: vm.upperBoundaryPrice, dateMadeLowerboundary: vm.dateMadeLowerboundary , dateMadeUpperboundary: vm.dateMadeUpperboundary},
          function(response) {
-           console.log(response.Items);
          vm.deposits = response.Items;
          vm.totalDeposits = response.Count;
        },

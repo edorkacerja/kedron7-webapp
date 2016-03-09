@@ -9,8 +9,8 @@
     .factory('Debt',debt);
 
 
-  function debt($resource , auth, api ) {
-    return $resource(api +"/households/:id/debts", { id: '@id'}, {
+  function debt($resource ,  api ) {
+    return $resource(api +"/households/:household_id/debts", { household_id: '@householdId' }, {
       get: {
         method: 'GET'
       },
@@ -18,11 +18,15 @@
         method: 'GET'
       },
       delete: {
-        url: api + "/debts/:debtId",
+        url: api + "/debts/:debt_id",
         method: 'DELETE'
       },
       save: {
         method: 'POST'
+      },
+      update: {
+        url: api + "/debts/:debt_id/pay",
+        method: 'PUT'
       }
     });
   }
