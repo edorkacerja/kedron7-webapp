@@ -4,21 +4,26 @@
     .module('kedron')
     .service('authInterceptor', authInterceptor);
 
-  function authInterceptor($q, $window, $rootScope) {
+  function authInterceptor($q,$window, $rootScope , $location) {
     return {
       request: function (config) {
         config.headers = config.headers || {};
-
-        if($window.sessionStorage["userInfo"] != null  || $window.sessionStorage["userInfo"] != undefined) {
+        if($window.sessionStorage["userInfo"] == "null" ) {
+        } else{
           config.headers.Authorization = 'Bearer ' + JSON.parse($window.sessionStorage["userInfo"]).accessToken;
         }
+
+
         return config;
       },
       response: function (response) {
         return response || $q.when(response);
       },
       responseError: function (rejection) {
-        //todo add an error handling for unauthorized users
+        console.log('ad');
+        $location.path('/login');
+        return rejection;
+
       }
     };
   }

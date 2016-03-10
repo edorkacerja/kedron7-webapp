@@ -80,7 +80,6 @@
 
         function(response) {
           vm.debts = response.Items;
-          console.log(response.Items);
           vm.totalHouseholds = response.Count;
         },
         function(response) {

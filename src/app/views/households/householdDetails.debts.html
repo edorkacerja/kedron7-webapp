@@ -19,7 +19,7 @@
         <th field-name="DateMade" display-name="Дата на създаване"  enable-filtering="false" display-format="date: 'MM/dd/yyyy | h:mma'"></th>
         <th ng-if="hddetail.isPaid"  field-name="DatePaid" display-name="Дата на плащане" enable-filtering="false" display-format="date: 'MM/dd/yyyy | h:mma'"></th>
         <th field-name="Value" display-name="Стойност" enable-filtering="false" display-format="currency: 'лв. '" ></th>
-        <th field-name="AmountPaid" display-name="Платено" enable-filtering="false" display-format="currency: 'лв'"></th>
+        <th field-name="AmountPaid" display-name="Платено" enable-filtering="false" display-format="currency: 'лв. '"></th>
       </tr>
       </thead>
       <tbody>
@@ -27,7 +27,7 @@
         <td field-name="ExpenseTypeName">{{gridDisplayItem.ExpenseTypeName}}</td>
         <td field-name="DateMade">{{gridDisplayItem.DateMade}}</td>
         <td ng-if="hddetail.isPaid" field-name="DatePaid" display-name="Дата на плащане">{{gridDisplayItem.DatePaid | date: 'MM/dd/yyyy | h:mma'}}</td>
-        <td field-name="Value">{{gridDisplayItem.Value}} </td>
+        <td field-name="Value">{{gridDisplayItem.Value}}</td>
 
         <td>
           <button class="btn btn-block btn-danger" ng-really-message="Сигурни ли сте, че искате да изтриете това задължение?" ng-really-click="hddetail.deleteDebt(gridItem.Id)">Изтрий</button>
