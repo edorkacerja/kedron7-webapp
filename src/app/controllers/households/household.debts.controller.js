@@ -33,7 +33,7 @@
     });
 
     //coming from addDeposit
-    $scope.$on('deposit:added', function (event, arg) {
+    $scope.$on('balance:update', function (event, arg) {
       loadDebts();
     });
 
@@ -80,6 +80,7 @@
 
         function(response) {
           vm.debts = response.Items;
+          console.log(response.Items);
           vm.totalHouseholds = response.Count;
         },
         function(response) {
