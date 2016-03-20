@@ -8,7 +8,7 @@
     return {
       request: function (config) {
         config.headers = config.headers || {};
-        if($window.sessionStorage["userInfo"] == "null" ) {
+        if($window.sessionStorage["userInfo"] == "null" || $window.sessionStorage["userInfo"] == undefined) {
         } else{
           config.headers.Authorization = 'Bearer ' + JSON.parse($window.sessionStorage["userInfo"]).accessToken;
         }
@@ -20,7 +20,6 @@
         return response || $q.when(response);
       },
       responseError: function (rejection) {
-        console.log('ad');
         $location.path('/login');
         return rejection;
 

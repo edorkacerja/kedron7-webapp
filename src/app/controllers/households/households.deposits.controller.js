@@ -24,9 +24,9 @@
       vm.dateMadeUpperboundary = arg['toDate'];
       loadDeposits();
     });
-    $scope.$on('deposit:added', function (event, arg) {
+
+    $scope.$on('balance:update', function () {
       loadDeposits();
-      $rootScope.$broadcast('balance:update', vm.isPaid);//broadcast to update balance
     });
 
 
@@ -43,10 +43,11 @@
 
     //delete deposit
     vm.deleteDeposit = function(id) {
-        HouseholdDeposit.delete({depositId: id}, function () {
+        HouseholdDeposit.delete({depositId: id}, function (response) {
           loadDeposits();
-          toastr.success('Заплащането протече успешно.');
-          $rootScope.$broadcast('balance:update');//broadcast to update balance
+          console.log(response);
+          toastr.success('Депозитът със стойност ' + response.Deposit.Value + 'лв. бе изтрит успешно.');
+          $rootScope.$broadcast('balance:update' , response.BuildingBalance);//broadcast to update balance
         }, function(response){
           toastr.error("Не успя да се установи връзка с базата данни:" , response);
         });

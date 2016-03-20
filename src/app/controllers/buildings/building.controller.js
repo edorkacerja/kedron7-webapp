@@ -42,12 +42,7 @@
 
       //fired on model delete
       $scope.$on("balance:update" , function( event , data) {
-          Building.getBalance({id: vm.building.Id} , function(response) {
-            vm.building.Balance = response.Value;
-            }, function(error) {
-            toastr.warning(error);
-
-          })
+            vm.building.Balance = data;
       });
 
   }

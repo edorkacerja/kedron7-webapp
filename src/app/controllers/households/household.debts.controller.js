@@ -33,7 +33,7 @@
     });
 
     //coming from addDeposit
-    $scope.$on('balance:update', function (event, arg) {
+    $scope.$on('balance:update', function () {
       loadDebts();
     });
 
@@ -49,9 +49,9 @@
 
     //delete debt
     vm.deleteDebt = function(id) {
-        Debt.delete({debt_id: id}, function () {
+        Debt.delete({debt_id: id}, function (response) {
           loadDebts();
-          $rootScope.$broadcast('balance:update');//broadcast to update balance
+          $rootScope.$broadcast('balance:update', response.BuldingBalance);//broadcast to update balance
           toastr.success('Изтриването протече успешно.');
         }, function(response){
           toastr.error("Не успя да се установи връзка с базата данни:" , response);

@@ -20,9 +20,9 @@
     //delete expense
     //todo fix?
     vm.deleteModel = function(id) {
-        Model.delete({id: id}, function () {
+        Model.delete({id: id}, function (response) {
           loadModels();
-          $rootScope.$broadcast("balance:update");
+          $rootScope.$broadcast("balance:update", response.BuildingBalance);
           toastr.success('Операцията протече успешно.');
         }, function(response){
           toastr.error("Не успя да се установи връзка с базата данни:" , response);
