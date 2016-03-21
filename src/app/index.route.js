@@ -17,6 +17,14 @@
         controllerAs: 'login'
       })
 
+      //users
+      .state('users', {
+        url: '/Account/users',
+        templateUrl: 'app/views/auth/users.html',
+        controller: 'UsersController',
+        controllerAs: 'usr'
+      })
+
       //buildings
       .state('buildings', {
         url: '/buildings',

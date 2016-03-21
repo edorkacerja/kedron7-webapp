@@ -10,7 +10,7 @@
      //LOG IN
      this.login = function(user) {
         var deferred = $q.defer();
-        $http.post("http://kedronkas.azurewebsites.net/token", "grant_type=password&username=" + user.email +
+        $http.post("http://centroida5.azurewebsites.net/token", "grant_type=password&username=" + user.email +
                              "&password=" + user.password,
 
                              {
