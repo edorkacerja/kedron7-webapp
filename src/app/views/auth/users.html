@@ -1,0 +1,38 @@
+<div>
+  <acme-navbar></acme-navbar>
+</div>
+
+  <div class="container" >
+    <div class="row">
+      <div class="col-sm-12  main">
+
+        <!-- trNgGrid -->
+<br/><br/>
+        <table tr-ng-grid="" items="usr.users" enable-filtering="false" locale="bg" page-items="usr.top" total-items="usr.totalUsers" on-data-required="usr.onServerSideItemsRequested(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
+          <thead>
+          <tr>
+            <th field-name="First_Name" display-name="FirstName" enable-filtering="true" ></th>
+            <th field-name="Last_Name" display-name="LastName" enable-filtering="true" ></th>
+            <th field-name="Role" display-name="Role" enable-filtering="true" ></th>
+            <th field-name="Id" display-name="Id"  enable-filtering="true"></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td field-name="First_Name">{{gridDisplayItem.First_Name}}</td>
+            <td field-name="Last_Name">{{gridDisplayItem.Last_Name}}</td>
+            <td field-name="Role">{{gridDisplayItem.Role}}</td>
+            <td field-name="Id">{{gridDisplayItem.Id}}</td>
+          </tr>
+          </tbody>
+
+        </table>
+
+      </div><!-- col-sm-12 -->
+    </div><!-- row -->
+  </div>
+  </div>
+
+
+
+
