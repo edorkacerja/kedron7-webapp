@@ -6,7 +6,7 @@
     .controller('UsersController', UsersController );
 
   /** @ngInject */
-  function UsersController( QueryConstructor, Users, $scope ) {
+  function UsersController( QueryConstructor, Users, $scope, $modal) {
     var vm = this;
     vm.top = 10;
 
@@ -31,6 +31,14 @@
     };
 
 
+    //add a new user
+    vm.add= function() {
+      $modal.open({
+        templateUrl: 'app/views/auth/register.html',
+        controller: 'RegistrationController',
+        controllerAs: 'reg'
+      });
+    };
 
 
 

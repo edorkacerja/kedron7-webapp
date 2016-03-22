@@ -55,7 +55,7 @@
      //REGISTER
      this.register = function(user) {
        var deferred = $q.defer();
-       $http.post( api +"/account/register", {"Email": user.email , "Password": user.password , "ConfirmPassword": user.confirmPassword })
+       $http.post( api +"/account/register", {"First_Name": user.first_name, "Last_Name": user.last_name, "Email": user.email , "Password": user.password , "ConfirmPassword": user.confirmPassword })
        .then(
          function() {
             deferred.resolve();
