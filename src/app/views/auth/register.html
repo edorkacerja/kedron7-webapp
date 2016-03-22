@@ -1,40 +1,50 @@
-<div>
- <acme-navbar></acme-navbar>
-</div>
+<br/>
 <div class="container-fluid">
 
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-              Register a new user
-           </div>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          Register a new user
+        </div>
 
-           <div class="panel-body">
-              <div  class="alert alert-danger" role="alert" ng-show="reg.status">{{reg.status}}</div>
-              <form role="form" name="loginform">
-                  <div class="form-group">
-                    <label fpr="email"> E-mail </label>
-                    <input type="text" ng-model="user.email" class="form-control" placeholder="Your e-mail" required/>
-                  </div>
-
-                  <div class="form-group">
-                    <label> Password </label>
-                    <input type="password" ng-model="user.password" class="form-control" placeholder="Your password" required/>
-                  </div>
-
-                  <div class="form-group">
-                    <label> Password </label>
-                    <input type="password" ng-model="user.confirmPassword" class="form-control" placeholder="Password Confirm" required/>
-                  </div>
-
-                  <button type="submit" class="btn btn-default" ng-disabled="form1.$invalid" ng-click="reg.register(user)">Submit</button>
-
-              </form>
+        <div class="panel-body">
+          <div class="alert alert-danger" role="alert" ng-show="reg.status">{{reg.status}}</div>
+          <form role="form" name="loginform">
+            <div class="form-group">
+              <label fpr="first_name"> First Name </label>
+              <input type="text" ng-model="user.first_name" class="form-control" placeholder="First Name" required/>
             </div>
-          </div>
+            <div class="form-group">
+              <label fpr="last_name"> Last Name </label>
+              <input type="text" ng-model="user.last_name" class="form-control" placeholder="Last Name" required/>
+            </div>
+            <div class="form-group">
+              <label fpr="email"> E-mail </label>
+              <input type="text" ng-model="user.email" class="form-control" placeholder="Your e-mail" required/>
+            </div>
 
+            <div class="form-group">
+              <label> Password </label>
+              <input type="password" ng-model="user.password" class="form-control" placeholder="Your password"
+                     required/>
+            </div>
+
+            <div class="form-group">
+              <label> Password </label>
+              <input type="password" ng-model="user.confirmPassword" class="form-control" placeholder="Password Confirm"
+                     required/>
+            </div>
+
+            <button type="submit" class="btn btn-default" ng-disabled="form1.$invalid" ng-click="reg.register(user)">
+              Submit
+            </button>
+
+          </form>
+        </div>
       </div>
 
     </div>
+
+  </div>
 </div>

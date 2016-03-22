@@ -8,6 +8,7 @@
 
         <!-- trNgGrid -->
 <br/><br/>
+        <button ng-click='usr.add()' class="btn btn-primary"> Register User </button>
         <table tr-ng-grid="" items="usr.users" enable-filtering="false" locale="bg" page-items="usr.top" total-items="usr.totalUsers" on-data-required="usr.onServerSideItemsRequested(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
           <thead>
           <tr>
