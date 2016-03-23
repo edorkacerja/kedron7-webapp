@@ -18,7 +18,6 @@
                   vm.status = error;
               }
             );
-
     }
 
 

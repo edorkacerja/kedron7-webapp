@@ -22,6 +22,11 @@
         url: '/Account/users',
         templateUrl: 'app/views/auth/users.html',
         controller: 'UsersController',
+        data: {
+          permissions: {
+            only: ['admin']
+          }
+        },
         controllerAs: 'usr'
       })
 
@@ -30,6 +35,11 @@
         url: '/buildings',
         templateUrl: 'app/views/buildings/buildings.html',
         controller: 'BuildingsController',
+        data: {
+          permissions: {
+            except: ['anonymous']
+          }
+        },
         controllerAs: 'bd'
       })
       //building detail
@@ -38,6 +48,11 @@
         templateUrl: 'app/views/buildings/buildingDetails.html',
         controller: 'BuildingController',
         controllerAs: 'bdetail',
+        data: {
+          permissions: {
+            except: ['anonymous']
+          }
+        },
         resolve: {
           building: ['Building' , '$stateParams' , function(Building , $stateParams) {
             return Building.get({ id: $stateParams.buildingId});
@@ -143,6 +158,11 @@
         url:'/buildings/:buildingId/expenses/new',
         templateUrl:'app/views/buildings/cashbooks/expenses/addexpense.html',
         controller: 'addExpenseController',
+        data: {
+          permissions: {
+            except: ['anonymous', 'cashier']
+          }
+        },
         controllerAs: 'exp'
       })
       //households
@@ -205,6 +225,7 @@
 
       })
     ;
+    //TODO add a route for permission failure
 
     $urlRouterProvider.otherwise('/');
   }

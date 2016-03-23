@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-sm-12  main">
 
-     <button ng-click='bd.add()' class="btn btn-primary"> Добави сграда </button>
+     <button permission permission-only="'admin'" ng-click='bd.add()' class="btn btn-primary"> Добави сграда </button>
       <!-- trNgGrid -->
 
        <table tr-ng-grid="" items="bd.buildings" enable-filtering="false" locale="bg" page-items="bd.top" total-items="bd.totalBuildings" on-data-required="bd.onServerSideItemsRequested(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">

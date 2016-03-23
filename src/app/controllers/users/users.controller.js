@@ -6,13 +6,13 @@
     .controller('UsersController', UsersController );
 
   /** @ngInject */
-  function UsersController( QueryConstructor, Users, $scope, $modal) {
+  function UsersController( QueryConstructor, User, $scope, $modal) {
     var vm = this;
     vm.top = 10;
 
 //Called from on-data-required directive.
     vm.onServerSideItemsRequested = function(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse) {
-      Users.query(
+      User.query(
         {top: vm.top,
           skip: QueryConstructor.skip(currentPage, vm.top),
           filter:QueryConstructor.filter(filterByFields),

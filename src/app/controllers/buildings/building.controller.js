@@ -6,10 +6,10 @@
     .controller('BuildingController', BuildingController );
 
   /** @ngInject */
-  function BuildingController(Building, $state, toastr , building, $window , $scope ) {
+  function BuildingController(Building, $state, toastr , building, $window , $scope , PermissionStore) {
        var vm = this;
 
-
+      console.log(PermissionStore.getStore());
       //editing mode for the building
        vm.editMode = false;
        vm.building = building;

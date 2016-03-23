@@ -3,7 +3,7 @@
 
   angular
     .module('kedron')
-    .factory('Users', users);
+    .factory('User', users);
 
 
   function users($resource , api ) {

@@ -6,18 +6,23 @@
     .run(runBlock);
 
   /** @ngInject */
-  function runBlock($log , auth, $state , $rootScope ) {
+  function runBlock($log , auth, $state , $rootScope , PermissionStore ) {
+    //
+    PermissionStore.definePermission('anonymous', function () {
+        return !auth.currentUser();
+    });
+    PermissionStore.definePermission('admin', function () {
+        return auth.currentUser().userRole.indexOf('Admin') != -1;
+    });
+    PermissionStore.definePermission('cashier', function () {
+      return auth.currentUser().userRole.indexOf('Cashier') != -1;
+    });
+
 
 
 
 
     $log.debug('runBlock end');
-    //$rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
-    //  if (!auth.currentUser()) {
-    //    event.preventDefault();
-    //    $state.go('login');
-    //  }
-    //});
 
     var bgTranslation = angular.extend({},
       {

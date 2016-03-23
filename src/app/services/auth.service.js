@@ -20,13 +20,20 @@
                               }
         ).then(
            function(response) {
-                var  userInfo = {//generate an access token on the server for the user
-                  accessToken: response.data.access_token,
-                  userName: response.data.userName
-                };
-              $rootScope.$emit('user:loggedin', userInfo); //broadcast to all controllers that  the user has logged in
-              $window.sessionStorage["userInfo"] = JSON.stringify(userInfo);//store the data on the client
-              deferred.resolve();
+
+             if(response.status == 200) {
+
+               var userInfo = {//generate an access token on the server for the user
+                 accessToken: response.data.access_token,
+                 userName: response.data.userName,
+                 userRole: response.data.userRole.split(',')
+               };
+               $rootScope.$emit('user:loggedin', userInfo); //broadcast to all controllers that  the user has logged in
+               $window.sessionStorage["userInfo"] = JSON.stringify(userInfo);//store the data on the client
+               deferred.resolve();
+             } else {
+               deferred.reject(response);
+             }
            },
            function(error) {
               deferred.reject(error);
