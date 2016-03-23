@@ -11,7 +11,7 @@
 
       </ul>
      <ul class="nav navbar-nav navbar-right">
-      <li><a href="#/Account/users">Users</a> </li>
+       <li ng-show="vm.profile && vm.profile.userRoles.indexOf('Admin') !== -1"><a ui-sref="users">Потребители</a> </li><!-- TODO find a way to use the directive here -->
        <li><a href="#">{{vm.profile.userName}}</a></li>
        <li ng-click="vm.logout()"><a  ng-show='vm.profile' >Изход </a></li>
      </ul>

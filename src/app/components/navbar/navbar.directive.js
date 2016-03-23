@@ -21,7 +21,7 @@
     return directive;
 
     /** @ngInject */
-    function NavbarController(auth, $state ) {
+    function NavbarController(auth, $state, PermissionStore ) {
       var vm = this;
       vm.profile = auth.currentUser();
 

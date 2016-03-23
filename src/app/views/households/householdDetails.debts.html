@@ -20,6 +20,8 @@
         <th ng-if="hddetail.isPaid"  field-name="DatePaid" display-name="Дата на плащане" enable-filtering="false" display-format="date: 'MM/dd/yyyy | h:mma'"></th>
         <th field-name="Value" display-name="Стойност" enable-filtering="false" display-format="currency: 'лв. '" ></th>
         <th field-name="AmountPaid" display-name="Платено" enable-filtering="false" display-format="currency: 'лв. '"></th>
+        <th  permission permission-only="'admin'" enable-sorting="false"></th>
+        <th ng-if="!hddetail.isPaid" enable-sorting="false"></th>
       </tr>
       </thead>
       <tbody>
@@ -29,7 +31,7 @@
         <td ng-if="hddetail.isPaid" field-name="DatePaid" display-name="Дата на плащане">{{gridDisplayItem.DatePaid | date: 'MM/dd/yyyy | h:mma'}}</td>
         <td field-name="Value">{{gridDisplayItem.Value}}</td>
 
-        <td>
+        <td  permission permission-only="'admin'">
           <button class="btn btn-block btn-danger" ng-really-message="Сигурни ли сте, че искате да изтриете това задължение?" ng-really-click="hddetail.deleteDebt(gridItem.Id)">Изтрий</button>
         </td>
         <td ng-if="!hddetail.isPaid">

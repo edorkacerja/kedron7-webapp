@@ -12,15 +12,15 @@
       //auth
       .state('login', {
         url: '/',
-        templateUrl: 'app/views/auth/login.html',
+        templateUrl: 'app/views/users/login.html',
         controller: 'LoginController',
         controllerAs: 'login'
       })
 
       //users
       .state('users', {
-        url: '/Account/users',
-        templateUrl: 'app/views/auth/users.html',
+        url: '/users',
+        templateUrl: 'app/views/users/users.html',
         controller: 'UsersController',
         data: {
           permissions: {

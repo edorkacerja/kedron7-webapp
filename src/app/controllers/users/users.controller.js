@@ -21,7 +21,6 @@
         function(response) {
           vm.users = response;
           vm.totalUsers = response.Count;
-          //console.log(response);
         },
 
 
@@ -34,7 +33,7 @@
     //add a new user
     vm.add= function() {
       $modal.open({
-        templateUrl: 'app/views/auth/register.html',
+        templateUrl: 'app/views/users/register.html',
         controller: 'RegistrationController',
         controllerAs: 'reg'
       });

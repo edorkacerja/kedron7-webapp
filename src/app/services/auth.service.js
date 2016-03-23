@@ -26,7 +26,7 @@
                var userInfo = {//generate an access token on the server for the user
                  accessToken: response.data.access_token,
                  userName: response.data.userName,
-                 userRole: response.data.userRole.split(',')
+                 userRoles: response.data.userRoles.split(',')
                };
                $rootScope.$emit('user:loggedin', userInfo); //broadcast to all controllers that  the user has logged in
                $window.sessionStorage["userInfo"] = JSON.stringify(userInfo);//store the data on the client

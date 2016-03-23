@@ -12,7 +12,8 @@
         method: 'GET'
       },
       query: {
-        method: 'GET', isArray:true
+        method: 'GET',
+        isArray: true
       },
       delete: {
         method: 'DELETE'

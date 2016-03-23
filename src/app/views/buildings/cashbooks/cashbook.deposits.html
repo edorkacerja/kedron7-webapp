@@ -7,6 +7,7 @@
         <th field-name="HouseholdName" enable-filtering="true" display-name="Име на жилище"></th>
         <th field-name="DateMade" enable-filtering="false"  display-format="date: 'MM/dd/yyyy | h:mma'" display-name="Дата на създаване"></th>
         <th field-name="Value" display-name="Стойност"  enable-filtering="false" display-format="currency: 'лв. '"></th>
+        <th field-name="Id"  permission permission-only="'admin'"></th>
       </tr>
       </thead>
       <tbody>
@@ -14,7 +15,7 @@
         <td field-name="HouseholdName"><a target="_blank" class="btn btn-default btn-block" ui-sref="householdDetail({householdId: gridItem.HouseholdId})">{{gridDisplayItem.HouseholdName}}</a></td>
         <td field-name="DateMade">{{gridDisplayItem.DateMade}}</td>
         <td field-name="Value">{{gridDisplayItem.Value}}</td>
-        <td field-name="Id"><button class="btn btn-danger" ng-really-message="Сигурни ли сте, че искате да изтриете този депозит?" ng-really-click="cbm.deleteModel(gridDisplayItem.Id)">Изтрий </button></td>
+        <td field-name="Id"  permission permission-only="'admin'"><button class="btn btn-danger" ng-really-message="Сигурни ли сте, че искате да изтриете този депозит?" ng-really-click="cbm.deleteModel(gridDisplayItem.Id)">Изтрий </button></td>
       </tr>
       </tbody>
 

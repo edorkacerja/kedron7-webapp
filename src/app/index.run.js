@@ -12,10 +12,10 @@
         return !auth.currentUser();
     });
     PermissionStore.definePermission('admin', function () {
-        return auth.currentUser().userRole.indexOf('Admin') != -1;
+        return auth.currentUser().userRoles.indexOf('Admin') != -1;
     });
     PermissionStore.definePermission('cashier', function () {
-      return auth.currentUser().userRole.indexOf('Cashier') != -1;
+      return auth.currentUser().userRoles.indexOf('Cashier') != -1;
     });
 
 

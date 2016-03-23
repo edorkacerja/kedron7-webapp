@@ -1,7 +1,7 @@
 <ul class="nav nav-tabs">
   <li role="presentation" ui-sref-active="active"><a ui-sref="buildingDetail.cashbook.expenses({buildingId: cb.buildingId})">Разходи</a></li>
   <li role="presentation" ui-sref-active="active" ><a ui-sref="buildingDetail.cashbook.deposits({buildingId: cb.buildingId})">Депозити</a></li>
-  <li role="presentation" ui-sref-active="active" ><a ui-sref="buildingDetail.cashbook.reports({buildingId: cb.buildingId})">Отчети</a></li>
+  <li role="presentation"  permission permission-only="'admin'" ui-sref-active="active" ><a ui-sref="buildingDetail.cashbook.reports({buildingId: cb.buildingId})">Отчети</a></li>
   <li role="presentation" ui-sref-active="active" ><a ui-sref="buildingDetail.cashbook.notices({buildingId: cb.buildingId})">Уведомления</a></li>
 </ul>
 <div ui-view="filters"></div>

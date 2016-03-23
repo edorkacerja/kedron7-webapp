@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-sm-12">
     <h4>Жилища</h4>
-    <button ng-click="bhdetail.addHousehold()" class="btn btn-primary">Добави жилище</button>
+    <button ng-click="bhdetail.addHousehold()"   permission permission-only="'admin'" class="btn btn-primary">Добави жилище</button>
     <!-- trNgGrid -->
     <table tr-ng-grid="" items="bhdetail.households" enable-filtering="false"  locale="bg" page-items="bhdetail.top" total-items="bhdetail.totalHouseholds" on-data-required="bhdetail.onServerSideItemsRequested(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
       <thead>

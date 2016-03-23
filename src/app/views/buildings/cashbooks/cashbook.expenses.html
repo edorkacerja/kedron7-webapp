@@ -1,13 +1,14 @@
 <div class="row">
   <div class="col-sm-12">
     <h4>Разходи</h4>
-    <a ui-sref="addExpense({buildingId: cbm.buildingId})" class="btn btn-primary">Добави разход </a>
+    <a ui-sref="addExpense({buildingId: cbm.buildingId})" permission permission-only="'admin'"  class="btn btn-primary">Добави разход </a>
     <table tr-ng-grid="" items="cbm.modelsCollection" locale="bg" page-items="cbm.top" total-items="cbm.modelsCount" enable-filtering='false'on-data-required="cbm.onServerSideItemsRequested(currentPage, pageItems, filterBy, filterByFields, orderBy, orderByReverse)">
       <thead>
       <tr>
         <th field-name="Name" enable-filtering="true" display-name="Име"></th>
         <th field-name="DateMade" enable-filtering="false"  display-format="date: 'MM/dd/yyyy | h:mma'" display-name="Дата на създаване"></th>
         <th field-name="Value" display-name="Стойност"  enable-filtering="false" display-format="currency: 'лв. '"></th>
+        <th  permission permission-only="'admin'" field-name="Id" ></th>
       </tr>
       </thead>
       <tbody>
@@ -15,7 +16,7 @@
         <td field-name="Name">{{gridDisplayItem.Name}}</td>
         <td field-name="DateMade">{{gridDisplayItem.DateMade}}</td>
         <td field-name="Value">{{gridDisplayItem.Value}}</td>
-        <td field-name="Id"><button class="btn btn-danger" ng-really-message="Сигурни ли сте, че искате да изтриете този разход?" ng-really-click="cbm.deleteModel(gridDisplayItem.Id)" >Изтрий </button></td>
+        <td field-name="Id"  permission permission-only="'admin'" ><button  class="btn btn-danger" ng-really-message="Сигурни ли сте, че искате да изтриете този разход?" ng-really-click="cbm.deleteModel(gridDisplayItem.Id)" >Изтрий </button></td>
       </tr>
       </tbody>
 
