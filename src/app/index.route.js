@@ -29,6 +29,18 @@
         },
         controllerAs: 'usr'
       })
+      //user detail
+      .state('userDetail', {
+        url: 'users/:userId',
+        templateUrl: 'app/views/users/userDetail.html',
+        controller: 'UserController',
+        data: {
+          permissions: {
+            only: ['admin']
+          }
+        },
+        controllerAs: 'usrd'
+      })
 
       //buildings
       .state('buildings', {
