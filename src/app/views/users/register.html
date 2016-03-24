@@ -11,32 +11,40 @@
         <div class="panel-body">
           <div class="alert alert-danger" role="alert" ng-show="reg.status">{{reg.status}}</div>
           <form role="form" name="loginform">
-            <div class="form-group">
+            <div class="form-group" ng-class="{ 'has-error' : loginform.first_name.$error.required && !loginform.first_name.$pristine }">
               <label fpr="first_name"> First Name </label>
-              <input type="text" ng-model="user.first_name" class="form-control" placeholder="First Name" required/>
+              <input type="text" ng-model="user.first_name" id="first_name" name="first_name" class="form-control" placeholder="First Name" required/>
+              <span ng-show="loginform.first_name.$error.required && !loginform.first_name.$pristine" class="help-block">Your First name is required.</span>
             </div>
-            <div class="form-group">
+            <div class="form-group" ng-class="{ 'has-error' : loginform.last_name.$error.required && !loginform.last_name.$pristine }">
               <label fpr="last_name"> Last Name </label>
-              <input type="text" ng-model="user.last_name" class="form-control" placeholder="Last Name" required/>
+              <input type="text" ng-model="user.last_name" id="last_name" name="last_name" class="form-control" placeholder="Last Name" required/>
+              <span ng-show="loginform.last_name.$error.required && !loginform.last_name.$pristine" class="help-block">Your Last Name is required.</span>
             </div>
-            <div class="form-group">
+            <div class="form-group" ng-class="{ 'has-error' : loginform.email.$error.required && !loginform.email.$pristine }">
               <label fpr="email"> E-mail </label>
-              <input type="text" ng-model="user.email" class="form-control" placeholder="Your e-mail" required/>
+              <input type="text" ng-model="user.email" id="email" name="email" class="form-control" placeholder="Your e-mail" required/>
+
+                        <span ng-show="(loginform.email.$invalid ||
+                                        loginform.email.$error.required) &&
+                                        !loginform.email.$pristine"
+                              class="help-block">Enter a valid email address.</span>
+
             </div>
 
-            <div class="form-group">
+            <div class="form-group" ng-class="{ 'has-error' : loginform.password.$error.required && !loginform.password.$pristine }">
               <label> Password </label>
-              <input type="password" ng-model="user.password" class="form-control" placeholder="Your password"
-                     required/>
+              <input type="password" ng-model="user.password" id="password" name="password" class="form-control" placeholder="Your password" required/>
+              <span ng-show="loginform.password.$error.required && !loginform.password.$pristine" class="help-block">Your Password is required.</span>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" ng-class="{ 'has-error' : loginform.confirm_password.$error.required && !loginform.confirm_password.$pristine }">
               <label> Password </label>
-              <input type="password" ng-model="user.confirmPassword" class="form-control" placeholder="Password Confirm"
-                     required/>
+              <input type="password" ng-model="user.confirmPassword" id="confirm_password" name="confirm_password" class="form-control" placeholder="Password Confirm" required/>
+              <span ng-show="loginform.confirm_password.$error.required && !loginform.confirm_password.$pristine" class="help-block">Please confirm your password.</span>
             </div>
 
-            <button type="submit" class="btn btn-default" ng-disabled="form1.$invalid" ng-click="reg.register(user)">
+            <button type="submit" class="btn btn-default" ng-disabled="loginform.$invalid" ng-click="reg.register(user)">
               Submit
             </button>
 
