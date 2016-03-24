@@ -5,16 +5,16 @@
     .module('kedron')
     .directive('ngReallyClick', ngReallyClick);
 
-      function ngReallyClick($modal) {
+      function ngReallyClick($uibModal) {
 
 
-        var ModalInstanceCtrl = function ($scope, $modalInstance) {
+        var ModalInstanceCtrl = function ($scope, $uibModalInstance) {
           $scope.ok = function () {
-            $modalInstance.close();
+            $uibModalInstance.close();
           };
 
           $scope.cancel = function () {
-            $modalInstance.dismiss('cancel');
+            $uibModalInstance.dismiss('cancel');
           };
         };
 
@@ -32,7 +32,7 @@
               var modalHtml = '<div class="modal-body">' + message + '</div>';
               modalHtml += '<div class="modal-footer"><button class="btn btn-danger" ng-click="ok()">Изтрий</button><button class="btn btn-warning" ng-click="cancel()">Отказ</button></div>';
 
-              var modalInstance = $modal.open({
+              var modalInstance = $uibModal.open({
                 template: modalHtml,
                 controller: ModalInstanceCtrl
               });

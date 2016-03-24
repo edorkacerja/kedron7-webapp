@@ -20,7 +20,6 @@
         return response || $q.when(response);
       },
       responseError: function (rejection) {
-        $location.path('/login');
         return rejection;
 
       }

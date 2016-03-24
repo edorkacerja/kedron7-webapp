@@ -6,7 +6,7 @@
     .factory('Building', building);
 
 
-   function building($resource , auth, api ) {
+   function building($resource , api ) {
      return $resource(api +"/buildings/:id", { id: '@id'}, {
         get: {
           method: 'GET'

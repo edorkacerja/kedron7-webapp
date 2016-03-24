@@ -15,7 +15,7 @@
         <td field-name="HouseholdName"><a target="_blank" class="btn btn-default btn-block" ui-sref="householdDetail({householdId: gridItem.HouseholdId})">{{gridDisplayItem.HouseholdName}}</a></td>
         <td field-name="DateMade">{{gridDisplayItem.DateMade}}</td>
         <td field-name="Value">{{gridDisplayItem.Value}}</td>
-        <td field-name="Id"  permission permission-only="'admin'"><button class="btn btn-danger" ng-really-message="Сигурни ли сте, че искате да изтриете този депозит?" ng-really-click="cbm.deleteModel(gridDisplayItem.Id)">Изтрий </button></td>
+        <td field-name="Id"  permission permission-only="'admin'"><button class="btn btn-block btn-danger" ng-really-message="Сигурни ли сте, че искате да изтриете този депозит?" ng-really-click="cbm.deleteModel(gridDisplayItem.Id)">Изтрий </button></td>
       </tr>
       </tbody>
 

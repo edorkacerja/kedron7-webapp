@@ -31,7 +31,10 @@
       <div class="form-group row" ng-class="{ 'has-error' : adb.buildingForm.companyTax.$error.required && adb.buildingForm.companyTax.$dirty }">
         <label class="col-md-2 control-label" for="floors">Такса</label>
         <div class="col-md-10">
-          <input type="number" ng-model="adb.building.CompanyTax" class="form-control" id="tax" name="tax" min="1" placeholder="Company Tax" required>
+          <div class="input-group">
+            <input type="number" min="1" step="any" class="form-control" name="companyTax" id="companyTax" placeholder="0.00" ng-model="adb.building.CompanyTax" required />
+            <span class="input-group-addon">лв</span>
+          </div>
           <span ng-show="adb.buildingForm.companyTax.$error.required  && !adb.buildingForm.companyTax.$pristine" class="help-block">Моля, въведете валидна сума!</span>
         </div>
       </div>

@@ -6,7 +6,7 @@
     .factory('Household', household);
 
 
-   function household($resource , auth, api ) {
+   function household($resource , api ) {
      return $resource( api+"/households/:id", { building_id: '@buildingid' , id: '@id'}, {
         get: {
           method: 'GET'
@@ -20,7 +20,7 @@
         },
         save: {
          method: 'POST',
-         url:api +"/buildings/:building_id/addhousehold"
+         url:api +"/buildings/:building_id/addhousehold",
        },
         update: {
           method: 'PUT'

@@ -1,6 +1,7 @@
 
 <div class="container" print-section>
   <h1 class="text-center"> Уведомление </h1>
+  <h3 class="text-center">{{bdetail.building.Address}}</h3>
   <h4 class="text-center">{{cbn.date | date: 'MM/dd/yyyy'}}</h4>
   <div class="table-responsive">
     <table class="table">
@@ -8,12 +9,14 @@
         <tr>
           <th>Апарт. Номер</th>
           <th>Име</th>
+          <th>Брой живущи</th>
           <th>Дължима сума</th>
         </tr>
       </thead>
       <tr ng-repeat="household in cbn.households">
         <td>{{household.Number}}</td>
         <td>{{household.Name}}</td>
+        <td>{{household.Residents}}</td>
         <td>{{household.Balance | currency: ".лв "}}</td>
       </tr>
 

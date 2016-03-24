@@ -5,7 +5,7 @@
     .module('kedron')
     .controller('HouseholdController', HouseholdController );
 
-  function HouseholdController(Household , household, toastr, $state, $window , $modal, $scope ) {
+  function HouseholdController(Household , household, toastr, $state, $window , $uibModal, $scope ) {
     var vm = this;
     vm.editMode = false;
 
@@ -38,7 +38,7 @@
 
     vm.addDeposit = function() {
       $scope.householdId = vm.household.Id;
-      $modal.open({
+      $uibModal.open({
         templateUrl: 'app/views/households/addDeposit.html',
         controller: 'AddDepositController',
         controllerAs: 'adp',

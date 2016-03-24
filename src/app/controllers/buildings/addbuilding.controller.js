@@ -6,7 +6,7 @@
     .controller('AddBuildingController', AddBuildingController );
 
   /** @ngInject */
-function AddBuildingController(Building, $modalInstance, $rootScope , toastr) {
+function AddBuildingController(Building, $uibModalInstance, $rootScope , toastr) {
   var vm = this;
 
   vm.building= new Building();
@@ -18,14 +18,14 @@ function AddBuildingController(Building, $modalInstance, $rootScope , toastr) {
       vm.buildingForm.$setPristine();
       $rootScope.$broadcast('building:added' , data);
       toastr.success('Сградата бе добавена', "Адрес: " + data.Address );
-      $modalInstance.dismiss();
+      $uibModalInstance.dismiss();
     } )// todo add a failure function
   };
 
 
 
   vm.cancel = function() {
-    $modalInstance.dismiss();
+    $uibModalInstance.dismiss();
   }
 
 

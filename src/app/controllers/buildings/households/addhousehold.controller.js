@@ -6,7 +6,7 @@
     .module('kedron')
     .controller('AddHouseholdController', AddHouseholdController );
   /** @ngInject */
-  function AddHouseholdController(Household , buildingId , floorsCount, $modalInstance, $rootScope, toastr) {
+  function AddHouseholdController(Household , buildingId , floorsCount, $uibModalInstance, $rootScope, toastr) {
     var vm = this;
     vm.newHousehold = new Household();
     vm.newHousehold.Floor = floorsCount;
@@ -14,16 +14,16 @@
     vm.add = function() {
 
       vm.newHousehold.BuildingId = buildingId;
-      vm.newHousehold.$save({building_id: buildingId} ,function(data){
+      vm.newHousehold.$save({building_id: buildingId} ,function(response){
            vm.householdForm.$setPristine();
-           $rootScope.$broadcast('household:added' , data);
-           toastr.success('Създадено жилище:', "Жилище с име " + data.Name + " бе добавено!");
-           $modalInstance.dismiss();
+           $rootScope.$broadcast('household:added' , response);
+           toastr.success('Създадено жилище:', "Жилище с име " + response.Name + " бе добавено!");
+           $uibModalInstance.dismiss();
          });
    };
 
    vm.cancel = function() {
-     $modalInstance.dismiss();
+     $uibModalInstance.dismiss();
    }
   }
 

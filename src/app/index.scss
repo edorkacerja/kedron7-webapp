@@ -14,36 +14,7 @@ $icon-font-path: "../../bower_components/bootstrap-sass/assets/fonts/bootstrap/"
 
 
 
-.thumbnail {
-  height: 200px;
 
-  img.pull-right {
-    width: 50px;
-  }
-}
-
-
-.negative-balance {
-  color: #d9534f;
-}
-
-.positive-balance{
-  color: #5cb85c;
-}
-
-
-.danger-zone {
-  background: #f2dede;
-}
-.no-padding {
-  padding: 0 !important;
-  margin: 0 !important;
-}
-
-.inline-heading {
-  display: inline-block;
-  vertical-align: baseline;
-}
 /**
  *  Do not remove the comments below. It's the markers used by gulp-inject to inject
  *  all your sass files automatically

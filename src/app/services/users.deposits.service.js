@@ -1,4 +1,7 @@
 /**
+ * Created by test most on 3/24/2016.
+ */
+/**
  * Created by test most on 1/26/2016.
  */
 (function() {
@@ -6,7 +9,7 @@
 
   angular
     .module('kedron')
-    .factory('HouseholdDeposit',deposit);
+    .factory('UserDeposit',deposit);
 
 
   function deposit($resource , api ) {

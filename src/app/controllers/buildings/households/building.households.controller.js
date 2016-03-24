@@ -6,7 +6,7 @@
     .controller('BuildingHouseholdsController', BuildingHouseholdsController );
 
   /** @ngInject */
-  function BuildingHouseholdsController(QueryConstructor, Household,  $state, $stateParams, $modal, $scope, toastr ) {
+  function BuildingHouseholdsController(QueryConstructor, Household,  $state, $stateParams, $uibModal, $scope, toastr ) {
     var vm = this;
     vm.top = 10 ; //number of items per page -> 10;
     //trNgGrid
@@ -26,7 +26,7 @@
 
     //add a household
     vm.addHousehold = function() {
-      $modal.open({
+      $uibModal.open({
         templateUrl: 'app/views/buildings/households/addHousehold.html',
         controller: 'AddHouseholdController',
         controllerAs: 'adh',

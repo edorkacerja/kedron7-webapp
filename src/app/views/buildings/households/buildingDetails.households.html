@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-sm-12">
+  <div class="col-lg-12">
     <h4>Жилища</h4>
     <button ng-click="bhdetail.addHousehold()"   permission permission-only="'admin'" class="btn btn-primary">Добави жилище</button>
     <!-- trNgGrid -->
@@ -16,15 +16,16 @@
       </thead>
       <tbody>
       <tr>
-        <td field-name="Name"><a class="btn btn-default btn-block"  ui-sref="householdDetail({householdId: gridItem.Id})">{{gridDisplayItem.Name}}</a></td>
+        <td field-name="Name">{gridDisplayItem.Name}}</td>
         <td field-name="Number">{{gridDisplayItem.Number}}</td>
         <td field-name="Floor">{{gridDisplayItem.Floor}}</td>
         <td field-name="Residents">{{gridDisplayItem.Residents}}</td>
         <td field-name="Phone">{{gridDisplayItem.Phone}}</td>
         <td field-name="Notes">{{gridDisplayItem.Notes}}</td>
+        <td><a class="btn btn-default btn-block"  ui-sref="householdDetail({householdId: gridItem.Id})">Отвори</a></td>
       </tr>
       </tbody>
 
     </table>
-  </div><!-- column -->
-</div> <!-- row -->
+  </div>
+</div>

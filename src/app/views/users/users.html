@@ -14,15 +14,14 @@
             <th field-name="FirstName" display-name="Име" enable-filtering="true" ></th>
             <th field-name="LastName" display-name="Фамилия" enable-filtering="true" ></th>
             <th field-name="Role" display-name="Роли" enable-filtering="true" ></th>
-            <!--<th field-name="Id" display-name="Id"  enable-filtering="true"></th>-->
           </tr>
           </thead>
           <tbody>
           <tr>
-            <td field-name="First_Name">{{gridDisplayItem.First_Name}}</td>
-            <td field-name="Last_Name">{{gridDisplayItem.Last_Name}}</td>
+            <td field-name="FirstName">{{gridDisplayItem.FirstName}}</td>
+            <td field-name="LastName">{{gridDisplayItem.LastName}}</td>
             <td field-name="Role"><p ng-repeat="role in gridItem.Roles">{{role}}</p></td>
-            <!--<td field-name="Id">{{gridDisplayItem.Id}}</td>-->
+            <td><a class="btn btn-default btn-block"  ui-sref="userDetail({userId: gridItem.Id})">Виж депозити</a></td>
           </tr>
           </tbody>
 

@@ -5,7 +5,7 @@
     .module('kedron')
     .controller('HouseholdDebtsController', HouseholdDebtsController );
 
-  function HouseholdDebtsController( Debt,  QueryConstructor, $stateParams , $rootScope, toastr , $modal, $scope) {
+  function HouseholdDebtsController( Debt,  QueryConstructor, $stateParams , $rootScope, toastr , $uibModal, $scope) {
     var vm = this;
     vm.top = 10;
     vm.isPaid = true;
@@ -61,7 +61,7 @@
    //pay debt - make a deposit for paying a particular debt
     vm.payDebt = function(debt) {
       $scope.debt = debt;
-      $modal.open({
+      $uibModal.open({
         templateUrl: 'app/views/households/addDeposit.html',
         controller: 'AddDepositController',
         controllerAs: 'adp',

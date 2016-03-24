@@ -6,7 +6,7 @@
     .controller('BuildingsController', BuildingsController);
 
   /** @ngInject */
-  function BuildingsController( QueryConstructor,Building, $modal , $scope, toastr ) {
+  function BuildingsController( QueryConstructor,Building, $uibModal , $scope, toastr ) {
       var vm = this;
         vm.top = 10 ; //number of items per page -> 10;
 
@@ -33,7 +33,7 @@
 
       //add a new building
       vm.add= function() {
-          $modal.open({
+          $uibModal.open({
           templateUrl: 'app/views/buildings/addBuilding.html',
           controller: 'AddBuildingController',
           controllerAs: 'adb'

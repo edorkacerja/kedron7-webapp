@@ -23,7 +23,6 @@
           vm.totalUsers = response.Count;
         },
 
-
         function(response) {
           toastr.error("Не успя да се установи връзка с базата данни:" , response );
         })
